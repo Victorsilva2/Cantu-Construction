@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochures - Cantus Construction</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Cantus Construction</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item nav-dropdown">
+                    <a href="residential.html" class="nav-link">Residential</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="residential.html#villagio">Villagio</a></li>
+                        <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
+                        <li><a href="residential.html#del-lago">Del Lago</a></li>
+                        <li><a href="residential.html#lago-vista">Lago Vista</a></li>
+                        <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
+                        <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
+                        <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
+                        <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="commercial.html" class="nav-link">Commercial</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-label">Retail Plazas</li>
+                        <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
+                        <li><a href="commercial.html#la-placita">La Placita</a></li>
+                        <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
+                        <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
+                        <li><a href="commercial.html#art-village">Art Village on Main</a></li>
+                        <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
+                        <li class="dropdown-label">Office & Medical</li>
+                        <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
+                        <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
+                        <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
+                        <li><a href="commercial.html#starpoint">StarPoint I</a></li>
+                        <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="projects.html" class="nav-link">Projects / Photo Album</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="projects.html#photo-album">Photo Album</a></li>
+                        <li><a href="brochures.html" class="active">Brochures</a></li>
+                        <li><a href="videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Interactive Brochures</h1>
+            <p>Explore our communities and properties through our digital brochures</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Brochures Section -->
+        <section id="brochures" class="brochures">
+            <div class="container">
+                <div class="brochures-grid">
+                    <div class="brochure-category">
+                        <h2>Residential Communities</h2>
+                        <div class="brochure-list">
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=400&auto=format&fit=crop" alt="Villagio Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Villagio Brochure</h3>
+                                <p>Luxury living in the heart of McAllen</p>
+                                <button class="btn btn-primary" onclick="openBrochure('villagio')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=400&auto=format&fit=crop" alt="Bougainvillea Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Bougainvillea Brochure</h3>
+                                <p>Beautiful family community</p>
+                                <button class="btn btn-primary" onclick="openBrochure('bougainvillea')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400&auto=format&fit=crop" alt="Del Lago Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Del Lago Brochure</h3>
+                                <p>Waterfront living with stunning views</p>
+                                <button class="btn btn-primary" onclick="openBrochure('del-lago')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=400&auto=format&fit=crop" alt="Lago Vista Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Lago Vista Brochure</h3>
+                                <p>Scenic community with peaceful living</p>
+                                <button class="btn btn-primary" onclick="openBrochure('lago-vista')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop" alt="Paseo Del Lago Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Paseo Del Lago Brochure</h3>
+                                <p>Modern community with contemporary homes</p>
+                                <button class="btn btn-primary" onclick="openBrochure('paseo-del-lago')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=400&auto=format&fit=crop" alt="Cimarron Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Cimarron Country Club Brochure</h3>
+                                <p>Exclusive golf course community</p>
+                                <button class="btn btn-primary" onclick="openBrochure('cimarron')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=400&auto=format&fit=crop" alt="Village on Dove Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>The Village on Dove Brochure</h3>
+                                <p>Charming neighborhood with traditional architecture</p>
+                                <button class="btn btn-primary" onclick="openBrochure('village-on-dove')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=400&auto=format&fit=crop" alt="Villas Del Lago Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Villas at Del Lago Brochure</h3>
+                                <p>Coming Soon - Luxury villas</p>
+                                <button class="btn btn-primary" onclick="openBrochure('villas-del-lago')">View Brochure</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="brochure-category">
+                        <h2>Commercial Properties</h2>
+                        <div class="brochure-list">
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop" alt="Uptown Plaza Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Uptown Plaza Brochure</h3>
+                                <p>Prime retail location</p>
+                                <button class="btn btn-primary" onclick="openBrochure('uptown-plaza')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=400&auto=format&fit=crop" alt="La Placita Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>La Placita Brochure</h3>
+                                <p>Charming retail center</p>
+                                <button class="btn btn-primary" onclick="openBrochure('la-placita')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=400&auto=format&fit=crop" alt="Lone Star Plaza Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Lone Star Plaza Brochure</h3>
+                                <p>Modern retail complex</p>
+                                <button class="btn btn-primary" onclick="openBrochure('lone-star-plaza')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=400&auto=format&fit=crop" alt="Expressway 83 Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Expressway 83 Brochure</h3>
+                                <p>Highway-frontage retail</p>
+                                <button class="btn btn-primary" onclick="openBrochure('expressway-83')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=400&auto=format&fit=crop" alt="Art Village Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Art Village Brochure</h3>
+                                <p>Cultural retail destination</p>
+                                <button class="btn btn-primary" onclick="openBrochure('art-village')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400&auto=format&fit=crop" alt="Water Tower Center Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Water Tower Center Brochure</h3>
+                                <p>Landmark retail center</p>
+                                <button class="btn btn-primary" onclick="openBrochure('water-tower')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=400&auto=format&fit=crop" alt="Amistad Plaza Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Amistad Plaza Brochure</h3>
+                                <p>Professional office complex</p>
+                                <button class="btn btn-primary" onclick="openBrochure('amistad-plaza')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=400&auto=format&fit=crop" alt="Harlingen MOB Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Harlingen MOB Brochure</h3>
+                                <p>Medical office building</p>
+                                <button class="btn btn-primary" onclick="openBrochure('harlingen-mob')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=400&auto=format&fit=crop" alt="Brownsville MOB Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>Brownsville MOB Brochure</h3>
+                                <p>State-of-the-art medical building</p>
+                                <button class="btn btn-primary" onclick="openBrochure('brownsville-mob')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=400&auto=format&fit=crop" alt="StarPoint Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>StarPoint I Brochure</h3>
+                                <p>Premium office building</p>
+                                <button class="btn btn-primary" onclick="openBrochure('starpoint')">View Brochure</button>
+                            </div>
+                            
+                            <div class="brochure-item">
+                                <div class="brochure-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=400&auto=format&fit=crop" alt="MidValley Professionals Brochure">
+                                    <div class="brochure-overlay">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
+                                <h3>MidValley Professionals Brochure</h3>
+                                <p>Professional office complex</p>
+                                <button class="btn btn-primary" onclick="openBrochure('midvalley-pros')">View Brochure</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cantus Construction</h3>
+                    <p>Building excellence, one project at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>McAllen, Texas<br>Rio Grande Valley</p>
+                    <p>(956) 631-1273</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cantus Construction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/components.js"></script>
+</body>
+</html>

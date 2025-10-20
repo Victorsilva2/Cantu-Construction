@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos - Cantus Construction</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Cantus Construction</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item nav-dropdown">
+                    <a href="residential.html" class="nav-link">Residential</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="residential.html#villagio">Villagio</a></li>
+                        <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
+                        <li><a href="residential.html#del-lago">Del Lago</a></li>
+                        <li><a href="residential.html#lago-vista">Lago Vista</a></li>
+                        <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
+                        <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
+                        <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
+                        <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="commercial.html" class="nav-link">Commercial</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-label">Retail Plazas</li>
+                        <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
+                        <li><a href="commercial.html#la-placita">La Placita</a></li>
+                        <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
+                        <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
+                        <li><a href="commercial.html#art-village">Art Village on Main</a></li>
+                        <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
+                        <li class="dropdown-label">Office & Medical</li>
+                        <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
+                        <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
+                        <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
+                        <li><a href="commercial.html#starpoint">StarPoint I</a></li>
+                        <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="projects.html" class="nav-link">Projects / Photo Album</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="projects.html#photo-album">Photo Album</a></li>
+                        <li><a href="brochures.html">Brochures</a></li>
+                        <li><a href="videos.html" class="active">Videos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Videos</h1>
+            <p>Explore our company highlights and project showcases</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Videos Section -->
+        <section id="videos" class="videos">
+            <div class="container">
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Company Overview">
+                            <div class="play-button" onclick="openVideoModal('main')">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Main Company Overview</h3>
+                            <p>Learn about Cantus Construction's history, values, and commitment to excellence in construction.</p>
+                            <button class="btn btn-primary" onclick="openVideoModal('main')">
+                                <i class="fas fa-play"></i> Watch Video
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Residential Communities">
+                            <div class="play-button" onclick="openVideoModal('residential')">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Residential Communities Highlight</h3>
+                            <p>Take a tour of our beautiful residential communities and see what makes them special.</p>
+                            <button class="btn btn-primary" onclick="openVideoModal('residential')">
+                                <i class="fas fa-play"></i> Watch Video
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Commercial Construction">
+                            <div class="play-button" onclick="openVideoModal('commercial')">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <h3>Commercial Construction & Leasing Overview</h3>
+                            <p>Discover our commercial properties and leasing opportunities throughout the Rio Grande Valley.</p>
+                            <button class="btn btn-primary" onclick="openVideoModal('commercial')">
+                                <i class="fas fa-play"></i> Watch Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cantus Construction</h3>
+                    <p>Building excellence, one project at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>McAllen, Texas<br>Rio Grande Valley</p>
+                    <p>(956) 631-1273</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cantus Construction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+            <div class="video-container">
+                <video id="modalVideo" controls>
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/components.js"></script>
+</body>
+</html>
