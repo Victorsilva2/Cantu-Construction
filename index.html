@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cantus Construction - Professional Construction Services in McAllen, TX</title>
+    <title>Cantu Construction - Professional Construction Services in McAllen, TX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -14,51 +16,14 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>Cantus Construction</h2>
+                <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction" class="brand-logo">
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item nav-dropdown">
-                    <a href="residential.html" class="nav-link">Residential</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="residential.html#villagio">Villagio</a></li>
-                        <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
-                        <li><a href="residential.html#del-lago">Del Lago</a></li>
-                        <li><a href="residential.html#lago-vista">Lago Vista</a></li>
-                        <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
-                        <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
-                        <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
-                        <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-dropdown">
-                    <a href="commercial.html" class="nav-link">Commercial</a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-label">Retail Plazas</li>
-                        <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
-                        <li><a href="commercial.html#la-placita">La Placita</a></li>
-                        <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
-                        <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
-                        <li><a href="commercial.html#art-village">Art Village on Main</a></li>
-                        <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
-                        <li class="dropdown-label">Office & Medical</li>
-                        <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
-                        <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
-                        <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
-                        <li><a href="commercial.html#starpoint">StarPoint I</a></li>
-                        <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-dropdown">
-                    <a href="projects.html" class="nav-link">Projects / Photo Album</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="projects.html#photo-album">Photo Album</a></li>
-                        <li><a href="brochures.html">Brochures</a></li>
-                        <li><a href="videos.html">Videos</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="residential.html" class="nav-link">Residential</a></li>
+                <li class="nav-item"><a href="commercial.html" class="nav-link">Commercial</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link">Projects / Photo Album</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact Us</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -68,140 +33,302 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Video Background -->
-    <section id="home" class="hero">
-        <div class="video-background">
-            <video autoplay muted loop playsinline>
-                <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay"></div>
+    <!-- Hero Banner -->
+    <section id="hero" class="hero">
+        <div class="hero-background">
+            <img src="public/images/Cantu_Construction.jpg" alt="Cantu Construction Building" class="hero-img">
         </div>
-        
+        <div class="hero-gradient"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Building Dreams Into Reality</h1>
-            <p class="hero-subtitle">Professional construction services in McAllen, Texas with over 20 years of experience</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="openVideoModal()">
-                    <i class="fas fa-play"></i> Watch Our Story
-                </button>
-                <button class="btn btn-secondary" onclick="scrollToSection('services')">
-                    Our Services
-                </button>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
+            <h1 class="heading-font hero-heading">THE RGV HOME BUILDER</h1>
+            <p class="hero-subheading">CUSTOM HOME BUILDERS SERVING McALLEN, BROWNSVILLE, EDINBURG, TX & THE RIO GRANDE VALLEY</p>
         </div>
     </section>
 
-    <!-- Home Page Content -->
-    <main>
-        <!-- What We Can Do Section -->
-        <section id="home-features" class="home-features">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What We Can Do For You</h2>
-                    <p>Residential, Commercial, and Leasing Solutions</p>
-                </div>
-                <div class="services-grid mini">
-                    <div class="service-card">
-                        <h3>Residential</h3>
-                        <p>Communities and custom homes.</p>
-                        <a href="residential.html" class="btn btn-primary">Explore Communities</a>
-                    </div>
-                    <div class="service-card">
-                        <h3>Commercial</h3>
-                        <p>Retail plazas, office and medical.</p>
-                        <a href="commercial.html" class="btn btn-primary">View Properties</a>
-                    </div>
-                    <div class="service-card">
-                        <h3>Leasing</h3>
-                        <p>Prime locations across the Valley.</p>
-                        <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recent Projects Section -->
-        <section id="recent-projects" class="recent-projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Recent Projects</h2>
-                    <p>Residential and Commercial</p>
-                </div>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item" onclick="openVideoModal('portfolio1')">
-                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Residential Project">
-                        <div class="portfolio-overlay">
-                            <h4>Residential</h4>
+    <!-- Enhanced Intro Section under landing image -->
+            <!-- Enhanced Intro Section -->
+            <section class="intro" style="background: var(--bg);">
+                <div class="intro-container">
+                    <div class="intro-content">
+                        <div class="intro-text-column">
+                            <h2 class="intro-title" style="color: #000; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+                                CANTU<br>CONSTRUCTION
+                            </h2>
+                            <p class="intro-subtitle" style="font-size: 1.5rem; margin-bottom: 20px; color: #000;">
+                                Construction and Development Company
+                            </p>
+                            <p class="intro-description" style="font-size: 1.1rem; color: #000; margin-bottom: 30px;">
+                                Cantu Construction has been a custom home builder in the McAllen, TX area for 37 years. Our commitment to quality and service has set us apart amongst other builders.
+                            </p>
+                        <a href="#contact" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
+                            Contact Us
+                        </a>
                         </div>
-                    </div>
-                    <div class="portfolio-item" onclick="openVideoModal('portfolio2')">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Commercial Project">
-                        <div class="portfolio-overlay">
-                            <h4>Commercial</h4>
+                        <div class="intro-images">
+                            <div class="image-stack">
+                                <img src="public/images/houseimage.jpeg" alt="Cantu Construction Building" class="intro-image top-image">
+                                <img src="public/images/lonestarplaza.jpeg" alt="Lone Star Plaza" class="intro-image bottom-image">
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Residential Logos Section -->
-        <section id="residential-logos" class="logos">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Residential Communities</h2>
+            <!-- What We Can Do For You Section -->
+            <section id="services" class="services section-blue" style="background: var(--bg-alt);">
+                <div class="container">
+            <div class="section-header heading-font" style="text-align:left; color: #000; position: relative;">
+                <h2 class="h2" style="font-weight:800; position:relative;">
+                    What we can do for you
+                    <span class="decorative-line"></span>
+                </h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3>Custom Homes</h3>
+                    <p>We specialize in luxurious homes that reflect the uniqueness of our clients. Allow us to build a home customized to suit your tastes and lifestyle.</p>
                 </div>
-                <div class="logos-row">
-                    <div class="logo-box">Villagio</div>
-                    <div class="logo-box">Bougainvillea</div>
-                    <div class="logo-box">Del Lago</div>
-                    <div class="logo-box">Lago Vista</div>
-                    <div class="logo-box">Paseo Del Lago</div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>Commercial Construction</h3>
+                    <p>We offer commercial construction that improves the quality of business for our clients and allows them to grow their business.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tags"></i></div>
+                    <h3>Lots For Sale</h3>
+                    <p>Not only do we offer commercial construction from the ground up, but we also offer office space leasing, medical office space leasing, and retail space leasing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-city"></i></div>
+                    <h3>Community Development</h3>
+                    <p>Cantu Construction's commitment to enriching communities reflects our dedication to making a lasting impact in the regions we serve.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-business-time"></i></div>
+                    <h3>Office Space Leasing</h3>
+                    <p>Not only do we offer commercial construction from the ground up, but we also offer office space leasing, medical office space leasing, and retail space leasing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-plus"></i></div>
+                    <h3>Much More</h3>
+                    <p>Explore our complete range of services that cater to varied construction and development needs.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Plaza Logos Section -->
-        <section id="plaza-logos" class="logos alt">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Commercial Properties</h2>
+    <!-- Recent Projects Gallery Section -->
+    <section id="recent-projects" class="recent-projects" style="background: var(--bg);">
+        <div class="container">
+            <div class="section-header heading-font" style="text-align:left; color: #000;">
+                <h2 class="h2" style="font-weight:800; letter-spacing:-0.5px; position:relative;">
+                    Recent Projects
+                    <span class="decorative-line"></span>
+                </h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <div class="placeholder-overlay">
+                            <span class="placeholder-text">Project Image</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="logos-row">
-                    <div class="logo-box">Uptown Plaza</div>
-                    <div class="logo-box">La Placita</div>
-                    <div class="logo-box">Lone Star Plaza</div>
-                    <div class="logo-box">Art Village</div>
-                    <div class="logo-box">Water Tower Center</div>
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <div class="placeholder-overlay">
+                            <span class="placeholder-text">Project Image</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <div class="placeholder-overlay">
+                            <span class="placeholder-text">Project Image</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div class="view-all-container">
+                <a href="projects.html" class="view-all-btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Client Testimonials</h2>
+    <!-- Residential Communities Section -->
+    <section id="residential-communities" class="residential-communities section-blue">
+        <div class="container">
+            <div class="section-header heading-font text-center">
+                <h2 class="h2" style="font-size: 3.5rem; font-weight:800; color: white; text-transform: uppercase; margin-bottom: 10px;">
+                    Residential Communities
+                </h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9); font-size: 1.5rem; font-weight: 300; text-transform: lowercase; position: relative;">
+                    prestige and richly rewarding lifestyles
+                    <div class="decorative-lines" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+                        <div class="decorative-line red-line" style="width: 100px; height: 3px; background-color: #C62828; margin-bottom: 5px;"></div>
+                        <div class="decorative-line grey-line" style="width: 80px; height: 2px; background-color: #D3D3D3;"></div>
+                    </div>
+                </p>
+            </div>
+            <div class="communities-grid">
+                <div class="community-item">
+                    <a href="residential.html">
+                        <img src="public/images/Bougainvillea.png" alt="Bougainvillea" class="community-logo">
+                    </a>
                 </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"Outstanding quality and communication throughout our build."</p>
-                        <strong>— Homeowner</strong>
+                <div class="community-item">
+                    <a href="residential.html">
+                        <img src="public/images/OrangeWoodEastEstates.png" alt="Orangewood East Estates" class="community-logo">
+                    </a>
+                </div>
+                <div class="community-item">
+                    <a href="residential.html">
+                        <img src="public/images/VillasAtDelLago.png" alt="Villas at Del Lago" class="community-logo">
+                    </a>
+                </div>
+                <div class="community-item">
+                    <a href="residential.html">
+                        <img src="public/images/TheVillageOnDove.png" alt="The Village on Dove" class="community-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="communities-button-container">
+                <a href="residential.html" class="communities-btn">See more Residential Communities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commercial Properties Section -->
+    <section id="commercial-properties" class="commercial-properties" style="background: var(--bg);">
+        <div class="container">
+            <div class="section-header heading-font text-center">
+                <h2 class="h2" style="font-size: 3.5rem; font-weight:800; color: #000; text-transform: uppercase; margin-bottom: 10px;">
+                    Commercial Properties
+                </h2>
+                <p class="section-subtitle" style="color: #000; font-size: 1.5rem; font-weight: 300; text-transform: lowercase; position: relative;">
+                    professional spaces for business growth
+                    <div class="decorative-lines" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+                        <div class="decorative-line red-line" style="width: 100px; height: 3px; background-color: #C62828; margin-bottom: 5px;"></div>
+                        <div class="decorative-line black-line" style="width: 80px; height: 2px; background-color: #000; margin-bottom: 5px;"></div>
+                        <div class="decorative-line grey-line" style="width: 60px; height: 2px; background-color: #D3D3D3;"></div>
                     </div>
-                    <div class="testimonial-card">
-                        <p>"On-time delivery and great leasing support."</p>
-                        <strong>— Retail Tenant</strong>
+                </p>
+            </div>
+            <div class="commercial-grid">
+                <div class="commercial-item">
+                    <a href="commercial.html">
+                        <img src="public/images/UptownPlaya.png" alt="Uptown Playa" class="commercial-logo">
+                    </a>
+                </div>
+                <div class="commercial-item">
+                    <a href="commercial.html">
+                        <img src="public/images/ArtVillage.png" alt="Art Village" class="commercial-logo">
+                    </a>
+                </div>
+                <div class="commercial-item">
+                    <a href="commercial.html">
+                        <img src="public/images/LaPlacita.png" alt="La Placita" class="commercial-logo">
+                    </a>
+                </div>
+                <div class="commercial-item">
+                    <a href="commercial.html">
+                        <img src="public/images/WaterTowerCentre.png" alt="Water Tower Centre" class="commercial-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="commercial-button-container">
+                <a href="commercial.html" class="commercial-btn">See more Commercial Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section-blue" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Client Testimonials</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Outstanding quality and communication throughout our build."</p>
+                    <strong>— Homeowner</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"On-time delivery and great leasing support."</p>
+                    <strong>— Retail Tenant</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Professional design-build from start to finish."</p>
+                    <strong>— Medical Practice</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact" style="background: var(--bg);">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="h2" style="font-size: 3.5rem; font-weight:800; color: #000; text-transform: uppercase; margin-bottom: 20px;">
+                    Contact Us
+                </h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-details">
+                        <h3 style="color: #000; font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;">ADDRESS</h3>
+                        <p style="color: #000; font-size: 1.1rem; margin-bottom: 30px;">5221 N. McColl Rd. McAllen Texas, 78504</p>
+                        
+                        <div class="contact-map">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.123456789!2d-98.234567!3d26.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzI0LjQiTiA5OMKwMTQnMDQuNCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        
+                        <h3 style="color: #000; font-size: 1.5rem; font-weight: 600; margin: 30px 0 20px 0;">TO SPEAK WITH AN AGENT, PLEASE CALL OR EMAIL US:</h3>
+                        <div class="contact-methods">
+                            <p style="color: #000; font-size: 1.1rem; margin-bottom: 10px;"><strong>Email:</strong> sales@cantuconstruction.com</p>
+                            <p style="color: #000; font-size: 1.1rem; margin-bottom: 10px;"><strong>Tel:</strong> 956.631.1273</p>
+                            <p style="color: #000; font-size: 1.1rem; margin-bottom: 10px;"><strong>Fax:</strong> 956.631.7866</p>
+                        </div>
                     </div>
-                    <div class="testimonial-card">
-                        <p>"Professional design-build from start to finish."</p>
-                        <strong>— Medical Practice</strong>
+                </div>
+                
+                <div class="contact-form-section">
+                    <h3 style="color: #000; font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;">ALTERNATIVELY YOU CAN FILL IN THE FOLLOWING CONTACT FORM:</h3>
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send</button>
+                    </form>
+                    
+                    <div class="contact-logo">
+                        <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction" style="max-width: 200px; margin-top: 30px;">
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
@@ -219,7 +346,7 @@
                         <li><a href="residential.html">Residential</a></li>
                         <li><a href="commercial.html">Commercial</a></li>
                         <li><a href="projects.html">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

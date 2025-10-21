@@ -1,17 +1,33 @@
 // Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
 });
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -93,14 +109,23 @@ document.addEventListener('keydown', (event) => {
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+    const hero = document.querySelector('.hero');
+    const heroHeight = hero ? hero.offsetHeight : 0;
+    
+    if (window.scrollY > heroHeight) {
+        // Past the hero section - show solid background
+        navbar.style.background = 'var(--bg)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.classList.add('shrink');
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        // Still in hero section - keep transparent
+        navbar.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, transparent 100%)';
         navbar.style.boxShadow = 'none';
+        navbar.classList.remove('shrink');
     }
 });
+
+// Communities grid is now static with clickable links
 
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
@@ -198,17 +223,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Add loading state for images
+// Add loading state for images (without hiding already-loaded critical images)
 document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('img');
     
     images.forEach(img => {
+        // Ensure we don't hide images that are already loaded from cache
+        const isLoaded = img.complete && img.naturalWidth > 0;
+        if (!isLoaded) {
+            img.style.opacity = '0';
+        }
+        
+        img.style.transition = 'opacity 0.3s ease';
         img.addEventListener('load', () => {
             img.style.opacity = '1';
         });
-        
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s ease';
+        img.addEventListener('error', () => {
+            // In case of error, show a subtle placeholder state
+            img.style.opacity = '1';
+        });
     });
 });
 
