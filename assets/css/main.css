@@ -102,6 +102,47 @@ body {
     color: var(--text);
     overflow-x: hidden;
     background: var(--bg);
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+/* Prevent horizontal scrolling and zoom issues */
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Prevent zoom from affecting layout */
+@media (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
 }
 
 /* Typography utility for headings */
@@ -387,12 +428,15 @@ body {
     padding: 0;
     max-width: 700px;
     margin-left: auto;
-    margin-top: -40px;  /* Move entire image container up */
+    margin-top: 20px;  /* Move images below contact button */
 }
 
 .image-stack {
     position: relative;
     width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 .intro-image {
@@ -400,19 +444,12 @@ body {
     transition: transform 0.3s ease;
 }
 
-.top-image {
-    width: 70%;
+.side-image {
+    width: 45%;
     display: block;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.bottom-image {
-    position: absolute;
-    width: 50%;
-    right: -30px;
-    bottom: -150px; /* Increased from -30px to -80px to position it lower */
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    z-index: 2;
+    object-fit: cover;
+    height: 200px;
 }
 
 .intro-image:hover {
@@ -953,6 +990,7 @@ section {
     text-align: center;
 }
 
+
 .communities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1192,19 +1230,20 @@ section {
     }
     
     .testimonial-card {
-        flex: 0 0 80%;
-        max-width: 280px;
-        padding: 15px;
+        flex: 0 0 90%;
+        max-width: 200px;
+        padding: 10px;
     }
     
     .testimonial-card p {
-        font-size: 13px;
+        font-size: 11px;
         color: #fff;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        line-height: 1.2;
     }
     
     .testimonial-card strong {
-        font-size: 11px;
+        font-size: 9px;
         color: #fff;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
@@ -1381,7 +1420,7 @@ section {
 .hamburger .bar {
     width: 25px;
     height: 3px;
-    background-color: white;
+    background-color: #000;
     margin: 3px 0;
     transition: 0.3s;
     border-radius: 2px;
@@ -1404,23 +1443,36 @@ section {
         display: flex;
     }
     
-    /* Ensure nav menu is hidden by default */
+    /* Mobile nav menu - completely hidden by default */
     .nav-menu {
         position: fixed;
+        top: 0;
         left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.95);
         width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 20px 0;
-        z-index: 1000;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 9999;
+        padding: 0;
+        margin: 0;
     }
     
     .nav-menu.active {
         left: 0;
+    }
+    
+    .nav-item {
+        margin: 20px 0;
+    }
+    
+    .nav-link {
+        color: white !important;
+        font-size: 1.5rem;
+        font-weight: 600;
     }
 }
 
@@ -1433,10 +1485,24 @@ section {
     
     .nav-container {
         padding: 0 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .nav-logo {
+        order: 1;
+    }
+    
+    .hamburger {
+        order: 2;
     }
     
     .brand-logo {
-        max-width: 120px;
+        max-width: 100px;
+        height: auto;
     }
     
     .nav-menu {
@@ -1468,9 +1534,9 @@ section {
     
     /* Hero Section */
     .hero {
-        height: 60vh;
-        min-height: 400px;
-        max-height: 600px;
+        height: 50vh;
+        min-height: 350px;
+        max-height: 500px;
     }
     
     .hero-content {
@@ -1498,46 +1564,80 @@ section {
         height: 100%;
     }
     
-    /* Intro Section */
+    /* Intro Section - Mobile Redesign */
     .intro-container {
-        padding: 30px 20px;
+        padding: 40px 20px;
     }
     
     .intro-content {
+        display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 30px;
+        text-align: center;
     }
     
     .intro-text-column {
-        text-align: center;
-        order: 2;
-    }
-    
-    .intro-title {
-        font-size: 2.2rem;
-        line-height: 1.1;
-        margin-bottom: 15px;
-    }
-    
-    .intro-subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-    }
-    
-    .intro-description {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 25px;
+        order: 1;
     }
     
     .intro-images {
-        order: 1;
-        margin-bottom: 20px;
+        order: 2;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
     }
     
     .image-stack {
-        max-width: 280px;
-        margin: 0 auto;
+        display: flex;
+        gap: 15px;
+        max-width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .side-image {
+        width: 45%;
+        max-width: 150px;
+        height: 120px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        object-fit: cover;
+    }
+    
+    /* Clean Typography */
+    .intro h2,
+    .intro .intro-title {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        margin-bottom: 15px !important;
+        color: #000 !important;
+        text-align: center !important;
+    }
+    
+    .intro .intro-subtitle {
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        color: #666 !important;
+        margin-bottom: 15px !important;
+        text-align: center !important;
+    }
+    
+    .intro .intro-description {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        color: #555 !important;
+        margin-bottom: 25px !important;
+        text-align: center !important;
+        max-width: 100% !important;
+    }
+    
+    .intro .contact-btn {
+        font-size: 0.9rem !important;
+        padding: 12px 25px !important;
+        display: inline-block !important;
+        margin: 0 auto !important;
     }
     
     .intro-image {
@@ -1576,12 +1676,40 @@ section {
         font-size: 0.9rem;
     }
     
-    /* Communities Grid */
+    /* Communities Grid - Mobile: Copy commercial section approach */
     .communities-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 0 15px;
         margin-bottom: 20px;
+    }
+    
+    /* Fix large text in residential/commercial sections */
+    .residential-communities .section-header h2,
+    .commercial-properties .section-header h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .residential-communities .section-subtitle,
+    .commercial-properties .section-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Improve mobile section spacing */
+    .residential-communities,
+    .commercial-properties {
+        padding: 50px 0 !important;
+    }
+    
+    .residential-communities .container,
+    .commercial-properties .container {
+        padding: 0 20px !important;
     }
     
     .community-logo {
@@ -1679,13 +1807,29 @@ section {
         font-size: 0.9rem;
     }
     
-    /* Section Headers */
+    /* Section Headers - Mobile */
     .section-header h2 {
-        font-size: 2.5rem;
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
     }
     
     .section-subtitle {
-        font-size: 1.2rem;
+        font-size: 1rem !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Improve overall mobile spacing */
+    section {
+        padding: 40px 0 !important;
+    }
+    
+    .container {
+        padding: 0 20px !important;
     }
     
     /* Buttons */
@@ -1741,13 +1885,19 @@ section {
     
     .communities-grid,
     .commercial-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+    }
+    
+    .commercial-logo {
+        max-width: 100%;
+        height: auto;
     }
     
     .community-logo,
     .commercial-logo {
-        max-width: 200px;
+        max-width: 100%;
+        height: auto;
     }
     
     .contact-content {
@@ -1828,8 +1978,7 @@ section {
     }
 }
 
-/* Communities */
-.communities-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+/* Communities - removed duplicate definition */
 .community-card { display:block; background:#fff; border:1px solid #e1e8ed; padding:18px; border-radius:10px; color:#2c3e50; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease; }
 .community-card:hover { transform: translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,0.08); }
 

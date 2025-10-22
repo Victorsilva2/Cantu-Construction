@@ -88,15 +88,33 @@ htmlFiles.forEach(file => {
       });
     }
     
-    // Copy Images directory
-    const imagesDir = path.join(assetsDir, 'images');
-    const distImagesDir = path.join(distAssetsDir, 'images');
-    
-    if (fs.existsSync(imagesDir)) {
-      // Copy entire images directory recursively
-      copyDirectoryRecursive(imagesDir, distImagesDir);
-      console.log(`✅ Copied Images directory`);
+  // Copy Images directory
+  const imagesDir = path.join(assetsDir, 'images');
+  const distImagesDir = path.join(distAssetsDir, 'images');
+  
+  if (fs.existsSync(imagesDir)) {
+    // Copy entire images directory recursively
+    copyDirectoryRecursive(imagesDir, distImagesDir);
+    console.log(`✅ Copied Images directory`);
+  }
+  
+  // Copy public/images directory
+  const publicImagesDir = path.join(__dirname, 'public', 'images');
+  const distPublicImagesDir = path.join(distDir, 'public', 'images');
+  
+  if (fs.existsSync(publicImagesDir)) {
+    // Create public/images directory in dist
+    if (!fs.existsSync(path.join(distDir, 'public'))) {
+      fs.mkdirSync(path.join(distDir, 'public'), { recursive: true });
     }
+    if (!fs.existsSync(distPublicImagesDir)) {
+      fs.mkdirSync(distPublicImagesDir, { recursive: true });
+    }
+    
+    // Copy entire public/images directory recursively
+    copyDirectoryRecursive(publicImagesDir, distPublicImagesDir);
+    console.log(`✅ Copied public/images directory`);
+  }
   }
 
 // Copy README and documentation
