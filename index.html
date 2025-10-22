@@ -19,10 +19,46 @@
                 <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction" class="brand-logo">
             </div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="residential.html" class="nav-link">Residential</a></li>
-                <li class="nav-item"><a href="commercial.html" class="nav-link">Commercial</a></li>
-                <li class="nav-item"><a href="projects.html" class="nav-link">Projects / Photo Album</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item nav-dropdown">
+                    <a href="residential.html" class="nav-link">Residential</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="residential.html#villagio">Villagio</a></li>
+                        <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
+                        <li><a href="residential.html#del-lago">Del Lago</a></li>
+                        <li><a href="residential.html#lago-vista">Lago Vista</a></li>
+                        <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
+                        <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
+                        <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
+                        <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="commercial.html" class="nav-link">Commercial</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-label">Retail Plazas</li>
+                        <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
+                        <li><a href="commercial.html#la-placita">La Placita</a></li>
+                        <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
+                        <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
+                        <li><a href="commercial.html#art-village">Art Village on Main</a></li>
+                        <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
+                        <li class="dropdown-label">Office & Medical</li>
+                        <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
+                        <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
+                        <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
+                        <li><a href="commercial.html#starpoint">StarPoint I</a></li>
+                        <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a href="projects.html" class="nav-link">Projects / Photo Album</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projects.html#photo-album">Photo Album</a></li>
+                        <li><a href="brochures.html">Brochures</a></li>
+                        <li><a href="videos.html">Videos</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact Us</a></li>
             </ul>
             <div class="hamburger">
@@ -243,23 +279,66 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section-blue" style="background: var(--bg-alt);">
+    <section id="testimonials" class="testimonials parallax-section">
+        <div class="parallax-bg">
+            <img src="public/images/homedecor.png" alt="Home Decor Background" />
+        </div>
         <div class="container">
             <div class="section-header">
-                <h2 style="color: white;">Client Testimonials</h2>
+                <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Client Testimonials</h2>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p>"Outstanding quality and communication throughout our build."</p>
-                    <strong>— Homeowner</strong>
-                </div>
-                <div class="testimonial-card">
-                    <p>"On-time delivery and great leasing support."</p>
-                    <strong>— Retail Tenant</strong>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Professional design-build from start to finish."</p>
-                    <strong>— Medical Practice</strong>
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <!-- First set of testimonials -->
+                    <div class="testimonial-card">
+                        <p >"We are thankful for the quality and service from everyone at Cantu Construction...we are very happy to have chosen a prestigious company."</p>
+                        <strong >— A. Trevino</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Thank you so much Cantu Construction team! We appreciate all the hard work."</p>
+                        <strong >— Dr. Oyediran</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"We are so happy with Cantu Construction, our home building was so easy and stress free! We love our home!"</p>
+                        <strong >— Mr. & Mrs. Doty</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Cantu Construction delivered our dream home on time and within budget. Their attention to detail is unmatched."</p>
+                        <strong >— Maria Rodriguez</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Professional, reliable, and excellent craftsmanship. We couldn't be happier with our new commercial building."</p>
+                        <strong >— John Martinez</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"From start to finish, Cantu Construction made our project seamless. Highly recommend their services!"</p>
+                        <strong >— Sarah Johnson</strong>
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="testimonial-card">
+                        <p >"We are thankful for the quality and service from everyone at Cantu Construction...we are very happy to have chosen a prestigious company."</p>
+                        <strong >— A. Trevino</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Thank you so much Cantu Construction team! We appreciate all the hard work."</p>
+                        <strong >— Dr. Oyediran</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"We are so happy with Cantu Construction, our home building was so easy and stress free! We love our home!"</p>
+                        <strong >— Mr. & Mrs. Doty</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Cantu Construction delivered our dream home on time and within budget. Their attention to detail is unmatched."</p>
+                        <strong >— Maria Rodriguez</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"Professional, reliable, and excellent craftsmanship. We couldn't be happier with our new commercial building."</p>
+                        <strong >— John Martinez</strong>
+                    </div>
+                    <div class="testimonial-card">
+                        <p >"From start to finish, Cantu Construction made our project seamless. Highly recommend their services!"</p>
+                        <strong >— Sarah Johnson</strong>
+                    </div>
                 </div>
             </div>
         </div>
@@ -373,6 +452,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
