@@ -87,16 +87,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     });
     
-    // Handle dropdown menus on mobile
+    // Handle dropdown menus on mobile - only show dropdown, don't prevent navigation
     const dropdownItems = document.querySelectorAll('.nav-dropdown');
     dropdownItems.forEach(item => {
         const link = item.querySelector('.nav-link');
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const dropdown = item.querySelector('.dropdown-menu');
-            if (dropdown) {
-                dropdown.classList.toggle('show');
+            // On mobile, show dropdown but still allow navigation
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = item.querySelector('.dropdown-menu');
+                if (dropdown) {
+                    dropdown.classList.toggle('show');
+                }
             }
+            // On desktop, allow normal navigation
         });
     });
     
@@ -104,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            // Don't close menu for dropdown parent links
-            if (!link.closest('.nav-dropdown')) {
+            // Close menu for all links except dropdown parent links on mobile
+            if (window.innerWidth <= 768 && !link.closest('.nav-dropdown')) {
                 console.log('Nav link clicked, closing menu');
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
@@ -575,3 +579,39 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Hero Slideshow Function
+function initHeroSlideshow() {
+    const heroImages = document.querySelectorAll('.hero-img');
+    
+    if (heroImages.length === 0) {
+        console.log('No hero images found for slideshow');
+        return;
+    }
+    
+    console.log('Found', heroImages.length, 'hero images for slideshow');
+    
+    let currentImageIndex = 0;
+    
+    function showNextImage() {
+        // Remove active class from current image
+        heroImages[currentImageIndex].classList.remove('active');
+        
+        // Move to next image
+        currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+        
+        // Add active class to next image
+        heroImages[currentImageIndex].classList.add('active');
+    }
+    
+    // Start slideshow - change image every 6 seconds
+    setInterval(showNextImage, 6000);
+    
+    // Initialize first image as active
+    heroImages[0].classList.add('active');
+}
+
+// Initialize slideshow when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initHeroSlideshow();
+});

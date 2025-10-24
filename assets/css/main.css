@@ -226,11 +226,21 @@ body {
     height: 80px;
 }
 
+.nav-logo a {
+    text-decoration: none;
+    display: block;
+}
+
 .brand-logo {
     height: 140px;
     width: auto;
     display: block;
     margin-left: 10px; /* move slightly to the right */
+    transition: transform 0.3s ease;
+}
+
+.nav-logo a:hover .brand-logo {
+    transform: scale(1.05);
 }
 
 .logo-animate { animation: logoGlow 1s ease-out both; }
@@ -529,13 +539,30 @@ body {
     height: 100%;
 }
 
+.hero-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
     transform-origin: center center;
     animation: slowZoom 14s ease-in-out infinite;
     will-change: transform;
+    display: block;
+}
+
+.hero-img.active {
+    opacity: 1;
 }
 
 .hero-gradient {
@@ -546,9 +573,9 @@ body {
     height: 100%;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.05) 100%
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.05) 30%,
+        rgba(0, 0, 0, 0.02) 100%
     );
 }
 
@@ -557,12 +584,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 30%;
+    height: 20%;
     background: linear-gradient(
         to right,
-        rgba(255, 255, 255, 0.8) 0%,
-        rgba(255, 255, 255, 0.4) 30%,
-        rgba(255, 255, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.2) 30%,
+        rgba(255, 255, 255, 0.05) 60%,
         rgba(255, 255, 255, 0) 100%
     );
     z-index: 5;
@@ -1840,17 +1867,19 @@ section {
     .hero-content {
         padding: 0 20px;
         text-align: center;
+        top: 40% !important;
+        transform: translate(-50%, -50%);
     }
     
     .hero-heading {
-        font-size: 2rem;
+        font-size: 2.5rem;
         line-height: 1.1;
         margin-bottom: 15px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     .hero-subheading {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         line-height: 1.3;
         padding: 0 10px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -1860,6 +1889,7 @@ section {
         object-fit: cover;
         width: 100%;
         height: 100%;
+        object-position: center center;
     }
     
     /* Intro Section - Mobile Redesign */
@@ -2267,7 +2297,6 @@ section {
     }
     
     /* Optimize images for mobile */
-    .hero-img,
     .intro-image,
     .community-logo,
     .commercial-logo {
