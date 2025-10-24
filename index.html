@@ -6,7 +6,7 @@
     <title>Cantu Construction - Professional Construction Services in McAllen, TX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -102,9 +102,24 @@
             <img src="public/images/herobanner2.png" alt="Cantu Construction" class="hero-img">
             <img src="public/images/herobanner3.png" alt="Cantu Construction" class="hero-img">
             <img src="public/images/herobanner4.png" alt="Cantu Construction" class="hero-img">
+            
+            <!-- Navigation Arrows -->
+            <button class="slideshow-nav prev" onclick="changeSlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-nav next" onclick="changeSlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Indicators -->
+            <div class="slideshow-indicators">
+                <span class="slideshow-indicator active" onclick="currentSlide(1)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(2)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(3)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(4)"></span>
+            </div>
         </div>
         <div class="hero-gradient"></div>
-        <div class="hero-gradient-overlay"></div>
         <div class="hero-content">
             <h1 class="heading-font hero-heading">THE RGV HOME BUILDER</h1>
             <p class="hero-subheading">CUSTOM HOME BUILDERS SERVING McALLEN, BROWNSVILLE, EDINBURG, TX & THE RIO GRANDE VALLEY</p>
@@ -141,13 +156,13 @@
                 <div class="intro-container">
                     <div class="intro-content">
                         <div class="intro-text-column">
-                            <h2 class="intro-title" style="color: #000; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+                            <h2 class="intro-title" style="color: #000080; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
                                 CANTU<br>CONSTRUCTION
                             </h2>
-                            <p class="intro-subtitle" style="font-size: 1.5rem; margin-bottom: 20px; color: #000;">
+                            <p class="intro-subtitle" style="font-size: 1.5rem; margin-bottom: 20px; color: #000080;">
                                 Construction and Development Company
                             </p>
-                            <p class="intro-description" style="font-size: 1.1rem; color: #000; margin-bottom: 30px;">
+                            <p class="intro-description" style="font-size: 1.1rem; color: #000080; margin-bottom: 30px;">
                                 Cantu Construction has been a custom home builder in the McAllen, TX area for 37 years. Our commitment to quality and service has set us apart amongst other builders.
                             </p>
                         <a href="#contact" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
@@ -156,8 +171,12 @@
                         </div>
                         <div class="intro-images">
                             <div class="image-stack">
-                                <img src="public/images/houseimage.jpeg" alt="Cantu Construction Building" class="intro-image side-image">
-                                <img src="public/images/lonestarplaza.jpeg" alt="Lone Star Plaza" class="intro-image side-image">
+                                <div class="image-wrapper side-image">
+                                    <img src="public/images/houseimage.jpeg" alt="Cantu Construction Building" class="intro-image">
+                                </div>
+                                <div class="image-wrapper side-image">
+                                    <img src="public/images/lonestarplaza.jpeg" alt="Lone Star Plaza" class="intro-image">
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -210,8 +229,8 @@
     <!-- Recent Projects Gallery Section -->
     <section id="recent-projects" class="recent-projects" style="background: var(--bg);">
         <div class="container">
-            <div class="section-header heading-font" style="text-align:left; color: #000;">
-                <h2 class="h2" style="font-weight:800; letter-spacing:-0.5px; position:relative;">
+            <div class="section-header heading-font" style="text-align:left; color: #000080;">
+                <h2 class="h2" style="font-weight:800; letter-spacing:-0.5px; position:relative; color: #000080;">
                     Recent Projects
                     <span class="decorative-line"></span>
                 </h2>
@@ -292,15 +311,14 @@
     <section id="commercial-properties" class="commercial-properties" style="background: var(--bg);">
         <div class="container">
             <div class="section-header heading-font text-center">
-                <h2 class="h2" style="font-size: 3.5rem; font-weight:800; color: #000; text-transform: uppercase; margin-bottom: 10px;">
+                <h2 class="h2" style="font-size: 3.5rem; font-weight:800; color: #000080; text-transform: uppercase; margin-bottom: 10px;">
                     Commercial Properties
                 </h2>
-                <p class="section-subtitle" style="color: #000; font-size: 1.5rem; font-weight: 300; text-transform: lowercase; position: relative;">
+                <p class="section-subtitle" style="color: #000080; font-size: 1.5rem; font-weight: 300; text-transform: lowercase; position: relative;">
                     professional spaces for business growth
                     <div class="decorative-lines" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
                         <div class="decorative-line red-line" style="width: 100px; height: 3px; background-color: #C62828; margin-bottom: 5px;"></div>
-                        <div class="decorative-line black-line" style="width: 80px; height: 2px; background-color: #000; margin-bottom: 5px;"></div>
-                        <div class="decorative-line grey-line" style="width: 60px; height: 2px; background-color: #D3D3D3;"></div>
+                        <div class="decorative-line navy-line" style="width: 80px; height: 2px; background-color: #000080; margin-bottom: 5px;"></div>
                     </div>
                 </p>
             </div>
@@ -333,70 +351,6 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials parallax-section">
-        <div class="parallax-bg">
-            <img src="public/images/homedecor.png" alt="Home Decor Background" />
-        </div>
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Client Testimonials</h2>
-            </div>
-            <div class="testimonials-carousel">
-                <div class="testimonials-track">
-                    <!-- First set of testimonials -->
-                    <div class="testimonial-card">
-                        <p >"We are thankful for the quality and service from everyone at Cantu Construction...we are very happy to have chosen a prestigious company."</p>
-                        <strong >— A. Trevino</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Thank you so much Cantu Construction team! We appreciate all the hard work."</p>
-                        <strong >— Dr. Oyediran</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"We are so happy with Cantu Construction, our home building was so easy and stress free! We love our home!"</p>
-                        <strong >— Mr. & Mrs. Doty</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Cantu Construction delivered our dream home on time and within budget. Their attention to detail is unmatched."</p>
-                        <strong >— Maria Rodriguez</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Professional, reliable, and excellent craftsmanship. We couldn't be happier with our new commercial building."</p>
-                        <strong >— John Martinez</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"From start to finish, Cantu Construction made our project seamless. Highly recommend their services!"</p>
-                        <strong >— Sarah Johnson</strong>
-                    </div>
-                    <!-- Duplicate set for seamless loop -->
-                    <div class="testimonial-card">
-                        <p >"We are thankful for the quality and service from everyone at Cantu Construction...we are very happy to have chosen a prestigious company."</p>
-                        <strong >— A. Trevino</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Thank you so much Cantu Construction team! We appreciate all the hard work."</p>
-                        <strong >— Dr. Oyediran</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"We are so happy with Cantu Construction, our home building was so easy and stress free! We love our home!"</p>
-                        <strong >— Mr. & Mrs. Doty</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Cantu Construction delivered our dream home on time and within budget. Their attention to detail is unmatched."</p>
-                        <strong >— Maria Rodriguez</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"Professional, reliable, and excellent craftsmanship. We couldn't be happier with our new commercial building."</p>
-                        <strong >— John Martinez</strong>
-                    </div>
-                    <div class="testimonial-card">
-                        <p >"From start to finish, Cantu Construction made our project seamless. Highly recommend their services!"</p>
-                        <strong >— Sarah Johnson</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact" style="background: var(--bg); padding: 80px 0;">

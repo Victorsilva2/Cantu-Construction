@@ -581,6 +581,10 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Hero Slideshow Function
+let currentSlideIndex = 0;
+const totalSlides = 4;
+let slideshowInterval;
+
 function initHeroSlideshow() {
     const heroImages = document.querySelectorAll('.hero-img');
     
@@ -591,27 +595,100 @@ function initHeroSlideshow() {
     
     console.log('Found', heroImages.length, 'hero images for slideshow');
     
-    let currentImageIndex = 0;
-    
-    function showNextImage() {
-        // Remove active class from current image
-        heroImages[currentImageIndex].classList.remove('active');
-        
-        // Move to next image
-        currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-        
-        // Add active class to next image
-        heroImages[currentImageIndex].classList.add('active');
-    }
-    
-    // Start slideshow - change image every 6 seconds
-    setInterval(showNextImage, 6000);
-    
     // Initialize first image as active
     heroImages[0].classList.add('active');
+    
+    // Start automatic slideshow
+    startAutoSlideshow();
+}
+
+function startAutoSlideshow() {
+    // Clear any existing interval
+    if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+    }
+    
+    // Start new interval - change slide every 5 seconds
+    slideshowInterval = setInterval(function() {
+        changeSlide(1); // Move to next slide
+    }, 5000);
+}
+
+function stopAutoSlideshow() {
+    if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+    }
+}
+
+// Change slide function
+function changeSlide(direction) {
+    const heroImages = document.querySelectorAll('.hero-img');
+    const indicators = document.querySelectorAll('.slideshow-indicator');
+    
+    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex);
+    
+    // Remove active class from current image and indicator
+    heroImages[currentSlideIndex].classList.remove('active');
+    indicators[currentSlideIndex].classList.remove('active');
+    
+    // Calculate new slide index
+    currentSlideIndex += direction;
+    
+    // Handle wrap around
+    if (currentSlideIndex >= totalSlides) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = totalSlides - 1;
+    }
+    
+    console.log('New slide index:', currentSlideIndex);
+    
+    // Add active class to new image and indicator
+    heroImages[currentSlideIndex].classList.add('active');
+    indicators[currentSlideIndex].classList.add('active');
+    
+    // Restart automatic slideshow after manual interaction
+    startAutoSlideshow();
+}
+
+// Go to specific slide
+function currentSlide(slideNumber) {
+    const heroImages = document.querySelectorAll('.hero-img');
+    const indicators = document.querySelectorAll('.slideshow-indicator');
+    
+    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex);
+    
+    // Remove active class from current image and indicator
+    heroImages[currentSlideIndex].classList.remove('active');
+    indicators[currentSlideIndex].classList.remove('active');
+    
+    // Set new slide index (convert to 0-based)
+    currentSlideIndex = slideNumber - 1;
+
+    console.log('New slide index:', currentSlideIndex);
+
+    // Add active class to new image and indicator
+    heroImages[currentSlideIndex].classList.add('active');
+    indicators[currentSlideIndex].classList.add('active');
+    
+    // Restart automatic slideshow after manual interaction
+    startAutoSlideshow();
 }
 
 // Initialize slideshow when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initHeroSlideshow();
+    
+    // Add hover pause/resume functionality
+    const heroSection = document.querySelector('.hero-slideshow');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', function() {
+            stopAutoSlideshow();
+        });
+        
+        heroSection.addEventListener('mouseleave', function() {
+            startAutoSlideshow();
+        });
+    }
 });
