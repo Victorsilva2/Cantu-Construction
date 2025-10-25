@@ -12,75 +12,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="commercial">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction" class="brand-logo">
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item nav-dropdown">
-                    <a href="residential.html" class="nav-link">Residential</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="residential.html#villagio">Villagio</a></li>
-                        <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
-                        <li><a href="residential.html#del-lago">Del Lago</a></li>
-                        <li><a href="residential.html#lago-vista">Lago Vista</a></li>
-                        <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
-                        <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
-                        <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
-                        <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-dropdown">
-                    <a href="commercial.html" class="nav-link active">Commercial</a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-label">Retail Plazas</li>
-                        <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
-                        <li><a href="commercial.html#la-placita">La Placita</a></li>
-                        <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
-                        <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
-                        <li><a href="commercial.html#art-village">Art Village on Main</a></li>
-                        <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
-                        <li class="dropdown-label">Office & Medical</li>
-                        <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
-                        <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
-                        <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
-                        <li><a href="commercial.html#starpoint">StarPoint I</a></li>
-                        <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-dropdown">
-                    <a href="projects.html" class="nav-link">Projects / Photo Album</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="projects.html#photo-album">Photo Album</a></li>
-                        <li><a href="brochures.html">Brochures</a></li>
-                        <li><a href="videos.html">Videos</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="index.html#contact" class="nav-link nav-cta">Contact Us</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <!-- Elementor-Style Header -->
+    <header class="elementor-header">
+        <!-- Top Contact Bar -->
+        <div class="top-contact-bar">
+            <div class="top-bar-container">
+                <div class="top-bar-address">
+                    <a href="https://www.google.com/maps/place/5221+N+McColl+Rd,+McAllen,+TX+78504/@26.2483202,-98.208048,16z" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i>
+                        5221 N. McColl Rd. McAllen Texas, 78504
+                    </a>
+                </div>
+                <div class="top-bar-phone">
+                    <a href="tel:9566311273">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14.9685" height="15" viewBox="0 0 14.9685 15">
+                            <path d="M14.576,11.0085,12.4827,8.9152a1.3923,1.3923,0,0,0-2.3176.5233,1.4244,1.4244,0,0,1-1.6447.8971A6.455,6.455,0,0,1,4.6328,6.4481,1.3551,1.3551,0,0,1,5.53,4.8033a1.3922,1.3922,0,0,0,.5233-2.3175L3.96.3925a1.4929,1.4929,0,0,0-2.0185,0l-1.42,1.42C-.8994,3.3082.6705,7.27,4.1843,10.7842s7.476,5.1585,8.9712,3.6633L14.576,13.027A1.4931,1.4931,0,0,0,14.576,11.0085Z" fill="currentColor"/>
+                        </svg>
+                        956.631.1273
+                    </a>
+                </div>
             </div>
         </div>
-    </nav>
+
+        <!-- Sticky Navigation Bar -->
+        <nav class="main-navbar sticky-nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction" class="brand-logo">
+                    </a>
+                </div>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <a href="residential.html" class="nav-link">Residential</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="residential.html#villagio">Villagio</a></li>
+                            <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
+                            <li><a href="residential.html#del-lago">Del Lago</a></li>
+                            <li><a href="residential.html#lago-vista">Lago Vista</a></li>
+                            <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
+                            <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
+                            <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
+                            <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a href="commercial.html" class="nav-link active">Commercial</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-label">Retail Plazas</li>
+                            <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
+                            <li><a href="commercial.html#la-placita">La Placita</a></li>
+                            <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
+                            <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
+                            <li><a href="commercial.html#art-village">Art Village on Main</a></li>
+                            <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
+                            <li class="dropdown-label">Office & Medical</li>
+                            <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
+                            <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
+                            <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
+                            <li><a href="commercial.html#starpoint">StarPoint I</a></li>
+                            <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item"><a href="index.html#contact" class="nav-link nav-cta">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero Banner -->
     <section id="hero" class="hero">
         <div class="hero-background">
-            <img src="public/images/commericalherobanner.png" alt="Commercial Properties" class="hero-img">
+            <img src="public/images/commericalherobanner.png" alt="Commercial Properties" class="hero-img active">
         </div>
         <div class="hero-gradient"></div>
-        <div class="hero-gradient-overlay"></div>
-        <div class="hero-content">
-            <h1 class="heading-font hero-heading">COMMERCIAL PROPERTIES</h1>
-            <p class="hero-subheading">PRIME COMMERCIAL PROPERTIES THROUGHOUT THE RIO GRANDE VALLEY</p>
-        </div>
     </section>
 
     <!-- Main Content -->

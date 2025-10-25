@@ -41,12 +41,29 @@ function initDecorativeLinesAnimation() {
     });
 }
 
+// Sticky Navigation Effect
+function initStickyNav() {
+    const mainNavbar = document.querySelector('.main-navbar');
+    if (mainNavbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                mainNavbar.classList.add('scrolled');
+            } else {
+                mainNavbar.classList.remove('scrolled');
+            }
+        });
+    }
+}
+
 // Mobile Navigation Toggle - Fresh Approach
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing mobile nav...');
     
     // Initialize decorative lines animation
     initDecorativeLinesAnimation();
+    
+    // Initialize sticky navigation
+    initStickyNav();
     
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
