@@ -43,11 +43,11 @@
                     </a>
                 </div>
                 
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
                 
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
@@ -85,7 +85,8 @@
                 <li class="nav-item">
                     <a href="projects.html" class="nav-link">Projects</a>
                 </li>
-                    <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact Us</a></li>
+                <li class="nav-item"><a href="#our-team" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -100,6 +101,23 @@
             <img src="public/images/CantuConstructionHeroHouse5.jpg" alt="Cantu Construction Hero House 5" class="hero-img">
             <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village Building" class="hero-img">
             
+            <!-- Mobile-specific images -->
+            <img src="public/images/mobileimage0.jpg" alt="Mobile Hero Image 1" class="hero-img-mobile active">
+            <img src="public/images/mobileimage1jpg.jpg" alt="Mobile Hero Image 2" class="hero-img-mobile">
+            <img src="public/images/mobileimage2.jpg" alt="Mobile Hero Image 3" class="hero-img-mobile">
+            <img src="public/images/mobileimage3.jpg" alt="Mobile Hero Image 4" class="hero-img-mobile">
+            <img src="public/images/mobileimage4.jpg" alt="Mobile Hero Image 5" class="hero-img-mobile">
+            <img src="public/images/mobileimage5.jpg" alt="Mobile Hero Image 6" class="hero-img-mobile">
+            <img src="public/images/mobileimage6.jpg" alt="Mobile Hero Image 7" class="hero-img-mobile">
+            
+            <!-- Navigation Arrows -->
+            <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
             <!-- Indicators -->
             <div class="slideshow-indicators">
                 <span class="slideshow-indicator active" onclick="currentSlide(1)"></span>
@@ -107,6 +125,8 @@
                 <span class="slideshow-indicator" onclick="currentSlide(3)"></span>
                 <span class="slideshow-indicator" onclick="currentSlide(4)"></span>
                 <span class="slideshow-indicator" onclick="currentSlide(5)"></span>
+                <span class="slideshow-indicator slideshow-indicator-mobile" onclick="currentSlide(6)"></span>
+                <span class="slideshow-indicator slideshow-indicator-mobile" onclick="currentSlide(7)"></span>
             </div>
         </div>
         <div class="hero-gradient"></div>

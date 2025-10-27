@@ -599,21 +599,91 @@ document.head.appendChild(style);
 
 // Hero Slideshow Function
 let currentSlideIndex = 0;
-const totalSlides = 4;
+let totalSlides = 5; // Will be updated based on screen size
 let slideshowInterval;
 
 function initHeroSlideshow() {
-    const heroImages = document.querySelectorAll('.hero-img');
+    // Detect if we're on mobile
+    const isMobile = window.innerWidth <= 768;
     
-    if (heroImages.length === 0) {
-        console.log('No hero images found for slideshow');
-        return;
+    // Detect if we're on residential page
+    const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
+    
+    console.log('Initializing slideshow, isMobile:', isMobile, 'isResidential:', isResidential);
+    
+    if (isMobile) {
+        if (isResidential) {
+            totalSlides = 3; // 3 residential images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Mobile Residential: Found', heroImages.length, 'residential hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No residential hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Mobile Residential: Set first image as active');
+        } else {
+            totalSlides = 7; // 7 mobile images
+            const heroImages = document.querySelectorAll('.hero-img-mobile');
+            
+            console.log('Mobile Main: Found', heroImages.length, 'mobile hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No mobile hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all mobile images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first mobile image as active
+            heroImages[0].classList.add('active');
+            console.log('Mobile Main: Set first image as active');
+        }
+    } else {
+        if (isResidential) {
+            totalSlides = 3; // 3 residential images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Desktop Residential: Found', heroImages.length, 'residential hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No residential hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Desktop Residential: Set first image as active');
+        } else {
+            totalSlides = 5; // 5 desktop images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Desktop Main: Found', heroImages.length, 'desktop hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No desktop hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all desktop images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first desktop image as active
+            heroImages[0].classList.add('active');
+            console.log('Desktop Main: Set first image as active');
+        }
     }
-    
-    console.log('Found', heroImages.length, 'hero images for slideshow');
-    
-    // Initialize first image as active
-    heroImages[0].classList.add('active');
     
     // Start automatic slideshow
     startAutoSlideshow();
@@ -640,14 +710,31 @@ function stopAutoSlideshow() {
 
 // Change slide function
 function changeSlide(direction) {
-    const heroImages = document.querySelectorAll('.hero-img');
+    const isMobile = window.innerWidth <= 768;
+    const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
+    
+    let heroImages;
+    if (isMobile) {
+        if (isResidential) {
+            heroImages = document.querySelectorAll('.hero-img');
+        } else {
+            heroImages = document.querySelectorAll('.hero-img-mobile');
+        }
+    } else {
+        heroImages = document.querySelectorAll('.hero-img');
+    }
+    
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex);
+    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Residential:', isResidential, 'Total slides:', totalSlides);
     
     // Remove active class from current image and indicator
-    heroImages[currentSlideIndex].classList.remove('active');
-    indicators[currentSlideIndex].classList.remove('active');
+    if (heroImages[currentSlideIndex]) {
+        heroImages[currentSlideIndex].classList.remove('active');
+    }
+    if (indicators[currentSlideIndex]) {
+        indicators[currentSlideIndex].classList.remove('active');
+    }
     
     // Calculate new slide index
     currentSlideIndex += direction;
@@ -662,8 +749,12 @@ function changeSlide(direction) {
     console.log('New slide index:', currentSlideIndex);
     
     // Add active class to new image and indicator
-    heroImages[currentSlideIndex].classList.add('active');
-    indicators[currentSlideIndex].classList.add('active');
+    if (heroImages[currentSlideIndex]) {
+        heroImages[currentSlideIndex].classList.add('active');
+    }
+    if (indicators[currentSlideIndex]) {
+        indicators[currentSlideIndex].classList.add('active');
+    }
     
     // Restart automatic slideshow after manual interaction
     startAutoSlideshow();
@@ -671,14 +762,31 @@ function changeSlide(direction) {
 
 // Go to specific slide
 function currentSlide(slideNumber) {
-    const heroImages = document.querySelectorAll('.hero-img');
+    const isMobile = window.innerWidth <= 768;
+    const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
+    
+    let heroImages;
+    if (isMobile) {
+        if (isResidential) {
+            heroImages = document.querySelectorAll('.hero-img');
+        } else {
+            heroImages = document.querySelectorAll('.hero-img-mobile');
+        }
+    } else {
+        heroImages = document.querySelectorAll('.hero-img');
+    }
+    
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex);
+    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Residential:', isResidential);
     
     // Remove active class from current image and indicator
-    heroImages[currentSlideIndex].classList.remove('active');
-    indicators[currentSlideIndex].classList.remove('active');
+    if (heroImages[currentSlideIndex]) {
+        heroImages[currentSlideIndex].classList.remove('active');
+    }
+    if (indicators[currentSlideIndex]) {
+        indicators[currentSlideIndex].classList.remove('active');
+    }
     
     // Set new slide index (convert to 0-based)
     currentSlideIndex = slideNumber - 1;
@@ -686,8 +794,12 @@ function currentSlide(slideNumber) {
     console.log('New slide index:', currentSlideIndex);
 
     // Add active class to new image and indicator
-    heroImages[currentSlideIndex].classList.add('active');
-    indicators[currentSlideIndex].classList.add('active');
+    if (heroImages[currentSlideIndex]) {
+        heroImages[currentSlideIndex].classList.add('active');
+    }
+    if (indicators[currentSlideIndex]) {
+        indicators[currentSlideIndex].classList.add('active');
+    }
     
     // Restart automatic slideshow after manual interaction
     startAutoSlideshow();
@@ -708,4 +820,15 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoSlideshow();
         });
     }
+    
+    // Reinitialize slideshow on window resize
+    window.addEventListener('resize', function() {
+        // Debounce resize events
+        clearTimeout(window.resizeTimeout);
+        window.resizeTimeout = setTimeout(function() {
+            stopAutoSlideshow();
+            currentSlideIndex = 0;
+            initHeroSlideshow();
+        }, 250);
+    });
 });

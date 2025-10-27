@@ -648,41 +648,69 @@ body {
     opacity: 1;
 }
 
+/* Mobile-specific hero images */
+.hero-img-mobile {
+    width: 100%;
+    height: 50vh;
+    max-height: 50vh;
+    object-fit: cover;
+    object-position: center center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    display: none;
+    margin: 0;
+    padding: 0;
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.2) saturate(1.1) brightness(1.05);
+    background: transparent;
+}
+
+.hero-img-mobile.active {
+    opacity: 1;
+}
+
 /* Slideshow Navigation Arrows */
-.slideshow-nav {
+.slideshow-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.9);
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
+    z-index: 15;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.slideshow-nav:hover {
+.slideshow-arrow:hover {
     background: rgba(255, 255, 255, 1);
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.slideshow-nav.prev {
-    left: 30px;
+.slideshow-arrow-left {
+    left: 20px;
 }
 
-.slideshow-nav.next {
-    right: 30px;
+.slideshow-arrow-right {
+    right: 20px;
 }
 
-.slideshow-nav i {
-    font-size: 18px;
-    color: var(--brand-blue);
+.slideshow-arrow i {
+    font-size: 14px;
+    color: #000080;
     font-weight: bold;
 }
 
@@ -710,6 +738,11 @@ body {
     background: var(--brand-blue);
 }
 
+/* Hide mobile indicators on desktop */
+.slideshow-indicator-mobile {
+    display: none;
+}
+
 .hero-gradient {
     position: absolute;
     top: 0;
@@ -722,6 +755,7 @@ body {
         rgba(0, 0, 0, 0.2) 50%,
         rgba(0, 0, 0, 0.3) 100%
     );
+    z-index: 1;
 }
 
 
@@ -866,6 +900,10 @@ body {
 .intro-image {
     border-radius: 12px;
     transition: transform 0.3s ease;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
 }
 
 .side-image {
@@ -1549,7 +1587,7 @@ section {
     display: flex;
     gap: 60px;
     animation: scrollLogos 40s linear infinite;
-    width: fit-content;
+    width: 200%;
     will-change: transform;
 }
 
@@ -1563,6 +1601,36 @@ section {
     }
     100% {
         transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollLogosMobile {
+    0% {
+        transform: translateX(0);
+    }
+    12.5% {
+        transform: translateX(-100vw);
+    }
+    25% {
+        transform: translateX(-200vw);
+    }
+    37.5% {
+        transform: translateX(-300vw);
+    }
+    50% {
+        transform: translateX(-400vw);
+    }
+    62.5% {
+        transform: translateX(-500vw);
+    }
+    75% {
+        transform: translateX(-600vw);
+    }
+    87.5% {
+        transform: translateX(-700vw);
+    }
+    100% {
+        transform: translateX(-800vw);
     }
 }
 
@@ -1583,16 +1651,11 @@ section {
     align-items: center;
     transition: transform 0.3s ease;
     flex-shrink: 0;
-    min-width: 320px;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 280px;
 }
 
 .community-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
 }
 
 .community-item a {
@@ -1601,16 +1664,22 @@ section {
 }
 
 .community-logo {
-    width: 280px;
+    max-width: 280px;
     height: auto;
     filter: none; /* Show original logo colors */
     transition: all 0.3s ease;
-    opacity: 1;
+    opacity: 0.85;
+}
+
+/* White tint for TheVillageOnDove.png to enhance visibility */
+.community-item img[src*="TheVillageOnDove.png"] {
+    filter: brightness(3) contrast(2) invert(1);
+    mix-blend-mode: screen;
 }
 
 .community-item:hover .community-logo {
     opacity: 1;
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 .communities-button-container {
@@ -1670,7 +1739,7 @@ section {
 }
 
 .commercial-logo {
-    width: 280px;
+    max-width: 280px;
     height: auto;
     filter: none; /* Keep original colors for commercial logos */
     transition: all 0.3s ease;
@@ -1944,8 +2013,10 @@ section {
         flex-direction: column;
         cursor: pointer;
         z-index: 10001 !important;
-        padding: 5px;
+        padding: 8px;
         position: relative;
+        background: transparent;
+        border: none;
     }
 
     .hamburger .bar {
@@ -1963,49 +2034,59 @@ section {
 
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
-        background-color: #fff !important;
+        background-color: #000080 !important;
     }
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
-        background-color: #fff !important;
+        background-color: #000080 !important;
     }
     
-    /* Mobile nav menu */
+    /* Mobile nav menu - Clean dropdown below header */
     .nav-menu {
-        position: fixed !important;
-        top: 0 !important;
-        left: -100% !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
         width: 100% !important;
-        height: 100vh !important;
         background: #ffffff !important;
         flex-direction: column !important;
-        justify-content: center !important;
         align-items: center !important;
-        transition: left 0.3s ease !important;
+        transition: all 0.3s ease !important;
         z-index: 9999 !important;
-        padding: 0 !important;
+        padding: 10px 0 !important;
         margin: 0 !important;
-        display: flex !important;
+        display: none !important;
         list-style: none !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+        border-top: 1px solid rgba(0,0,128,0.1) !important;
     }
     
     .nav-menu.active {
-        left: 0 !important;
+        display: flex !important;
     }
     
     .nav-item {
-        margin: 20px 0 !important;
+        margin: 0 !important;
         list-style: none !important;
+        text-align: center !important;
+        width: 100% !important;
     }
     
     .nav-link {
         color: #000080 !important;
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
         font-weight: 600 !important;
         text-decoration: none !important;
         display: block !important;
         padding: 10px 20px !important;
+        letter-spacing: 0.3px !important;
+        transition: all 0.3s ease !important;
+        border-bottom: 1px solid rgba(0,0,128,0.1) !important;
+    }
+    
+    .nav-link:hover {
+        color: #000080 !important;
+        background-color: rgba(0,0,128,0.05) !important;
     }
     
     .nav-dropdown .dropdown-menu {
@@ -2059,14 +2140,35 @@ section {
     
     /* Hero Section */
     .hero {
-        height: 100vh; /* Full screen */
-        min-height: 100vh;
+        height: 50vh;
+        min-height: 50vh;
+        max-height: 50vh;
+    }
+    
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .hero-slideshow {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
     
     .hero-content {
         padding: 0 20px;
         text-align: center;
-        top: 50% !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
         gap: 15px;
     }
@@ -2098,15 +2200,62 @@ section {
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
     
+    /* Hide desktop images on mobile (except residential page) */
     .hero-img {
+        display: none !important;
+    }
+    
+    /* Show residential page hero images on mobile */
+    .residential .hero-img {
+        display: block !important;
         object-fit: cover;
         width: 100%;
-        height: 100%;
+        height: 50vh;
+        max-height: 50vh;
         object-position: center center;
         image-rendering: high-quality;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
         filter: contrast(1.2) saturate(1.1) brightness(1.05);
+        background: transparent;
+    }
+    
+    /* Show mobile images on mobile */
+    .hero-img-mobile {
+        display: block !important;
+        object-fit: cover;
+        width: 100%;
+        height: 50vh;
+        max-height: 50vh;
+        object-position: center center;
+        image-rendering: high-quality;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        filter: contrast(1.2) saturate(1.1) brightness(1.05);
+        background: transparent;
+    }
+    
+    /* Slideshow Arrows - Mobile */
+    .slideshow-arrow {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    .slideshow-arrow i {
+        font-size: 12px !important;
+    }
+    
+    .slideshow-arrow-left {
+        left: 10px !important;
+    }
+    
+    .slideshow-arrow-right {
+        right: 10px !important;
+    }
+    
+    /* Show mobile indicators on mobile */
+    .slideshow-indicator-mobile {
+        display: block !important;
     }
     
     /* Intro Section - Mobile Redesign */
@@ -2128,22 +2277,37 @@ section {
     .intro-images {
         order: 2;
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        gap: 20px;
+        gap: 30px;
         margin-top: 25px;
+        padding: 0 20px;
     }
     
     .image-stack {
         display: flex;
-        gap: 15px;
-        max-width: 100%;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
     }
     
     .side-image {
-        width: 45%;
-        max-width: 150px;
+        width: 100%;
+        max-width: 300px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+        margin: 10px 0;
+    }
+    
+    .intro-image {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
     }
     
     .side-image img {
@@ -2198,7 +2362,10 @@ section {
     
     .intro-image {
         max-width: 100%;
-        height: auto;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
     }
     
     
@@ -2234,17 +2401,115 @@ section {
         font-size: 0.9rem;
     }
     
-    /* Communities Grid - Mobile: Copy commercial section approach */
+    /* Mobile Carousel - Force carousel to work */
+    .residential-communities .logo-scroll-container,
+    .commercial-properties .logo-scroll-container {
+        width: 100% !important;
+        overflow: hidden !important;
+        margin-top: 40px !important;
+        padding: 20px 0 !important;
+        position: relative !important;
+        display: block !important;
+    }
+    
+    .residential-communities .logo-scroll-track,
+    .commercial-properties .logo-scroll-track {
+        display: flex !important;
+        gap: 0 !important;
+        animation: scrollLogosMobile 40s linear infinite !important;
+        width: 800vw !important;
+        will-change: transform !important;
+        animation-fill-mode: none !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .residential-communities .logo-scroll-track:hover,
+    .commercial-properties .logo-scroll-track:hover {
+        animation-play-state: paused !important;
+    }
+    
+    /* Ensure mobile carousel items are properly spaced - one at a time */
+    .residential-communities .logo-scroll-track .community-item,
+    .commercial-properties .logo-scroll-track .commercial-item {
+        min-width: 100vw !important;
+        width: 100vw !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+    }
+    
+    /* Hide grid layouts on mobile - use carousel instead */
     .communities-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 15px;
-        margin-bottom: 20px;
+        display: none !important;
+    }
+    
+    /* Residential page communities grid - mobile */
+    .residential-communities-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        margin-bottom: 40px !important;
+    }
+    
+    /* Residential community cards - mobile */
+    .residential-communities-grid > div {
+        margin-bottom: 20px !important;
+    }
+    
+    .residential-communities-grid > div > div:last-child {
+        padding: 20px 15px !important;
+    }
+    
+    .residential-communities-grid h3 {
+        font-size: 1.5rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .residential-communities-grid p {
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .residential-communities-grid a {
+        padding: 12px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Why Build with Cantu - Horizontal Scrolling on Mobile */
+    .features-grid-scroll {
+        display: flex !important;
+        overflow-x: auto !important;
+        gap: 20px !important;
+        padding: 0 20px !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .features-grid-scroll .feature-card {
+        flex: 0 0 280px !important;
+        scroll-snap-align: start !important;
+        padding: 30px 20px !important;
+    }
+    
+    .features-grid-scroll .feature-card i {
+        font-size: 2.5rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .features-grid-scroll .feature-card h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .features-grid-scroll .feature-card p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
     }
     
     /* Fix large text in residential/commercial sections */
-    .residential-communities .section-header h2,
-    .commercial-properties .section-header h2 {
+    .residential-communities .section-header h2 {
         font-size: 1.8rem !important;
         line-height: 1.2 !important;
         text-align: center !important;
@@ -2252,12 +2517,37 @@ section {
         color: #ffffff !important;
     }
     
-    .residential-communities .section-subtitle,
-    .commercial-properties .section-subtitle {
+    /* Residential page section header - mobile */
+    .residential .section-header h2 {
+        color: #000080 !important;
+        font-size: 2rem !important;
+    }
+    
+    .commercial-properties .section-header h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+        color: #000080 !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+    }
+    
+    .residential-communities .section-subtitle {
         font-size: 1rem !important;
         line-height: 1.4 !important;
         text-align: center !important;
         margin-bottom: 20px !important;
+    }
+    
+    .commercial-properties .section-subtitle {
+        font-size: 1.2rem !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+        color: #000080 !important;
+        font-weight: 300 !important;
+        text-transform: lowercase !important;
     }
     
     /* Improve mobile section spacing */
@@ -2272,37 +2562,50 @@ section {
     }
     
     .community-logo {
-        max-width: 100%;
-        height: auto;
-        width: 100%;
+        max-width: 280px !important;
+        height: auto !important;
+        width: auto !important;
+        opacity: 0.85 !important;
+    }
+    
+    .community-item:hover .community-logo {
+        opacity: 1 !important;
+        transform: scale(1.05) !important;
+    }
+    
+    /* White tint for TheVillageOnDove.png to enhance visibility on mobile */
+    .community-item img[src*="TheVillageOnDove.png"] {
+        filter: brightness(3) contrast(2) invert(1) !important;
+        mix-blend-mode: screen !important;
     }
     
     .community-item {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px;
+        padding: 20px;
+        min-width: 200px;
+        flex-shrink: 0;
     }
     
-    /* Commercial Grid */
+    /* Commercial Grid - Same size as service cards */
     .commercial-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 15px;
-        margin-bottom: 20px;
+        display: none !important;
     }
     
     .commercial-logo {
-        max-width: 100%;
-        height: auto;
-        width: 100%;
+        max-width: 100% !important;
+        height: auto !important;
+        width: 100% !important;
     }
     
     .commercial-item {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px;
+        padding: 20px;
+        min-width: 200px;
+        flex-shrink: 0;
     }
     
     /* Testimonials */
@@ -2384,6 +2687,11 @@ section {
         color: #ffffff !important;
     }
     
+    /* Recent Projects Section - Mobile */
+    .recent-projects .section-header h2 {
+        color: #000080 !important;
+    }
+    
     .section-subtitle {
         font-size: 1rem !important;
         line-height: 1.4 !important;
@@ -2430,19 +2738,56 @@ section {
     
     .communities-grid,
     .commercial-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        display: none !important;
+    }
+    
+    /* Extra Small Screens Carousel - Force carousel to work */
+    .residential-communities .logo-scroll-container,
+    .commercial-properties .logo-scroll-container {
+        width: 100% !important;
+        overflow: hidden !important;
+        margin-top: 30px !important;
+        padding: 15px 0 !important;
+        position: relative !important;
+        display: block !important;
+    }
+    
+    .residential-communities .logo-scroll-track,
+    .commercial-properties .logo-scroll-track {
+        display: flex !important;
+        gap: 0 !important;
+        animation: scrollLogosMobile 32s linear infinite !important;
+        width: 800vw !important;
+        will-change: transform !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .residential-communities .logo-scroll-track:hover,
+    .commercial-properties .logo-scroll-track:hover {
+        animation-play-state: paused !important;
+    }
+    
+    /* Extra small screens carousel items - one at a time */
+    .residential-communities .logo-scroll-track .community-item,
+    .commercial-properties .logo-scroll-track .commercial-item {
+        min-width: 100vw !important;
+        width: 100vw !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 15px !important;
     }
     
     .commercial-logo {
-        max-width: 100%;
-        height: auto;
+        max-width: 100% !important;
+        height: auto !important;
     }
     
-    .community-logo,
-    .commercial-logo {
-        max-width: 100%;
-        height: auto;
+    /* White tint for TheVillageOnDove.png to enhance visibility on extra small screens */
+    .community-item img[src*="TheVillageOnDove.png"] {
+        filter: brightness(3) contrast(2) invert(1) !important;
+        mix-blend-mode: screen !important;
     }
     
     .contact-content {
@@ -2506,11 +2851,22 @@ section {
     }
     
     /* Optimize images for mobile */
-    .intro-image,
-    .community-logo,
-    .commercial-logo {
-        max-width: 100%;
-        height: auto;
+    .intro-image {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 12px !important;
+    }
+    
+    .side-image {
+        max-width: 280px !important;
+        margin: 15px 0 !important;
+    }
+    
+    /* Faster carousel on mobile */
+    .hero-img {
+        transition: opacity 1s ease-in-out !important;
     }
     
     /* Improve readability */
