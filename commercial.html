@@ -6,7 +6,7 @@
     <title>Commercial Properties - Cantu Construction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -54,32 +54,31 @@
                     <li class="nav-item nav-dropdown">
                         <a href="residential.html" class="nav-link">Residential</a>
                         <ul class="dropdown-menu">
-                            <li><a href="residential.html#villagio">Villagio</a></li>
-                            <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
-                            <li><a href="residential.html#del-lago">Del Lago</a></li>
-                            <li><a href="residential.html#lago-vista">Lago Vista</a></li>
-                            <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
-                            <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
-                            <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
-                            <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                            <li><a href="residential/villagio.html">Villagio</a></li>
+                            <li><a href="residential/bougainvillea.html">Bougainvillea</a></li>
+                            <li><a href="residential/del-lago.html">Del Lago</a></li>
+                            <li><a href="residential/lago-vista.html">Lago Vista</a></li>
+                            <li><a href="residential/paseo-del-lago.html">Paseo Del Lago</a></li>
+                            <li><a href="residential/village-on-dove.html">The Village on Dove</a></li>
+                            <li><a href="residential/villas-del-lago.html">Villas at Del Lago — Coming Soon</a></li>
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
                         <a href="commercial.html" class="nav-link active">Commercial</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-label">Retail Plazas</li>
-                            <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
-                            <li><a href="commercial.html#la-placita">La Placita</a></li>
-                            <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
-                            <li><a href="commercial.html#expressway-83">Expressway 83</a></li>
-                            <li><a href="commercial.html#art-village">Art Village on Main</a></li>
-                            <li><a href="commercial.html#water-tower">Water Tower Center</a></li>
+                            <li><a href="commercial/uptown-plaza.html">Uptown Plaza</a></li>
+                            <li><a href="commercial/la-placita.html">La Placita</a></li>
+                            <li><a href="commercial/lone-star-plaza.html">Lone Star Plaza</a></li>
+                            <li><a href="commercial/expressway-83.html">Expressway 83</a></li>
+                            <li><a href="commercial/art-village.html">Art Village on Main</a></li>
+                            <li><a href="commercial/water-tower.html">Water Tower Center</a></li>
                             <li class="dropdown-label">Office & Medical</li>
-                            <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
-                            <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
-                            <li><a href="commercial.html#brownsville-mob">Brownsville MOB</a></li>
-                            <li><a href="commercial.html#starpoint">StarPoint I</a></li>
-                            <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
+                            <li><a href="commercial/amistad-plaza.html">Amistad Plaza</a></li>
+                            <li><a href="commercial/harlingen-mob.html">Harlingen MOB</a></li>
+                            <li><a href="commercial/brownsville-mob.html">Brownsville MOB</a></li>
+                            <li><a href="commercial/starpoint.html">StarPoint I</a></li>
+                            <li><a href="commercial/midvalley-pros.html">MidValley Professionals</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -93,209 +92,209 @@
 
     <!-- Hero Banner -->
     <section id="hero" class="hero">
-        <div class="hero-background">
+        <div class="hero-background hero-slideshow">
             <img src="public/images/commericalherobanner.png" alt="Commercial Properties" class="hero-img active">
+            <img src="public/images/lonestarplaza.jpeg" alt="Commercial Plaza" class="hero-img">
+            <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village Building" class="hero-img">
+            
+            <!-- Indicators -->
+            <div class="slideshow-indicators">
+                <span class="slideshow-indicator active" onclick="currentSlide(1)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(2)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(3)"></span>
+            </div>
         </div>
         <div class="hero-gradient"></div>
     </section>
 
     <!-- Main Content -->
     <main>
-        <!-- Commercial Services Overview -->
-        <section class="commercial-overview">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Commercial Services</h2>
-                    <p>Design-build, tenant buildouts, and leasing solutions</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-drafting-compass"></i>
-                        <h3>Design-Build</h3>
-                        <p>Complete design and construction services from concept to completion.</p>
+        <!-- Enhanced Intro Section -->
+        <section class="intro" style="background: var(--bg);">
+            <div class="intro-container">
+                <div class="intro-content">
+                    <div class="intro-text-column">
+                        <h2 class="intro-title" style="color: #000080; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+                            COMMERCIAL<br>PROPERTIES
+                        </h2>
+                        <p class="intro-subtitle" style="font-size: 1.5rem; margin-bottom: 20px; color: #000080;">
+                            Prime Locations for Business Success
+                        </p>
+                        <p class="intro-description" style="font-size: 1.1rem; color: #000080; margin-bottom: 30px;">
+                            Discover exceptional commercial spaces across the Rio Grande Valley. From high-traffic retail plazas to state-of-the-art medical office buildings, Cantu Construction delivers professional properties designed for your business growth.
+                        </p>
+                        <a href="#properties" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
+                            View Properties
+                        </a>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-tools"></i>
-                        <h3>Tenant Buildouts</h3>
-                        <p>Custom interior construction tailored to your business needs.</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-key"></i>
-                        <h3>Leasing</h3>
-                        <p>Prime commercial spaces in high-traffic locations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Retail Plazas -->
-        <section id="retail-plazas" class="properties-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Retail Plazas</h2>
-                </div>
-                <div class="properties-grid">
-                    <div id="uptown-plaza" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Uptown Plaza">
-                        <div class="property-content">
-                            <h3>Uptown Plaza</h3>
-                            <p>Prime retail location with high visibility and easy access. Multiple units available.</p>
-                            <ul class="property-features">
-                                <li>High-traffic location</li>
-                                <li>Ample parking</li>
-                                <li>Flexible lease terms</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
-                        </div>
-                    </div>
-                    
-                    <div id="la-placita" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="La Placita">
-                        <div class="property-content">
-                            <h3>La Placita</h3>
-                            <p>Charming retail center with authentic local character and strong community presence.</p>
-                            <ul class="property-features">
-                                <li>Community-focused</li>
-                                <li>Unique architecture</li>
-                                <li>Established foot traffic</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
-                        </div>
-                    </div>
-                    
-                    <div id="lone-star-plaza" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="Lone Star Plaza">
-                        <div class="property-content">
-                            <h3>Lone Star Plaza</h3>
-                            <p>Modern retail complex with contemporary design and premium amenities.</p>
-                            <ul class="property-features">
-                                <li>Modern facilities</li>
-                                <li>Premium location</li>
-                                <li>Professional management</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
-                        </div>
-                    </div>
-                    
-                    <div id="expressway-83" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" alt="Expressway 83">
-                        <div class="property-content">
-                            <h3>Expressway 83</h3>
-                            <p>Highway-frontage retail with excellent visibility and accessibility.</p>
-                            <ul class="property-features">
-                                <li>Highway visibility</li>
-                                <li>Easy access</li>
-                                <li>Multiple unit sizes</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
-                        </div>
-                    </div>
-                    
-                    <div id="art-village" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Art Village on Main">
-                        <div class="property-content">
-                            <h3>Art Village on Main</h3>
-                            <p>Cultural retail destination featuring art galleries, studios, and unique shops.</p>
-                            <ul class="property-features">
-                                <li>Cultural hub</li>
-                                <li>Unique tenant mix</li>
-                                <li>Event space available</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
-                        </div>
-                    </div>
-                    
-                    <div id="water-tower" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Water Tower Center">
-                        <div class="property-content">
-                            <h3>Water Tower Center</h3>
-                            <p>Landmark retail center with distinctive architecture and central location.</p>
-                            <ul class="property-features">
-                                <li>Landmark location</li>
-                                <li>Central positioning</li>
-                                <li>Established anchor tenants</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                    <div class="intro-images">
+                        <div class="image-stack">
+                            <div class="image-wrapper side-image">
+                                <img src="public/images/lonestarplaza.jpeg" alt="Commercial Plaza" class="intro-image">
+                            </div>
+                            <div class="image-wrapper side-image">
+                                <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village Building" class="intro-image">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Office & Medical Buildings -->
-        <section id="office-medical" class="properties-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Office & Medical Buildings</h2>
+        <!-- All Properties Grid -->
+        <section id="properties" class="communities" style="background: var(--bg-alt); padding: 80px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px; background: white; padding: 40px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">
+                        Retail Plazas
+                    </h2>
                 </div>
-                <div class="properties-grid">
-                    <div id="amistad-plaza" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Amistad Plaza">
-                        <div class="property-content">
-                            <h3>Amistad Plaza</h3>
-                            <p>Professional office complex with modern amenities and flexible layouts.</p>
-                            <ul class="property-features">
-                                <li>Professional environment</li>
-                                <li>Flexible layouts</li>
-                                <li>Modern amenities</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 80px;">
+                    <!-- Uptown Plaza -->
+                    <div id="uptown-plaza" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Uptown Plaza" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Uptown Plaza</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Prime retail location with high visibility and easy access. Multiple units available.</p>
+                            <a href="commercial/uptown-plaza.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="harlingen-mob" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Harlingen MOB">
-                        <div class="property-content">
-                            <h3>Harlingen MOB</h3>
-                            <p>Medical office building designed specifically for healthcare professionals.</p>
-                            <ul class="property-features">
-                                <li>Healthcare-focused design</li>
-                                <li>Medical-grade facilities</li>
-                                <li>Convenient parking</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                    <!-- La Placita -->
+                    <div id="la-placita" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="La Placita" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">La Placita</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Charming retail center with authentic local character and strong community presence.</p>
+                            <a href="commercial/la-placita.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="brownsville-mob" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Brownsville MOB">
-                        <div class="property-content">
-                            <h3>Brownsville MOB</h3>
-                            <p>State-of-the-art medical office building with advanced infrastructure.</p>
-                            <ul class="property-features">
-                                <li>Advanced infrastructure</li>
-                                <li>Modern medical facilities</li>
-                                <li>Professional management</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                    <!-- Lone Star Plaza -->
+                    <div id="lone-star-plaza" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="Lone Star Plaza" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Lone Star Plaza</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Modern retail complex with contemporary design and premium amenities.</p>
+                            <a href="commercial/lone-star-plaza.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="starpoint" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="StarPoint I">
-                        <div class="property-content">
-                            <h3>StarPoint I</h3>
-                            <p>Premium office building with executive suites and conference facilities.</p>
-                            <ul class="property-features">
-                                <li>Executive suites</li>
-                                <li>Conference facilities</li>
-                                <li>Premium location</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                    <!-- Expressway 83 -->
+                    <div id="expressway-83" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" alt="Expressway 83" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Expressway 83</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Highway-frontage retail with excellent visibility and accessibility.</p>
+                            <a href="commercial/expressway-83.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Second Row: Retail -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 80px;">
+                    <!-- Art Village on Main -->
+                    <div id="art-village" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village on Main" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Art Village on Main</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Cultural retail destination featuring art galleries, studios, and unique shops.</p>
+                            <a href="commercial/art-village.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="midvalley-pros" class="property-card">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="MidValley Professionals">
-                        <div class="property-content">
-                            <h3>MidValley Professionals</h3>
-                            <p>Professional office complex catering to various business needs.</p>
-                            <ul class="property-features">
-                                <li>Diverse tenant mix</li>
-                                <li>Professional services</li>
-                                <li>Central location</li>
-                            </ul>
-                            <a href="index.html#contact" class="btn btn-primary">View Availability</a>
+                    <!-- Water Tower Center -->
+                    <div id="water-tower" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Water Tower Center" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Water Tower Center</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Landmark retail center with distinctive architecture and central location.</p>
+                            <a href="commercial/water-tower.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Office & Medical Buildings Header -->
+                <div class="section-header" style="text-align: center; margin-bottom: 60px; margin-top: 40px; background: white; padding: 40px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">
+                        Office & Medical Buildings
+                    </h2>
+                </div>
+                
+                <!-- Office & Medical Grid -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px;">
+                    <!-- Amistad Plaza -->
+                    <div id="amistad-plaza" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Amistad Plaza" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Amistad Plaza</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Professional office complex with modern amenities and flexible layouts.</p>
+                            <a href="commercial/amistad-plaza.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Harlingen MOB -->
+                    <div id="harlingen-mob" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Harlingen MOB" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Harlingen MOB</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Medical office building designed specifically for healthcare professionals.</p>
+                            <a href="commercial/harlingen-mob.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Brownsville MOB -->
+                    <div id="brownsville-mob" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Brownsville MOB" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Brownsville MOB</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">State-of-the-art medical office building with advanced infrastructure.</p>
+                            <a href="commercial/brownsville-mob.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- StarPoint I -->
+                    <div id="starpoint" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="StarPoint I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">StarPoint I</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Premium office building with executive suites and conference facilities.</p>
+                            <a href="commercial/starpoint.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Second Row: Office & Medical -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+                    <!-- MidValley Professionals -->
+                    <div id="midvalley-pros" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="MidValley Professionals" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">MidValley Professionals</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Professional office complex catering to various business needs.</p>
+                            <a href="commercial/midvalley-pros.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -303,27 +302,27 @@
         </section>
 
         <!-- Why Lease With Cantu Section -->
-        <section class="why-lease">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Lease With Cantus Construction?</h2>
-                    <p>Your success is our priority</p>
+        <section class="why-build" style="background: var(--bg); padding: 80px 0;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 3.2rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">Why Lease With Cantu Construction?</h2>
+                    <p style="font-size: 1.3rem; color: #666; font-weight: 500;">Your success is our priority</p>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Prime Locations</h3>
-                        <p>Our properties are strategically located in high-traffic areas with excellent visibility and accessibility.</p>
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Prime Locations</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">Our properties are strategically located in high-traffic areas with excellent visibility and accessibility.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Flexible Terms</h3>
-                        <p>We work with tenants to create lease agreements that support your business growth and success.</p>
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-handshake" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Flexible Terms</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">We work with tenants to create lease agreements that support your business growth and success.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-tools"></i>
-                        <h3>Maintenance Support</h3>
-                        <p>Our professional management team ensures your space is always in top condition.</p>
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-tools" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Maintenance Support</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">Our professional management team ensures your space is always in top condition.</p>
                     </div>
                 </div>
             </div>
@@ -331,31 +330,50 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div class="footer-section">
-                    <h3>Cantus Construction</h3>
-                    <p>Building excellence, one project at a time.</p>
+                    <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;">Cantu Construction</h3>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 20px;">Building excellence, one project at a time.</p>
+                    <div class="social-links" style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="https://www.facebook.com/p/Cantu-Construction-100057412092440/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/cantuconstruction/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="residential.html">Residential</a></li>
-                        <li><a href="commercial.html">Commercial</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                    <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 10px;"><a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="residential.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Residential</a></li>
+                        <li style="margin-bottom: 10px;"><a href="commercial.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Commercial</a></li>
+                        <li style="margin-bottom: 10px;"><a href="projects.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Projects</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>McAllen, Texas<br>Rio Grande Valley</p>
-                    <p>(956) 631-1273</p>
+                    <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Contact Info</h4>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #C62828;"></i>
+                        5221 N McColl Rd<br>
+                        <span style="margin-left: 24px;">McAllen, TX 78504</span>
+                    </p>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="margin-right: 10px; color: #C62828;"></i>
+                        (956) 631-1273
+                    </p>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
+                        <i class="fas fa-envelope" style="margin-right: 10px; color: #C62828;"></i>
+                        sales@cantuconstruction.com
+                    </p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Cantus Construction. All rights reserved.</p>
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; text-align: center;">
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">&copy; 2024 Cantu Construction. All rights reserved.</p>
             </div>
         </div>
     </footer>

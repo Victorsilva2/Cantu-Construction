@@ -6,7 +6,7 @@
     <title>Residential Communities - Cantu Construction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -54,14 +54,13 @@
                     <li class="nav-item nav-dropdown">
                         <a href="residential.html" class="nav-link active">Residential</a>
                         <ul class="dropdown-menu">
-                            <li><a href="residential.html#villagio">Villagio</a></li>
-                            <li><a href="residential.html#bougainvillea">Bougainvillea</a></li>
-                            <li><a href="residential.html#del-lago">Del Lago</a></li>
-                            <li><a href="residential.html#lago-vista">Lago Vista</a></li>
-                            <li><a href="residential.html#paseo-del-lago">Paseo Del Lago</a></li>
-                            <li><a href="residential.html#cimarron">Cimarron Country Club</a></li>
-                            <li><a href="residential.html#village-on-dove">The Village on Dove</a></li>
-                            <li><a href="residential.html#villas-del-lago">Villas at Del Lago</a></li>
+                            <li><a href="residential/villagio.html">Villagio</a></li>
+                            <li><a href="residential/bougainvillea.html">Bougainvillea</a></li>
+                            <li><a href="residential/del-lago.html">Del Lago</a></li>
+                            <li><a href="residential/lago-vista.html">Lago Vista</a></li>
+                            <li><a href="residential/paseo-del-lago.html">Paseo Del Lago</a></li>
+                            <li><a href="residential/village-on-dove.html">The Village on Dove</a></li>
+                            <li><a href="residential/villas-del-lago.html">Villas at Del Lago — Coming Soon</a></li>
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
@@ -110,79 +109,132 @@
 
     <!-- Main Content -->
     <main>
+        <!-- Enhanced Intro Section -->
+        <section class="intro" style="background: var(--bg);">
+            <div class="intro-container">
+                <div class="intro-content">
+                    <div class="intro-text-column">
+                        <h2 class="intro-title" style="color: #000080; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+                            RESIDENTIAL<br>COMMUNITIES
+                        </h2>
+                        <p class="intro-subtitle" style="font-size: 1.5rem; margin-bottom: 20px; color: #000080;">
+                            Prestige and Richly Rewarding Lifestyles
+                        </p>
+                        <p class="intro-description" style="font-size: 1.1rem; color: #000080; margin-bottom: 30px;">
+                            Discover exceptional living in the Rio Grande Valley's most sought-after residential communities. From luxury custom homes to family-friendly neighborhoods, Cantu Construction creates spaces where memories are made and dreams come true.
+                        </p>
+                        <a href="#communities" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
+                            Explore Communities
+                        </a>
+                    </div>
+                    <div class="intro-images">
+                        <div class="image-stack">
+                            <div class="image-wrapper side-image">
+                                <img src="public/images/houseimage.jpeg" alt="Residential Home" class="intro-image">
+                            </div>
+                            <div class="image-wrapper side-image">
+                                <img src="public/images/CantuConstructionHeroHouse2.jpg" alt="Custom Home" class="intro-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Communities Grid -->
-        <section id="communities" class="communities">
-            <div class="container">
-                <div class="communities-grid">
-                    <div id="villagio" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Villagio">
-                        <div class="community-content">
-                            <h3>Villagio</h3>
-                            <p>Luxury living in the heart of McAllen. Features include custom homes, community amenities, and prime location.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+        <section id="communities" class="communities" style="background: var(--bg-alt); padding: 80px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">
+                        Our Communities
+                    </h2>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px;">
+                    <!-- Villagio -->
+                    <div id="villagio" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Villagio" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Villagio</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Luxury living in the heart of McAllen. Features include custom homes, community amenities, and prime location.</p>
+                            <a href="residential/villagio.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="bougainvillea" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Bougainvillea">
-                        <div class="community-content">
-                            <h3>Bougainvillea</h3>
-                            <p>Beautiful family community with modern amenities and spacious lots perfect for growing families.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+                    <!-- Bougainvillea -->
+                    <div id="bougainvillea" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Bougainvillea" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Bougainvillea</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Beautiful family community with modern amenities and spacious lots perfect for growing families.</p>
+                            <a href="residential/bougainvillea.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="del-lago" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Del Lago">
-                        <div class="community-content">
-                            <h3>Del Lago</h3>
-                            <p>Waterfront living with stunning lake views and resort-style amenities.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+                    <!-- Del Lago -->
+                    <div id="del-lago" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Del Lago" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Del Lago</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Waterfront living with stunning lake views and resort-style amenities.</p>
+                            <a href="residential/del-lago.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="lago-vista" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Lago Vista">
-                        <div class="community-content">
-                            <h3>Lago Vista</h3>
-                            <p>Scenic community offering peaceful living with easy access to city amenities.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+                    <!-- Lago Vista -->
+                    <div id="lago-vista" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Lago Vista" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Lago Vista</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Scenic community offering peaceful living with easy access to city amenities.</p>
+                            <a href="residential/lago-vista.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Second Row -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+                    <!-- Paseo Del Lago -->
+                    <div id="paseo-del-lago" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Paseo Del Lago" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Paseo Del Lago</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Modern community featuring contemporary homes and walking trails.</p>
+                            <a href="residential/paseo-del-lago.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="paseo-del-lago" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Paseo Del Lago">
-                        <div class="community-content">
-                            <h3>Paseo Del Lago</h3>
-                            <p>Modern community featuring contemporary homes and walking trails.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+                    <!-- The Village on Dove -->
+                    <div id="village-on-dove" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" alt="The Village on Dove" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">The Village on Dove</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Charming neighborhood with traditional architecture and family-friendly atmosphere.</p>
+                            <a href="residential/village-on-dove.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                     
-                    <div id="cimarron" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="Cimarron Country Club">
-                        <div class="community-content">
-                            <h3>Cimarron Country Club</h3>
-                            <p>Exclusive golf course community with luxury homes and country club amenities.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
+                    <!-- Villas at Del Lago -->
+                    <div id="villas-del-lago" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Villas at Del Lago" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; top: 15px; right: 15px; background: #C62828; color: white; padding: 8px 16px; border-radius: 5px; font-weight: 700; font-size: 0.85rem;">COMING SOON</div>
                         </div>
-                    </div>
-                    
-                    <div id="village-on-dove" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" alt="The Village on Dove">
-                        <div class="community-content">
-                            <h3>The Village on Dove</h3>
-                            <p>Charming neighborhood with traditional architecture and family-friendly atmosphere.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
-                    
-                    <div id="villas-del-lago" class="community-card">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Villas at Del Lago">
-                        <div class="community-content">
-                            <h3>Villas at Del Lago</h3>
-                            <p>Coming Soon - Luxury villas with modern design and premium finishes.</p>
-                            <a href="index.html#contact" class="btn btn-primary">Get Updates</a>
+                        <div style="padding: 30px 25px;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 15px;">Villas at Del Lago</h3>
+                            <p style="font-size: 1.05rem; color: #666; line-height: 1.6; margin-bottom: 25px;">Coming Soon - Luxury villas with modern design and premium finishes.</p>
+                            <a href="residential/villas-del-lago.html" style="display: inline-block; background: var(--brand-blue); color: white; padding: 16px 35px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 6px; text-transform: uppercase; transition: background 0.3s ease; width: 100%; text-align: center;">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -190,27 +242,27 @@
         </section>
 
         <!-- Why Build With Cantu Section -->
-        <section class="why-build">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Build With Cantus Construction?</h2>
-                    <p>Over 20 years of excellence in residential construction</p>
+        <section class="why-build" style="background: var(--bg); padding: 80px 0;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 3.2rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">Why Build With Cantu Construction?</h2>
+                    <p style="font-size: 1.3rem; color: #666; font-weight: 500;">Over 37 years of excellence in residential construction</p>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-award"></i>
-                        <h3>Quality Craftsmanship</h3>
-                        <p>We use only the finest materials and employ skilled craftsmen to ensure your home exceeds expectations.</p>
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-award" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Quality Craftsmanship</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">We use only the finest materials and employ skilled craftsmen to ensure your home exceeds expectations.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-clock"></i>
-                        <h3>On-Time Delivery</h3>
-                        <p>Our project management ensures your home is completed on schedule without compromising quality.</p>
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-clock" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">On-Time Delivery</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">Our project management ensures your home is completed on schedule without compromising quality.</p>
                     </div>
-                    <div class="feature-card">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Personal Service</h3>
-                        <p>From design to completion, we work closely with you to bring your vision to life.</p>
+                    <div class="feature-card" style="text-align: center; padding: 40px 30px;">
+                        <i class="fas fa-handshake" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Personal Service</h3>
+                        <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">From design to completion, we work closely with you to bring your vision to life.</p>
                     </div>
                 </div>
             </div>
@@ -218,31 +270,50 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div class="footer-section">
-                    <h3>Cantus Construction</h3>
-                    <p>Building excellence, one project at a time.</p>
+                    <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;">Cantu Construction</h3>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 20px;">Building excellence, one project at a time.</p>
+                    <div class="social-links" style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="https://www.facebook.com/p/Cantu-Construction-100057412092440/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/cantuconstruction/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="residential.html">Residential</a></li>
-                        <li><a href="commercial.html">Commercial</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                    <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 10px;"><a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="residential.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Residential</a></li>
+                        <li style="margin-bottom: 10px;"><a href="commercial.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Commercial</a></li>
+                        <li style="margin-bottom: 10px;"><a href="projects.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Projects</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>McAllen, Texas<br>Rio Grande Valley</p>
-                    <p>(956) 631-1273</p>
+                    <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Contact Info</h4>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #C62828;"></i>
+                        5221 N McColl Rd<br>
+                        <span style="margin-left: 24px;">McAllen, TX 78504</span>
+                    </p>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="margin-right: 10px; color: #C62828;"></i>
+                        (956) 631-1273
+                    </p>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
+                        <i class="fas fa-envelope" style="margin-right: 10px; color: #C62828;"></i>
+                        sales@cantuconstruction.com
+                    </p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Cantus Construction. All rights reserved.</p>
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; text-align: center;">
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">&copy; 2024 Cantu Construction. All rights reserved.</p>
             </div>
         </div>
     </footer>
