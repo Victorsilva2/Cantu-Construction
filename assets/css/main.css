@@ -851,7 +851,7 @@ body {
     padding: 0;
     max-width: 800px;
     margin-left: auto;
-    margin-top: 30px;  /* Move images below contact button */
+    margin-top: 30px;
 }
 
 .image-stack {
@@ -1455,9 +1455,9 @@ section {
 
 /* Footer */
 .footer {
-    background: var(--brand-navy);
+    background: #000080;
     color: white;
-    padding: 50px 0 20px;
+    padding: 60px 0 30px;
 }
 
 .footer-content {
@@ -1470,7 +1470,7 @@ section {
 .footer-section h3,
 .footer-section h4 {
     margin-bottom: 20px;
-    color: var(--brand-blue);
+    color: white;
 }
 
 .footer-section ul {
@@ -1482,20 +1482,26 @@ section {
 }
 
 .footer-section ul li a {
-    color: #bdc3c7;
+    color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-    color: var(--brand-red);
+    color: white;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #34495e;
-    color: #bdc3c7;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+}
+
+/* Social Links */
+.social-links a:hover {
+    background: rgba(255,255,255,0.2) !important;
+    transform: translateY(-3px);
 }
 
 /* Videos */
@@ -1530,6 +1536,35 @@ section {
     text-align: center;
 }
 
+/* Logo Scrolling Animation */
+.logo-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 80px;
+    padding: 40px 0;
+    position: relative;
+}
+
+.logo-scroll-track {
+    display: flex;
+    gap: 60px;
+    animation: scrollLogos 40s linear infinite;
+    width: fit-content;
+    will-change: transform;
+}
+
+.logo-scroll-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
 .communities-grid {
     display: grid;
@@ -1547,10 +1582,17 @@ section {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
+    min-width: 320px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .community-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .community-item a {
@@ -1559,17 +1601,16 @@ section {
 }
 
 .community-logo {
-    max-width: 280px;
-    width: 100%;
+    width: 280px;
     height: auto;
-    filter: brightness(0) invert(1); /* Make logos white */
+    filter: none; /* Show original logo colors */
     transition: all 0.3s ease;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .community-item:hover .community-logo {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .communities-button-container {
@@ -1594,7 +1635,7 @@ section {
 
 .communities-btn:hover {
     background: #ffffff;
-    color: var(--bg-alt);
+    color: var(--brand-blue);
     transform: translateY(-2px);
 }
 
@@ -1615,10 +1656,12 @@ section {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
+    min-width: 280px;
 }
 
 .commercial-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .commercial-item a {
@@ -1627,12 +1670,11 @@ section {
 }
 
 .commercial-logo {
-    max-width: 280px;
-    width: 100%;
+    width: 280px;
     height: auto;
-    filter: brightness(0) invert(0); /* Keep original colors for commercial logos */
+    filter: none; /* Keep original colors for commercial logos */
     transition: all 0.3s ease;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .commercial-item:hover .commercial-logo {
