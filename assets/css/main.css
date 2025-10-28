@@ -1563,7 +1563,7 @@ section {
     display: flex;
     gap: 60px;
     animation: scrollLogos 40s linear infinite;
-    width: 200%;
+    width: max-content;
     will-change: transform;
 }
 
@@ -1610,6 +1610,60 @@ section {
     }
 }
 
+@keyframes scrollLogosCommercial {
+    0% {
+        transform: translateX(0);
+    }
+    11.11% {
+        transform: translateX(-100vw);
+    }
+    22.22% {
+        transform: translateX(-200vw);
+    }
+    33.33% {
+        transform: translateX(-300vw);
+    }
+    44.44% {
+        transform: translateX(-400vw);
+    }
+    55.55% {
+        transform: translateX(-500vw);
+    }
+    66.66% {
+        transform: translateX(-600vw);
+    }
+    77.77% {
+        transform: translateX(-700vw);
+    }
+    88.88% {
+        transform: translateX(-800vw);
+    }
+    100% {
+        transform: translateX(-900vw);
+    }
+}
+
+@keyframes scrollLogosResidential {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-100vw);
+    }
+    40% {
+        transform: translateX(-200vw);
+    }
+    60% {
+        transform: translateX(-300vw);
+    }
+    80% {
+        transform: translateX(-400vw);
+    }
+    100% {
+        transform: translateX(-500vw);
+    }
+}
+
 .communities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1651,6 +1705,12 @@ section {
 .community-item img[src*="TheVillageOnDove.png"] {
     filter: brightness(3) contrast(2) invert(1);
     mix-blend-mode: screen;
+}
+
+/* Boost visibility for DelLago and Bougainvillea logos */
+.community-item img[src*="DelLago.png"],
+.community-item img[src*="Bougainvillea.png"] {
+    filter: brightness(1.45) contrast(1.25) saturate(1.1);
 }
 
 .community-item:hover .community-logo {
@@ -2378,12 +2438,21 @@ section {
         display: block !important;
     }
     
-    .residential-communities .logo-scroll-track,
+    .residential-communities .logo-scroll-track {
+        display: flex !important;
+        gap: 0 !important;
+        animation: scrollLogosResidential 40s linear infinite !important;
+        width: 500vw !important; /* 5 unique items */
+        will-change: transform !important;
+        animation-fill-mode: none !important;
+        flex-shrink: 0 !important;
+    }
+    
     .commercial-properties .logo-scroll-track {
         display: flex !important;
         gap: 0 !important;
-        animation: scrollLogosMobile 40s linear infinite !important;
-        width: 800vw !important;
+        animation: scrollLogosCommercial 45s linear infinite !important;
+        width: 900vw !important;
         will-change: transform !important;
         animation-fill-mode: none !important;
         flex-shrink: 0 !important;
@@ -2395,7 +2464,16 @@ section {
     }
     
     /* Ensure mobile carousel items are properly spaced - one at a time */
-    .residential-communities .logo-scroll-track .community-item,
+    .residential-communities .logo-scroll-track .community-item {
+        min-width: 100vw !important;
+        width: 100vw !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+    }
+    
     .commercial-properties .logo-scroll-track .commercial-item {
         min-width: 100vw !important;
         width: 100vw !important;
@@ -2543,6 +2621,12 @@ section {
     .community-item img[src*="TheVillageOnDove.png"] {
         filter: brightness(3) contrast(2) invert(1) !important;
         mix-blend-mode: screen !important;
+    }
+    
+    /* Boost visibility for DelLago and Bougainvillea on mobile */
+    .community-item img[src*="DelLago.png"],
+    .community-item img[src*="Bougainvillea.png"] {
+        filter: brightness(1.6) contrast(1.35) saturate(1.15) !important;
     }
     
     .community-item {
@@ -2734,7 +2818,16 @@ section {
     }
     
     /* Extra small screens carousel items - one at a time */
-    .residential-communities .logo-scroll-track .community-item,
+    .residential-communities .logo-scroll-track .community-item {
+        min-width: 100vw !important;
+        width: 100vw !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 15px !important;
+    }
+    
     .commercial-properties .logo-scroll-track .commercial-item {
         min-width: 100vw !important;
         width: 100vw !important;
@@ -2754,6 +2847,12 @@ section {
     .community-item img[src*="TheVillageOnDove.png"] {
         filter: brightness(3) contrast(2) invert(1) !important;
         mix-blend-mode: screen !important;
+    }
+    
+    /* Boost visibility for DelLago and Bougainvillea on extra small screens */
+    .community-item img[src*="DelLago.png"],
+    .community-item img[src*="Bougainvillea.png"] {
+        filter: brightness(1.7) contrast(1.4) saturate(1.2) !important;
     }
     
     .contact-content {

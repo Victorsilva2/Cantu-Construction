@@ -832,3 +832,268 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 250);
     });
 });
+
+// Commercial carousel - JS-driven seamless loop across duplicated items
+function initCommercialCarouselLoop() {
+    const track = document.querySelector('.commercial-properties .logo-scroll-track');
+    const container = document.querySelector('.commercial-properties .logo-scroll-container');
+    if (!track || !container) return;
+
+    // Disable CSS animation to avoid conflicts
+    track.style.animation = 'none';
+    track.style.transform = 'translateX(0px)';
+
+    // Ensure we have duplicated items (two identical halves)
+    const totalItems = track.children.length;
+    if (totalItems < 2) return;
+
+    let halfWidth = 0;
+    let offsetPx = 0;
+    let rafId;
+    let isDragging = false;
+    let lastX = 0;
+    let wheelTO;
+
+    function computeHalfWidth() {
+        // Force reflow so scrollWidth is accurate after image load
+        // We assume two identical halves: halfWidth = total scroll width / 2
+        halfWidth = track.scrollWidth / 2;
+    }
+
+    function wrapOffset() {
+        // keep offset within [-halfWidth, 0)
+        if (-offsetPx >= halfWidth) {
+            offsetPx += halfWidth;
+        } else if (offsetPx > 0) {
+            offsetPx -= halfWidth;
+        }
+    }
+
+    function tick() {
+        // Move left at a steady rate; adjust speed as needed
+        if (!isDragging) {
+            offsetPx -= 0.6; // pixels per frame
+        }
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function start() {
+        cancelAnimationFrame(rafId);
+        computeHalfWidth();
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+        cancelAnimationFrame(rafId);
+    }
+
+    // Wait for images to load to get correct widths
+    const imgs = track.querySelectorAll('img');
+    let remaining = imgs.length;
+    if (remaining === 0) {
+        start();
+        return;
+    }
+    imgs.forEach(img => {
+        if (img.complete && img.naturalWidth > 0) {
+            remaining -= 1;
+        } else {
+            img.addEventListener('load', () => {
+                remaining -= 1;
+                if (remaining === 0) start();
+            });
+            img.addEventListener('error', () => {
+                remaining -= 1;
+                if (remaining === 0) start();
+            });
+        }
+    });
+    if (remaining === 0) start();
+
+    // Recompute on resize
+    window.addEventListener('resize', () => {
+        // debounce
+        clearTimeout(window.__commercialResizeTO);
+        window.__commercialResizeTO = setTimeout(() => {
+            start();
+        }, 200);
+    });
+
+    // Hover pause/resume
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', () => {
+        if (!isDragging) start();
+    });
+
+    // Pointer drag to manually scroll
+    container.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        stop();
+        lastX = e.clientX;
+        container.setPointerCapture(e.pointerId);
+        container.style.cursor = 'grabbing';
+    });
+    container.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        lastX = e.clientX;
+        offsetPx += dx; // drag to scroll
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+    });
+    function endDrag(e){
+        if (!isDragging) return;
+        isDragging = false;
+        try { container.releasePointerCapture(e.pointerId); } catch(_){}
+        container.style.cursor = '';
+        start();
+    }
+    container.addEventListener('pointerup', endDrag);
+    container.addEventListener('pointercancel', endDrag);
+    container.addEventListener('pointerleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            container.style.cursor = '';
+            start();
+        }
+    });
+
+    // Wheel/trackpad horizontal scroll support
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        stop();
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        offsetPx -= delta * 0.5; // sensitivity
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+        clearTimeout(wheelTO);
+        wheelTO = setTimeout(() => start(), 300);
+    }, { passive: false });
+}
+
+// Initialize commercial carousel loop after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initCommercialCarouselLoop();
+});
+
+// Residential carousel - JS-driven seamless loop with manual control (faster)
+function initResidentialCarouselLoop() {
+    const track = document.querySelector('.residential-communities .logo-scroll-track');
+    const container = document.querySelector('.residential-communities .logo-scroll-container');
+    if (!track || !container) return;
+
+    // Disable CSS animation to avoid conflicts (override even if CSS uses !important)
+    try { track.style.setProperty('animation', 'none', 'important'); } catch(_) { track.style.animation = 'none'; }
+    track.style.transform = 'translateX(0px)';
+
+    let halfWidth = 0;
+    let offsetPx = 0;
+    let rafId;
+    let isDragging = false;
+    let lastX = 0;
+    let wheelTO;
+
+    function computeHalfWidth() {
+        halfWidth = track.scrollWidth / 2;
+    }
+
+    function wrapOffset() {
+        if (-offsetPx >= halfWidth) {
+            offsetPx += halfWidth;
+        } else if (offsetPx > 0) {
+            offsetPx -= halfWidth;
+        }
+    }
+
+    function tick() {
+        if (!isDragging) {
+            offsetPx -= 0.9; // faster than commercial
+        }
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function start() {
+        cancelAnimationFrame(rafId);
+        computeHalfWidth();
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function stop() {
+        cancelAnimationFrame(rafId);
+    }
+
+    // Wait for images to load
+    const imgs = track.querySelectorAll('img');
+    let remaining = imgs.length;
+    if (remaining === 0) {
+        start();
+    } else {
+        imgs.forEach(img => {
+            if (img.complete && img.naturalWidth > 0) {
+                remaining -= 1;
+            } else {
+                img.addEventListener('load', () => { remaining -= 1; if (remaining === 0) start(); });
+                img.addEventListener('error', () => { remaining -= 1; if (remaining === 0) start(); });
+            }
+        });
+        if (remaining === 0) start();
+    }
+
+    // Recompute on resize
+    window.addEventListener('resize', () => {
+        clearTimeout(window.__residentialResizeTO);
+        window.__residentialResizeTO = setTimeout(() => { start(); }, 200);
+    });
+
+    // Hover pause/resume
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', () => { if (!isDragging) start(); });
+
+    // Pointer drag
+    container.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        stop();
+        lastX = e.clientX;
+        container.setPointerCapture(e.pointerId);
+        container.style.cursor = 'grabbing';
+    });
+    container.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        lastX = e.clientX;
+        offsetPx += dx;
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+    });
+    function endDrag(e){
+        if (!isDragging) return;
+        isDragging = false;
+        try { container.releasePointerCapture(e.pointerId); } catch(_){}
+        container.style.cursor = '';
+        start();
+    }
+    container.addEventListener('pointerup', endDrag);
+    container.addEventListener('pointercancel', endDrag);
+    container.addEventListener('pointerleave', () => { if (isDragging) { isDragging = false; container.style.cursor = ''; start(); } });
+
+    // Wheel/trackpad
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        stop();
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        offsetPx -= delta * 0.6; // slightly more responsive than commercial
+        wrapOffset();
+        track.style.transform = `translateX(${offsetPx}px)`;
+        clearTimeout(wheelTO);
+        wheelTO = setTimeout(() => start(), 250);
+    }, { passive: false });
+}
+
+// Initialize residential carousel loop after DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initResidentialCarouselLoop();
+});
