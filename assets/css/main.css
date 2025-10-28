@@ -601,6 +601,20 @@ body {
     font-size: clamp(0.9rem, 2.5vw, 1.2rem);
 }
 
+/* Position commercial hero images higher to show buildings better */
+.commercial .hero-img {
+    object-position: center 15%; /* Move ArtVillageBuilding image even higher */
+}
+
+/* Target specific hero images to position them higher on their respective pages */
+.residential .hero-img[src*="residential2.png"] {
+    object-position: center 100% !important; /* Move residential2 image higher on residential page */
+}
+
+.commercial .hero-img[src*="ArtVillageBuilding.jpg"] {
+    object-position: center 100% !important; /* Move ArtVillageBuilding image even higher on commercial page */
+}
+
 .hero-background {
     position: absolute;
     top: 0;
@@ -623,7 +637,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: center 20%; /* Move hero images higher to show buildings better */
     position: absolute;
     top: 0;
     left: 0;
@@ -1701,6 +1715,11 @@ section {
     opacity: 0.85;
 }
 
+.community-item:hover .community-logo {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
 /* White tint for TheVillageOnDove.png to enhance visibility */
 .community-item img[src*="TheVillageOnDove.png"] {
     filter: brightness(3) contrast(2) invert(1);
@@ -1711,6 +1730,33 @@ section {
 .community-item img[src*="DelLago.png"],
 .community-item img[src*="Bougainvillea.png"] {
     filter: brightness(1.45) contrast(1.25) saturate(1.1);
+}
+
+/* --- Residential Communities: white tiles --- */
+/* Desktop residential items - white background with same dimensions as commercial */
+.residential-communities .community-item {
+    background: #ffffff;
+    min-width: 280px;
+    height: 200px; /* Set explicit height to match commercial */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Villas at Del Lago: black tint over logo (desktop) */
+.community-item img[src*="VillasAtDelLago.png"] {
+    /* Force solid black rendering of the logo for maximum contrast */
+    filter: brightness(0) contrast(1.2) !important;
+}
+
+/* Revert these logos back to original colors (desktop) */
+.community-item img[src*="TheVillageOnDove.png"],
+.community-item img[src*="DelLago.png"],
+.community-item img[src*="Bougainvillea.png"] {
+    filter: none !important;
+    mix-blend-mode: normal !important;
 }
 
 .community-item:hover .community-logo {
@@ -1762,6 +1808,7 @@ section {
     transition: transform 0.3s ease;
     flex-shrink: 0;
     min-width: 280px;
+    height: 200px; /* Set explicit height to match residential */
 }
 
 .commercial-item:hover {
@@ -2242,7 +2289,7 @@ section {
         width: 100%;
         height: 50vh;
         max-height: 50vh;
-        object-position: center center;
+        object-position: center 20%; /* Move image higher to show building better */
         image-rendering: high-quality;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
@@ -2440,12 +2487,12 @@ section {
     
     .residential-communities .logo-scroll-track {
         display: flex !important;
-        gap: 0 !important;
-        animation: scrollLogosResidential 40s linear infinite !important;
-        width: 500vw !important; /* 5 unique items */
+        gap: 12px !important; /* small blue gap between cards */
+        width: max-content !important; /* size to contents for JS loop */
         will-change: transform !important;
         animation-fill-mode: none !important;
         flex-shrink: 0 !important;
+        padding: 0 12px !important; /* side gutters */
     }
     
     .commercial-properties .logo-scroll-track {
@@ -2463,15 +2510,18 @@ section {
         animation-play-state: paused !important;
     }
     
-    /* Ensure mobile carousel items are properly spaced - one at a time */
+    /* Ensure mobile carousel items are one-per-view with spacing */
     .residential-communities .logo-scroll-track .community-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
-        flex-shrink: 0 !important;
+        box-sizing: border-box !important;
+        flex: 0 0 calc(94vw - 36px) !important; /* slightly narrower than viewport */
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 0 20px !important;
+        padding: 12px !important;
+        background: #ffffff !important;
+        border-radius: 0 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+        margin: 0 !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
@@ -2606,7 +2656,7 @@ section {
     }
     
     .community-logo {
-        max-width: 280px !important;
+        max-width: 200px !important; /* Make logos smaller on mobile */
         height: auto !important;
         width: auto !important;
         opacity: 0.85 !important;
@@ -2628,14 +2678,23 @@ section {
     .community-item img[src*="Bougainvillea.png"] {
         filter: brightness(1.6) contrast(1.35) saturate(1.15) !important;
     }
-    
-    .community-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        min-width: 200px;
-        flex-shrink: 0;
+
+    /* Residential: white tiles on mobile */
+    .residential-communities .community-item {
+        background: #ffffff !important;
+    }
+
+    /* Villas at Del Lago black tint (mobile) */
+    .community-item img[src*="VillasAtDelLago.png"] {
+        filter: brightness(0) contrast(1.2) !important;
+    }
+
+    /* Revert to originals (mobile) */
+    .community-item img[src*="TheVillageOnDove.png"],
+    .community-item img[src*="DelLago.png"],
+    .community-item img[src*="Bougainvillea.png"] {
+        filter: none !important;
+        mix-blend-mode: normal !important;
     }
     
     /* Commercial Grid - Same size as service cards */
@@ -2819,13 +2878,14 @@ section {
     
     /* Extra small screens carousel items - one at a time */
     .residential-communities .logo-scroll-track .community-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
-        flex-shrink: 0 !important;
+        box-sizing: border-box !important;
+        flex: 0 0 calc(94vw - 36px) !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 0 15px !important;
+        padding: 12px !important;
+        background: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
@@ -2853,6 +2913,24 @@ section {
     .community-item img[src*="DelLago.png"],
     .community-item img[src*="Bougainvillea.png"] {
         filter: brightness(1.7) contrast(1.4) saturate(1.2) !important;
+    }
+
+    /* Residential: white tiles on extra small screens */
+    .residential-communities .community-item {
+        background: #ffffff !important;
+    }
+
+    /* Villas at Del Lago black tint (extra small) */
+    .community-item img[src*="VillasAtDelLago.png"] {
+        filter: brightness(0) contrast(1.2) !important;
+    }
+
+    /* Revert to originals (extra small) */
+    .community-item img[src*="TheVillageOnDove.png"],
+    .community-item img[src*="DelLago.png"],
+    .community-item img[src*="Bougainvillea.png"] {
+        filter: none !important;
+        mix-blend-mode: normal !important;
     }
     
     .contact-content {
@@ -3191,4 +3269,25 @@ section {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+}
+
+.community-logo {
+    max-width: 100% !important; /* Ensures logos scale well while remaining original size */
+    height: auto !important;
+    width: auto !important;
+    opacity: 0.85 !important;
+}
+
+.residential-communities .community-item {
+    max-width: 40px !important; /* Further reduce size */
+    width: 40px !important;
+    height: 200px !important; /* Set explicit height */
+    padding: 10px !important;
+    justify-content: center !important;
+}
+
+/* Margins and Carousels */
+.residential-communities .logo-scroll-track {
+    gap: 16px !important;
+    width: max-content !important;
 }
