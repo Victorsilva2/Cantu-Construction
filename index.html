@@ -180,7 +180,7 @@
                 <li class="nav-item">
                     <a href="projects.html" class="nav-link">Projects</a>
                 </li>
-                <li class="nav-item"><a href="#our-team" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#about-us" class="nav-link">About Us</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact Us</a></li>
                 </ul>
             </div>
@@ -243,7 +243,7 @@
                             <p class="intro-description" style="font-size: 1.1rem; color: #000080; margin-bottom: 30px;">
                                 Cantu Construction has been a custom home builder in the McAllen, TX area for 37 years. Our commitment to quality and service has set us apart amongst other builders.
                             </p>
-                        <a href="#our-team" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
+                        <a href="#about-us" class="contact-btn" style="display: inline-block; background-color: var(--brand-blue); color: white; padding: 15px 40px; text-decoration: none; font-weight: 600; border-radius: 5px; text-transform: uppercase;">
                             About Us
                         </a>
                         </div>
@@ -260,52 +260,87 @@
                 </div>
             </section>
 
-            <!-- What We Can Do For You Section -->
-            <section id="services" class="services section-blue" style="background: var(--bg-alt);">
-                <div class="container">
-            <div class="section-header heading-font" style="text-align:left; color: #000; position: relative;">
-                <h2 class="h2" style="font-weight:800; position:relative;">
-                    What we can do for you
-                    <span class="decorative-line"></span>
-                </h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-home"></i></div>
-                    <h3>Custom Homes</h3>
-                    <p>We specialize in luxurious homes that reflect the uniqueness of our clients. Allow us to build a home customized to suit your tastes and lifestyle.</p>
+            <!-- About Us Section -->
+            <section id="about-us" class="about-us section-blue" style="background: var(--bg-alt); padding: 100px 0;">
+                <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+                    <!-- Section Header -->
+                    <div class="section-header heading-font" style="text-align:center; color: #fff; position: relative; margin-bottom: 70px;">
+                        <h2 class="h2" style="font-weight:800; position:relative; font-size: 4rem; text-transform: uppercase; letter-spacing: 2px;">
+                            About Us
+                        </h2>
+                        <div style="width: 120px; height: 4px; background: white; margin: 25px auto 0;"></div>
+                    </div>
+                    
+                    <!-- Main Content Grid -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 70px;">
+                        <!-- Left: Text Content -->
+                        <div style="color: white;">
+                            <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; color: white; line-height: 1.2;">Building Excellence Since 1987</h3>
+                            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 25px; color: rgba(255,255,255,0.95);">
+                                For over 37 years, Cantu Construction has been the premier custom home builder and commercial developer in the Rio Grande Valley. Our commitment to quality craftsmanship, innovative design, and exceptional customer service has set us apart in the industry.
+                            </p>
+                            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 25px; color: rgba(255,255,255,0.95);">
+                                From luxury residential communities to state-of-the-art commercial properties, we bring decades of experience and a personal touch to every project. Our team works closely with each client to transform visions into reality, ensuring every detail exceeds expectations.
+                            </p>
+                            <p style="font-size: 1.15rem; line-height: 1.9; color: rgba(255,255,255,0.95);">
+                                We're not just building structures—we're building communities, creating homes where memories are made, and developing spaces where businesses thrive. That's the Cantu Construction difference.
+                            </p>
+                        </div>
+                        
+                        <!-- Right: Large Image Carousel -->
+                        <div class="about-carousel-container" style="position: relative; width: 100%; height: 500px; border-radius: 15px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.6);">
+                            <!-- Carousel Images -->
+                            <div class="about-carousel-slide active" style="position: absolute; width: 100%; height: 100%; opacity: 1; transition: opacity 1s ease-in-out;">
+                                <img src="public/images/Cantu_logo.jpg" alt="Cantu Construction Logo" style="width: 100%; height: 100%; object-fit: contain; background: white; padding: 60px;">
+                            </div>
+                            <div class="about-carousel-slide" style="position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+                                <img src="public/images/CantuConstructionHeroHouse4.jpg" alt="Cantu Construction Project" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="about-carousel-slide" style="position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+                                <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village Building" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="about-carousel-slide" style="position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out;">
+                                <img src="public/images/CantuConstructionHeroHouse5.jpg" alt="Luxury Residential" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            
+                            <!-- Navigation Arrows -->
+                            <button class="about-carousel-prev" onclick="changeAboutSlide(-1)" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                <i class="fas fa-chevron-left" style="color: #000080; font-size: 20px;"></i>
+                            </button>
+                            <button class="about-carousel-next" onclick="changeAboutSlide(1)" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                <i class="fas fa-chevron-right" style="color: #000080; font-size: 20px;"></i>
+                            </button>
+                            
+                            <!-- Indicators -->
+                            <div class="about-carousel-indicators" style="position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10;">
+                                <span class="about-indicator active" onclick="currentAboutSlide(1)" style="width: 14px; height: 14px; border-radius: 50%; background: white; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></span>
+                                <span class="about-indicator" onclick="currentAboutSlide(2)" style="width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></span>
+                                <span class="about-indicator" onclick="currentAboutSlide(3)" style="width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></span>
+                                <span class="about-indicator" onclick="currentAboutSlide(4)" style="width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Row - Horizontal -->
+                    <div style="display: flex; justify-content: center; gap: 100px; margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">37+</div>
+                            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Years of Excellence</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">500+</div>
+                            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Projects Completed</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">100%</div>
+                            <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Client Satisfaction</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-building"></i></div>
-                    <h3>Commercial Construction</h3>
-                    <p>We offer commercial construction that improves the quality of business for our clients and allows them to grow their business.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-tags"></i></div>
-                    <h3>Lots For Sale</h3>
-                    <p>Not only do we offer commercial construction from the ground up, but we also offer office space leasing, medical office space leasing, and retail space leasing.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-city"></i></div>
-                    <h3>Community Development</h3>
-                    <p>Cantu Construction's commitment to enriching communities reflects our dedication to making a lasting impact in the regions we serve.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-business-time"></i></div>
-                    <h3>Office Space Leasing</h3>
-                    <p>Not only do we offer commercial construction from the ground up, but we also offer office space leasing, medical office space leasing, and retail space leasing.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-plus"></i></div>
-                    <h3>Much More</h3>
-                    <p>Explore our complete range of services that cater to varied construction and development needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Recent Projects Gallery Section -->
-    <section id="recent-projects" class="recent-projects" style="background: var(--bg);">
+    <!-- Upcoming Projects Gallery Section -->
+    <section id="upcoming-projects" class="upcoming-projects" style="background: var(--bg);">
         <div class="container">
             <div class="section-header heading-font" style="text-align:left; color: #000080;">
                 <h2 class="h2" style="font-weight:800; letter-spacing:-0.5px; position:relative; color: #000080;">
@@ -314,25 +349,41 @@
                 </h2>
             </div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image-placeholder">
+                <div class="project-card" style="position: relative;">
+                    <div style="position: relative; width: 100%; height: 300px; overflow: hidden; background: white; display: flex; align-items: center; justify-content: center; padding: 40px;">
+                        <img src="public/images/VillasAtDelLago.png" alt="Villas at Del Lago" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        <div style="position: absolute; top: 15px; right: 15px; background: #C62828; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">Coming Soon</div>
+                    </div>
+                    <div style="padding: 25px; background: white;">
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #000080; margin-bottom: 12px;">Villas at Del Lago</h3>
+                        <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 15px;">Luxury residential community featuring modern villas with premium finishes and resort-style amenities.</p>
+                        <a href="residential/villas-del-lago.html" style="display: inline-block; color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">Learn More →</a>
+                    </div>
+                </div>
+                <div class="project-card" style="position: relative;">
+                    <div class="project-image-placeholder" style="position: relative;">
+                        <div style="position: absolute; top: 15px; right: 15px; background: #C62828; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 10;">Coming Soon</div>
                         <div class="placeholder-overlay">
                             <span class="placeholder-text">Project Image</span>
                         </div>
                     </div>
+                    <div style="padding: 25px; background: white;">
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #000080; margin-bottom: 12px;">New Development Project</h3>
+                        <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a href="projects.html" style="display: inline-block; color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">Learn More →</a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image-placeholder">
+                <div class="project-card" style="position: relative;">
+                    <div class="project-image-placeholder" style="position: relative;">
+                        <div style="position: absolute; top: 15px; right: 15px; background: #C62828; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 10;">Coming Soon</div>
                         <div class="placeholder-overlay">
                             <span class="placeholder-text">Project Image</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <div class="placeholder-overlay">
-                            <span class="placeholder-text">Project Image</span>
-                        </div>
+                    <div style="padding: 25px; background: white;">
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #000080; margin-bottom: 12px;">Upcoming Community</h3>
+                        <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <a href="projects.html" style="display: inline-block; color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">Learn More →</a>
                     </div>
                 </div>
             </div>

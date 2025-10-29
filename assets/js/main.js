@@ -1097,7 +1097,94 @@ function initResidentialCarouselLoop() {
     }, { passive: false });
 }
 
+// About Us Carousel
+let aboutSlideIndex = 1;
+let aboutSlideInterval;
+
+function changeAboutSlide(n) {
+    clearInterval(aboutSlideInterval);
+    showAboutSlides(aboutSlideIndex += n);
+    startAboutCarousel();
+}
+
+function currentAboutSlide(n) {
+    clearInterval(aboutSlideInterval);
+    showAboutSlides(aboutSlideIndex = n);
+    startAboutCarousel();
+}
+
+function showAboutSlides(n) {
+    let slides = document.getElementsByClassName("about-carousel-slide");
+    let indicators = document.getElementsByClassName("about-indicator");
+    
+    if (slides.length === 0) return;
+    
+    if (n > slides.length) { aboutSlideIndex = 1; }
+    if (n < 1) { aboutSlideIndex = slides.length; }
+    
+    // Hide all slides
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = "0";
+        slides[i].classList.remove("active");
+    }
+    
+    // Remove active class from all indicators
+    for (let i = 0; i < indicators.length; i++) {
+        indicators[i].classList.remove("active");
+        indicators[i].style.background = "rgba(255,255,255,0.5)";
+    }
+    
+    // Show current slide
+    slides[aboutSlideIndex - 1].style.opacity = "1";
+    slides[aboutSlideIndex - 1].classList.add("active");
+    
+    // Highlight current indicator
+    if (indicators.length > 0) {
+        indicators[aboutSlideIndex - 1].classList.add("active");
+        indicators[aboutSlideIndex - 1].style.background = "white";
+    }
+}
+
+function startAboutCarousel() {
+    aboutSlideInterval = setInterval(function() {
+        aboutSlideIndex++;
+        showAboutSlides(aboutSlideIndex);
+    }, 5000); // Change slide every 5 seconds
+}
+
+function initAboutCarousel() {
+    showAboutSlides(aboutSlideIndex);
+    startAboutCarousel();
+    
+    // Hover effects for arrows
+    const prevBtn = document.querySelector('.about-carousel-prev');
+    const nextBtn = document.querySelector('.about-carousel-next');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'white';
+            this.style.transform = 'translateY(-50%) scale(1.1)';
+        });
+        prevBtn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.9)';
+            this.style.transform = 'translateY(-50%) scale(1)';
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'white';
+            this.style.transform = 'translateY(-50%) scale(1.1)';
+        });
+        nextBtn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.9)';
+            this.style.transform = 'translateY(-50%) scale(1)';
+        });
+    }
+}
+
 // Initialize residential carousel loop after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initResidentialCarouselLoop();
+    initAboutCarousel();
 });
