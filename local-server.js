@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
@@ -12,14 +13,20 @@ app.use(cors());
 // Serve static files from current directory (Cantu-Construction)
 app.use(express.static(__dirname));
 
+// Validate environment variables
+if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+  console.error('❌ Error: SMTP_USER and SMTP_PASSWORD must be set in .env file');
+  process.exit(1);
+}
+
 // Email configuration
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
-    user: "glennquezada14@gmail.com",
-    pass: "stpi faws wvve uane"
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD
   },
 });
 
