@@ -984,7 +984,7 @@ function initResidentialCarouselLoop() {
     const container = document.querySelector('.residential-communities .logo-scroll-container');
     if (!track || !container) return;
 
-    // Disable CSS animation to avoid conflicts (override even if CSS uses !important)
+    // Run on all screen sizes (restored behavior)
     try { track.style.setProperty('animation', 'none', 'important'); } catch(_) { track.style.animation = 'none'; }
     track.style.transform = 'translateX(0px)';
 
@@ -997,12 +997,16 @@ function initResidentialCarouselLoop() {
 
     function computeHalfWidth() {
         halfWidth = track.scrollWidth / 2;
+        console.log('Residential carousel - scrollWidth:', track.scrollWidth, 'halfWidth:', halfWidth);
     }
 
     function wrapOffset() {
+        // Ensure continuous loop by wrapping at the right points
         if (-offsetPx >= halfWidth) {
+            console.log('Residential carousel - wrapping forward, offsetPx:', offsetPx, 'halfWidth:', halfWidth);
             offsetPx += halfWidth;
         } else if (offsetPx > 0) {
+            console.log('Residential carousel - wrapping backward, offsetPx:', offsetPx, 'halfWidth:', halfWidth);
             offsetPx -= halfWidth;
         }
     }
@@ -1026,27 +1030,27 @@ function initResidentialCarouselLoop() {
         cancelAnimationFrame(rafId);
     }
 
-    // Wait for images to load
+    // Start immediately and recalculate on resize
+    start();
+    
+    // Recalculate halfWidth when images load to ensure proper wrapping
     const imgs = track.querySelectorAll('img');
-    let remaining = imgs.length;
-    if (remaining === 0) {
-        start();
-    } else {
-        imgs.forEach(img => {
-            if (img.complete && img.naturalWidth > 0) {
-                remaining -= 1;
-            } else {
-                img.addEventListener('load', () => { remaining -= 1; if (remaining === 0) start(); });
-                img.addEventListener('error', () => { remaining -= 1; if (remaining === 0) start(); });
-            }
-        });
-        if (remaining === 0) start();
-    }
+    imgs.forEach(img => {
+        if (!img.complete || img.naturalWidth === 0) {
+            img.addEventListener('load', () => { 
+                computeHalfWidth(); 
+                console.log('Image loaded, recalculated halfWidth:', halfWidth);
+            });
+        }
+    });
 
-    // Recompute on resize
+    // Recompute on resize for all screen sizes
     window.addEventListener('resize', () => {
         clearTimeout(window.__residentialResizeTO);
-        window.__residentialResizeTO = setTimeout(() => { start(); }, 200);
+        window.__residentialResizeTO = setTimeout(() => { 
+            computeHalfWidth();
+            start(); 
+        }, 200);
     });
 
     // Hover pause/resume
