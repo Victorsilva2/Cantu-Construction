@@ -117,6 +117,21 @@ htmlFiles.forEach(file => {
   }
   }
 
+// Copy API directory (for Vercel serverless functions)
+const apiDir = path.join(__dirname, 'api');
+const distApiDir = path.join(distDir, 'api');
+
+if (fs.existsSync(apiDir)) {
+  copyDirectoryRecursive(apiDir, distApiDir);
+  console.log(`✅ Copied api directory`);
+}
+
+// Copy vercel.json (Vercel configuration)
+if (fs.existsSync('vercel.json')) {
+  fs.copyFileSync('vercel.json', path.join(distDir, 'vercel.json'));
+  console.log(`✅ Copied vercel.json`);
+}
+
 // Copy README and documentation
 const docsFiles = ['README.md', 'PROJECT_STRUCTURE.md'];
 docsFiles.forEach(file => {
