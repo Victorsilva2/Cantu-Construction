@@ -36,8 +36,8 @@ app.post('/api/send', async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     await transporter.sendMail({
-      from: `"Website Contact" <glennquezada14@gmail.com>`,
-      to: "glennquezada14@gmail.com",
+      from: `"Website Contact" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: "New Client Inquiry",
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`,
     });
