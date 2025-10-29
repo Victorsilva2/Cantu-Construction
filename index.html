@@ -324,15 +324,15 @@
                     <!-- Stats Row - Horizontal -->
                     <div style="display: flex; justify-content: center; gap: 100px; margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.2);">
                         <div style="text-align: center;">
-                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">37+</div>
+                            <div id="count1" style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">0+</div>
                             <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Years of Excellence</div>
                         </div>
                         <div style="text-align: center;">
-                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">500+</div>
+                            <div id="count2" style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">0+</div>
                             <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Projects Completed</div>
                         </div>
                         <div style="text-align: center;">
-                            <div style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">100%</div>
+                            <div id="count3" style="font-size: 4.5rem; font-weight: 900; color: white; line-height: 1;">0%</div>
                             <div style="font-size: 1rem; color: rgba(255,255,255,0.85); margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Client Satisfaction</div>
                         </div>
                     </div>
@@ -835,6 +835,70 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+    
+    <!-- Counter Animation JavaScript -->
+    <script>
+        // Counter animation function
+        function animateCounter(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            if (!element) {
+                console.error('Element not found:', elementId);
+                return;
+            }
+            
+            const duration = 2000; // 2 seconds
+            const startTime = Date.now();
+            const startValue = 0;
+            
+            const updateCounter = () => {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(startValue + (targetValue - startValue) * easeOutQuart);
+                
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = targetValue + suffix;
+                }
+            };
+            
+            updateCounter();
+        }
+        
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            let hasAnimated = false;
+            
+            // Intersection Observer to trigger animation when section is visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        console.log('Animating counters...');
+                        animateCounter('count1', 37, '+');
+                        animateCounter('count2', 500, '+');
+                        animateCounter('count3', 100, '%');
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of section is visible
+            });
+            
+            // Observe the about-us section
+            const aboutSection = document.getElementById('about-us');
+            if (aboutSection) {
+                observer.observe(aboutSection);
+                console.log('Observer attached to about-us section');
+            } else {
+                console.error('About-us section not found');
+            }
+        });
+    </script>
     
     <!-- Contact Form JavaScript -->
     <script>

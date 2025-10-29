@@ -2556,6 +2556,59 @@ section {
         font-size: 0.9rem !important;
     }
     
+    /* Commercial page properties grid - mobile */
+    #properties .container > div[style*="grid-template-columns"] {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+    }
+    
+    /* Commercial property cards - mobile */
+    #properties .container > div > div {
+        margin-bottom: 0 !important;
+    }
+    
+    #properties .container > div > div > div:first-child {
+        height: 240px !important;
+        padding: 30px !important;
+    }
+    
+    #properties .container > div > div > div:last-child {
+        padding: 25px 20px !important;
+    }
+    
+    #properties .container > div > div h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    #properties .container > div > div p {
+        font-size: 0.9rem !important;
+        margin-bottom: 18px !important;
+    }
+    
+    #properties .container > div > div a {
+        padding: 10px 24px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Why Lease With Cantu section - horizontal scroll on mobile */
+    .why-build .features-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 25px !important;
+        padding: 0 20px !important;
+        scroll-behavior: smooth !important;
+    }
+    
+    .why-build .feature-card {
+        flex: 0 0 calc(100vw - 80px) !important;
+        max-width: calc(100vw - 80px) !important;
+        scroll-snap-align: start !important;
+    }
+    
     /* Why Build with Cantu - Horizontal Scrolling on Mobile */
     .features-grid-scroll {
         display: flex !important;
@@ -2564,10 +2617,12 @@ section {
         padding: 0 20px !important;
         scroll-snap-type: x mandatory !important;
         -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: smooth !important;
     }
     
     .features-grid-scroll .feature-card {
-        flex: 0 0 280px !important;
+        flex: 0 0 calc(100vw - 80px) !important;
+        max-width: calc(100vw - 80px) !important;
         scroll-snap-align: start !important;
         padding: 30px 20px !important;
     }

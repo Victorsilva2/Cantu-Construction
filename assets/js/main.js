@@ -104,17 +104,36 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     });
     
-    // Handle dropdown menus on mobile - only show dropdown, don't prevent navigation
+    // Handle dropdown menus on mobile - double tap to navigate
     const dropdownItems = document.querySelectorAll('.nav-dropdown');
     dropdownItems.forEach(item => {
         const link = item.querySelector('.nav-link');
+        let clickTimer = null;
+        
         link.addEventListener('click', function(e) {
-            // On mobile, show dropdown but still allow navigation
+            // On mobile, handle double tap to navigate
             if (window.innerWidth <= 768) {
                 e.preventDefault();
-                const dropdown = item.querySelector('.dropdown-menu');
-                if (dropdown) {
-                    dropdown.classList.toggle('show');
+                
+                if (clickTimer === null) {
+                    // First click - open dropdown and set timer
+                    clickTimer = setTimeout(() => {
+                        clickTimer = null;
+                    }, 300);
+                    
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        dropdown.classList.toggle('show');
+                    }
+                } else {
+                    // Second click within 300ms - navigate to page
+                    clearTimeout(clickTimer);
+                    clickTimer = null;
+                    
+                    const href = link.getAttribute('href');
+                    if (href) {
+                        window.location.href = href;
+                    }
                 }
             }
             // On desktop, allow normal navigation
