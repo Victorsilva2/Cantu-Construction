@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
 
   // Trim any spaces from credentials (app passwords sometimes have spaces when copied)
   const smtpUser = process.env.SMTP_USER.trim();
-  const smtpPass = process.env.SMTP_PASSWORD.trim();
+  const smtpPass = process.env.SMTP_PASSWORD.trim().replace(/\s/g, ''); // Remove ALL spaces from password
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
