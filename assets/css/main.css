@@ -1695,7 +1695,7 @@ section {
     flex-shrink: 0;
     min-width: 280px;
     background: white;
-    padding: 30px;
+    padding: 25px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
@@ -1711,8 +1711,9 @@ section {
 }
 
 .community-logo {
-    max-width: 280px;
-    height: auto;
+    max-width: 840px;
+    max-height: 360px;
+    object-fit: contain;
     filter: none; /* Show original logo colors */
     transition: all 0.3s ease;
     opacity: 1;
@@ -1787,8 +1788,9 @@ section {
 }
 
 .commercial-logo {
-    max-width: 280px;
-    height: auto;
+    max-width: 840px;
+    max-height: 360px;
+    object-fit: contain;
     filter: none; /* Keep original colors for commercial logos */
     transition: all 0.3s ease;
     opacity: 0.85;
@@ -1797,6 +1799,11 @@ section {
 .commercial-item:hover .commercial-logo {
     opacity: 1;
     transform: scale(1.05);
+}
+
+/* Reduce commercial item height slightly by reducing padding */
+.commercial-item[style*="padding: 20px"] {
+    padding: 15px 20px !important;
 }
 
 .commercial-button-container {
@@ -2490,29 +2497,47 @@ section {
         animation-play-state: paused !important;
     }
     
-    /* Ensure mobile carousel items are properly spaced - one at a time */
+    /* Mobile carousel containers - small, white, sharp edges */
     .residential-communities .logo-scroll-track .community-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
+        min-width: 180px !important;
+        width: 180px !important;
+        height: 140px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 20px !important;
+        padding: 15px !important;
         background: white !important;
         margin: 0 10px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .residential-communities .logo-scroll-track .community-item img {
+        max-width: 110% !important;
+        max-height: 110% !important;
+        object-fit: contain !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
+        min-width: 180px !important;
+        width: 180px !important;
+        height: 140px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 0 20px !important;
+        padding: 15px !important;
+        background: white !important;
+        margin: 0 10px !important;
+        border-radius: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .commercial-properties .logo-scroll-track .commercial-item img {
+        max-width: 110% !important;
+        max-height: 110% !important;
+        object-fit: contain !important;
     }
     
     /* Hide grid layouts on mobile - use carousel instead */
@@ -2659,26 +2684,43 @@ section {
     
     /* About Us section - mobile */
     .about-us {
-        padding: 60px 0 !important;
+        padding: 40px 0 !important;
     }
     
     .about-us .container {
         padding: 0 20px !important;
     }
     
+    .about-us .section-header {
+        margin-bottom: 30px !important;
+    }
+    
     .about-us .section-header h2 {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
+    }
+    
+    .about-us .section-header div {
+        width: 80px !important;
+        height: 3px !important;
+        margin: 15px auto 0 !important;
     }
     
     /* Main content grid - stack on mobile */
     .about-us .container > div:nth-child(2) {
         grid-template-columns: 1fr !important;
-        gap: 40px !important;
+        gap: 30px !important;
+    }
+    
+    /* Logo container on mobile */
+    .about-logo-container {
+        height: 300px !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
     }
     
     /* Carousel on mobile */
     .about-carousel-container {
-        height: 400px !important;
+        height: 250px !important;
         border-radius: 10px !important;
     }
     
@@ -2689,7 +2731,7 @@ section {
     /* Logo slide on mobile needs special handling */
     .about-carousel-slide:first-child img {
         object-fit: contain !important;
-        padding: 40px !important;
+        padding: 20px !important;
     }
     
     .about-carousel-prev,
@@ -2723,21 +2765,24 @@ section {
     }
     
     .about-us h3 {
-        font-size: 1.8rem !important;
+        font-size: 1.5rem !important;
         text-align: center !important;
+        margin-bottom: 20px !important;
     }
     
     .about-us p {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
         text-align: center !important;
+        margin-bottom: 15px !important;
+        line-height: 1.6 !important;
     }
     
     /* Stats row on mobile - vertical stack */
     .about-us .container > div:last-child {
         flex-direction: column !important;
-        gap: 35px !important;
-        padding-top: 40px !important;
-        margin-top: 40px !important;
+        gap: 30px !important;
+        padding-top: 30px !important;
+        margin-top: 30px !important;
     }
     
     .about-us .container > div:last-child > div {
@@ -2760,7 +2805,7 @@ section {
         line-height: 1.2 !important;
         text-align: center !important;
         margin-bottom: 15px !important;
-        color: #000080 !important;
+        color: #ffffff !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
     }
@@ -2777,7 +2822,7 @@ section {
         line-height: 1.4 !important;
         text-align: center !important;
         margin-bottom: 20px !important;
-        color: #000080 !important;
+        color: rgba(255,255,255,0.9) !important;
         font-weight: 300 !important;
         text-transform: lowercase !important;
     }
@@ -2785,7 +2830,15 @@ section {
     /* Improve mobile section spacing */
     .residential-communities,
     .commercial-properties {
-        padding: 50px 0 !important;
+        background: var(--bg-alt) !important;
+    }
+    
+    .residential-communities {
+        padding: 50px 0 0 0 !important;
+    }
+    
+    .commercial-properties {
+        padding: 0 0 50px 0 !important;
     }
     
     .residential-communities .container,
@@ -2814,18 +2867,6 @@ section {
         opacity: 1 !important;
     }
     
-    .community-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 25px;
-        min-width: 200px;
-        flex-shrink: 0;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-    
     /* Commercial Grid - Same size as service cards */
     .commercial-grid {
         display: none !important;
@@ -2837,26 +2878,10 @@ section {
         width: 100% !important;
     }
     
-    .commercial-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        min-width: 200px;
-        flex-shrink: 0;
-    }
     
     /* Testimonials */
     
-    /* Parallax Section Mobile */
-    .parallax-section {
-        min-height: 50vh;
-    }
-    
-    .parallax-section .container {
-        padding: 40px 0;
-    }
-    
+   
     
     /* Contact Banner Mobile - Clean */
     .contact-banner-mobile {
@@ -2959,6 +2984,12 @@ section {
         font-size: 0.9rem;
     }
     
+    /* Commercial button white border on mobile */
+    .commercial-properties .commercial-btn {
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+    }
+    
 }
 
 @media (max-width: 480px) {
@@ -2984,16 +3015,6 @@ section {
         display: none !important;
     }
     
-    /* Extra Small Screens Carousel - Force carousel to work */
-    .residential-communities .logo-scroll-container,
-    .commercial-properties .logo-scroll-container {
-        width: 100% !important;
-        overflow: hidden !important;
-        margin-top: 30px !important;
-        padding: 15px 0 !important;
-        position: relative !important;
-        display: block !important;
-    }
     
     .residential-communities .logo-scroll-track,
     .commercial-properties .logo-scroll-track {
@@ -3010,34 +3031,59 @@ section {
         animation-play-state: paused !important;
     }
     
-    /* Extra small screens carousel items - one at a time */
+    
+    /* Mobile carousel containers - small, white, sharp edges */
     .residential-communities .logo-scroll-track .community-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
+        min-width: 180px !important;
+        width: 180px !important;
+        height: 140px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 20px !important;
+        padding: 15px !important;
         background: white !important;
         margin: 0 10px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+        border-radius: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .residential-communities .logo-scroll-track .community-item img {
+        max-width: 110% !important;
+        max-height: 110% !important;
+        object-fit: contain !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
-        min-width: 100vw !important;
-        width: 100vw !important;
+        min-width: 180px !important;
+        width: 180px !important;
+        height: 140px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 0 15px !important;
+        padding: 15px !important;
+        background: white !important;
+        margin: 0 10px !important;
+        border-radius: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .commercial-properties .logo-scroll-track .commercial-item img {
+        max-width: 110% !important;
+        max-height: 110% !important;
+        object-fit: contain !important;
     }
     
     .commercial-logo {
         max-width: 100% !important;
         height: auto !important;
+    }
+    
+    /* Commercial button white border on mobile */
+    .commercial-properties .commercial-btn {
+        border-color: #ffffff !important;
+        color: #ffffff !important;
     }
     
     /* Remove filters since extra small screens also have white boxes now */
@@ -3101,11 +3147,17 @@ section {
         padding: 20px 0;
     }
     
+    /* Remove gaps between residential and commercial sections on mobile */
+    .residential-communities,
+    .commercial-properties {
+        margin-bottom: 0 !important;
+    }
+    
     /* Ensure buttons have proper spacing */
     .communities-button-container,
     .commercial-button-container {
         margin-top: 30px;
-        margin-bottom: 20px;
+        margin-bottom: 0 !important;
     }
     
     /* Optimize images for mobile */
@@ -3354,6 +3406,66 @@ section {
     .intro-icon { margin: 0 auto 12px; }
 }
 
+/* Commercial page mobile text color fixes */
+@media (max-width: 768px) {
+    /* Fix white text on white background in commercial.html */
+    .commercial #properties h2,
+    .commercial .why-build h2,
+    .commercial h2 {
+        color: #000080 !important;
+    }
+}
+
+/* Residential individual pages mobile optimization */
+@media (max-width: 768px) {
+    /* Two column layout becomes single column */
+    section > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    
+    /* Hero heading on residential pages */
+    #hero h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    #hero p {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Section headings */
+    section h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Map height */
+    iframe[src*="maps"] {
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Hero heading extra small */
+    #hero h1 {
+        font-size: 2rem !important;
+    }
+    
+    #hero p {
+        font-size: 1rem !important;
+    }
+    
+    /* Section headings extra small */
+    section h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Map height extra small */
+    iframe[src*="maps"] {
+        height: 250px !important;
+    }
+}
+
 
 @keyframes extendLine {
     from {
@@ -3385,3 +3497,4 @@ section {
     color: #555;
     line-height: 1.6;
 }
+
