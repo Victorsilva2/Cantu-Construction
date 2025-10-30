@@ -14,6 +14,14 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ message: "Server configuration error" });
   }
 
+  // Log environment variable status (without showing actual values for security)
+  console.log('Email check:', {
+    user_exists: !!process.env.SMTP_USER,
+    user_length: process.env.SMTP_USER ? process.env.SMTP_USER.length : 0,
+    pass_exists: !!process.env.SMTP_PASSWORD,
+    pass_length: process.env.SMTP_PASSWORD ? process.env.SMTP_PASSWORD.length : 0
+  });
+
   const { name, email, phone, message } = req.body;
 
   // Trim any spaces from credentials (app passwords sometimes have spaces when copied)
