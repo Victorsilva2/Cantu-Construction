@@ -46,6 +46,19 @@ htmlFiles.forEach(file => {
   }
 });
 
+// Copy residential and commercial subdirectories
+const subdirectories = ['residential', 'commercial'];
+
+subdirectories.forEach(dir => {
+  const srcDir = path.join(__dirname, dir);
+  const destDir = path.join(distDir, dir);
+  
+  if (fs.existsSync(srcDir)) {
+    copyDirectoryRecursive(srcDir, destDir);
+    console.log(`✅ Copied ${dir}/ directory`);
+  }
+});
+
   // Copy assets directory
   const assetsDir = path.join(__dirname, 'assets');
   const distAssetsDir = path.join(distDir, 'assets');
