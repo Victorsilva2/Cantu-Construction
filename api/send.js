@@ -27,6 +27,10 @@ module.exports = async function handler(req, res) {
   });
 
   try {
+    // Verify transporter setup
+    await transporter.verify();
+    console.log('SMTP connection verified successfully');
+    
     await transporter.sendMail({
       from: `"Website Contact" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
@@ -34,10 +38,17 @@ module.exports = async function handler(req, res) {
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`,
     });
 
+    console.log('Email sent successfully');
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.error('Email sending error:', error.message);
     console.error('Full error:', error);
-    res.status(500).json({ message: "Error sending email", error: error.message });
+    console.error('Error code:', error.code);
+    console.error('Error response:', error.response);
+    res.status(500).json({ 
+      message: "Error sending email", 
+      error: error.message,
+      code: error.code 
+    });
   }
 }
