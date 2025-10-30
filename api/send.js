@@ -16,13 +16,17 @@ module.exports = async function handler(req, res) {
 
   const { name, email, phone, message } = req.body;
 
+  // Trim any spaces from credentials (app passwords sometimes have spaces when copied)
+  const smtpUser = process.env.SMTP_USER.trim();
+  const smtpPass = process.env.SMTP_PASSWORD.trim();
+
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASSWORD,
+      user: smtpUser,
+      pass: smtpPass,
     },
   });
 
@@ -32,8 +36,8 @@ module.exports = async function handler(req, res) {
     console.log('SMTP connection verified successfully');
     
     await transporter.sendMail({
-      from: `"Website Contact" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      from: `"Website Contact" <${smtpUser}>`,
+      to: smtpUser,
       subject: "New Client Inquiry",
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`,
     });
