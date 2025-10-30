@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -6,101 +6,44 @@ module.exports = async function handler(req, res) {
   }
 
   // Check if environment variables are set
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-    console.error('Missing environment variables:', {
-      SMTP_USER: !!process.env.SMTP_USER,
-      SMTP_PASSWORD: !!process.env.SMTP_PASSWORD
-    });
-    return res.status(500).json({ message: "Server configuration error" });
+  if (!process.env.SEND_GRID_API_KEY) {
+    console.error('Missing SendGrid API key');
+    return res.status(500).json({ message: "Server configuration error: Missing SendGrid API key" });
   }
 
-  // Log environment variable status (without showing actual values for security)
-  console.log('Email check:', {
-    user_exists: !!process.env.SMTP_USER,
-    user_length: process.env.SMTP_USER ? process.env.SMTP_USER.length : 0,
-    pass_exists: !!process.env.SMTP_PASSWORD,
-    pass_length: process.env.SMTP_PASSWORD ? process.env.SMTP_PASSWORD.length : 0
-  });
+  // Set SendGrid API key
+  sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
   const { name, email, phone, message } = req.body;
 
-  // Trim any spaces from credentials (app passwords sometimes have spaces when copied)
-  const smtpUser = process.env.SMTP_USER.trim();
-  const smtpPass = process.env.SMTP_PASSWORD.trim().replace(/\s/g, ''); // Remove ALL spaces from password
-
-  // Detect email provider based on domain
-  const isGmail = smtpUser.endsWith('@gmail.com');
-  const isMicrosoft = smtpUser.includes('@outlook.com') || 
-                      smtpUser.includes('@hotmail.com') || 
-                      smtpUser.includes('@live.com') ||
-                      smtpUser.includes('@msn.com');
-  
-  // Determine SMTP settings based on provider
-  let smtpConfig;
-  if (isGmail) {
-    smtpConfig = {
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    };
-  } else if (isMicrosoft) {
-    smtpConfig = {
-      host: "smtp-mail.outlook.com",
-      port: 587,
-      secure: false, // false for 587
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    };
-  } else {
-    // Default to Gmail settings for custom domains that use Gmail/Google Workspace
-    smtpConfig = {
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    };
-  }
-
-  console.log('SMTP config:', {
-    provider: isGmail ? 'Gmail' : isMicrosoft ? 'Microsoft' : 'Default',
-    host: smtpConfig.host,
-    port: smtpConfig.port
-  });
-
-  const transporter = nodemailer.createTransport(smtpConfig);
-
   try {
-    // Verify transporter setup
-    await transporter.verify();
-    console.log('SMTP connection verified successfully');
-    
-    await transporter.sendMail({
-      from: `"Website Contact" <${smtpUser}>`,
-      to: smtpUser,
-      subject: "New Client Inquiry",
+    const msg = {
+      to: "clarissaf@cantuconstruction.com", // Recipient
+      from: "clarissaf@cantuconstruction.com", // Verified sender in SendGrid
+      subject: "New Inquiry from Cantu Construction Website",
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`,
-    });
+      html: `
+        <h3 style="color: #000080;">New Inquiry from Website</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+        <p><strong>Message:</strong></p>
+        <p style="white-space: pre-wrap;">${message}</p>
+      `,
+    };
 
-    console.log('Email sent successfully');
+    await sgMail.send(msg);
+    console.log('Email sent successfully via SendGrid');
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
-    console.error('Email sending error:', error.message);
+    console.error('SendGrid error:', error.message);
     console.error('Full error:', error);
-    console.error('Error code:', error.code);
-    console.error('Error response:', error.response);
+    if (error.response) {
+      console.error('Error details:', JSON.stringify(error.response.body, null, 2));
+    }
     res.status(500).json({ 
-      message: "Error sending email", 
-      error: error.message,
-      code: error.code 
+      message: "Error sending email",
+      error: error.message
     });
   }
 }
