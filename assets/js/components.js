@@ -33,47 +33,223 @@ function openVideoModal(videoType = 'main') {
     video.play();
 }
 
-// Enhanced form handling for contact forms
+// Enhanced form handling for contact forms with validation
 document.addEventListener('DOMContentLoaded', () => {
     const contactForms = document.querySelectorAll('.contact-form');
     
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Phone validation regex - allows various formats
+    const phoneRegex = /^[\d\s\-\(\)\+\.]+$/;
+    
+    // Function to format phone number
+    function formatPhoneNumber(value) {
+        // Remove all non-digit characters
+        const cleaned = value.replace(/\D/g, '');
+        
+        // Format based on length
+        if (cleaned.length <= 3) return cleaned;
+        if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+        if (cleaned.length <= 10) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+    }
+    
+    // Function to validate phone number format
+    function isValidPhone(phone) {
+        if (!phone) return true; // Optional field
+        const cleaned = phone.replace(/\D/g, '');
+        return cleaned.length === 10 || cleaned.length === 0;
+    }
+    
+    // Function to show error
+    function showError(input, message) {
+        const errorSpan = input.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains('error-message')) {
+            errorSpan.textContent = message;
+            errorSpan.style.display = 'block';
+            input.style.borderColor = '#C62828';
+        }
+    }
+    
+    // Function to clear error
+    function clearError(input) {
+        const errorSpan = input.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains('error-message')) {
+            errorSpan.style.display = 'none';
+            input.style.borderColor = '#e1e1e1';
+        }
+    }
+    
     contactForms.forEach(form => {
+        // Get form elements
+        const nameInput = form.querySelector('input[name="name"]');
+        const emailInput = form.querySelector('input[name="email"]');
+        const phoneInput = form.querySelector('input[name="phone"]');
+        const messageInput = form.querySelector('textarea[name="message"]');
+        const submitBtn = form.querySelector('.submit-btn') || form.querySelector('.btn-primary');
+        
+        // Phone number formatting on input
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                const formatted = formatPhoneNumber(e.target.value);
+                if (formatted !== e.target.value) {
+                    e.target.value = formatted;
+                }
+                clearError(this);
+            });
+            
+            phoneInput.addEventListener('blur', function() {
+                if (this.value && !isValidPhone(this.value)) {
+                    showError(this, 'Please enter a valid 10-digit phone number');
+                }
+            });
+        }
+        
+        // Real-time validation for email
+        if (emailInput) {
+            emailInput.addEventListener('input', function() {
+                clearError(this);
+            });
+            
+            emailInput.addEventListener('blur', function() {
+                if (this.value && !emailRegex.test(this.value)) {
+                    showError(this, 'Please enter a valid email address');
+                }
+            });
+        }
+        
+        // Real-time validation for name
+        if (nameInput) {
+            nameInput.addEventListener('input', function() {
+                clearError(this);
+            });
+            
+            nameInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    showError(this, 'Name is required');
+                } else if (this.value.trim().length < 2) {
+                    showError(this, 'Name must be at least 2 characters');
+                }
+            });
+        }
+        
+        // Real-time validation for message
+        if (messageInput) {
+            messageInput.addEventListener('input', function() {
+                clearError(this);
+            });
+            
+            messageInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    showError(this, 'Message is required');
+                } else if (this.value.trim().length < 10) {
+                    showError(this, 'Message must be at least 10 characters');
+                }
+            });
+        }
+        
+        // Form submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get form data
-            const name = form.querySelector('input[type="text"]').value;
-            const email = form.querySelector('input[type="email"]').value;
-            const projectType = form.querySelectorAll('input[type="text"]')[1]?.value || '';
-            const message = form.querySelector('textarea').value;
+            // Clear previous errors
+            form.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
             
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
+            let isValid = true;
+            
+            // Validate name
+            if (nameInput) {
+                const name = nameInput.value.trim();
+                if (!name) {
+                    showError(nameInput, 'Name is required');
+                    isValid = false;
+                } else if (name.length < 2) {
+                    showError(nameInput, 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+            }
+            
+            // Validate email
+            if (emailInput) {
+                const email = emailInput.value.trim();
+                if (!email) {
+                    showError(emailInput, 'Email is required');
+                    isValid = false;
+                } else if (!emailRegex.test(email)) {
+                    showError(emailInput, 'Please enter a valid email address');
+                    isValid = false;
+                }
+            }
+            
+            // Validate phone (optional)
+            if (phoneInput && phoneInput.value && !isValidPhone(phoneInput.value)) {
+                showError(phoneInput, 'Please enter a valid 10-digit phone number');
+                isValid = false;
+            }
+            
+            // Validate message
+            if (messageInput) {
+                const message = messageInput.value.trim();
+                if (!message) {
+                    showError(messageInput, 'Message is required');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showError(messageInput, 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+            }
+            
+            if (!isValid) {
+                // Scroll to first error
+                const firstError = form.querySelector('.error-message[style*="block"]');
+                if (firstError && firstError.previousElementSibling) {
+                    firstError.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.previousElementSibling.focus();
+                }
                 return;
             }
             
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
+            // Get form data for submission
+            const formData = {
+                name: nameInput?.value.trim() || '',
+                email: emailInput?.value.trim() || '',
+                phone: phoneInput?.value.trim() || '',
+                message: messageInput?.value.trim() || ''
+            };
             
-            // Simulate form submission
-            const submitBtn = form.querySelector('.btn-primary');
+            // Submit button state
             const originalText = submitBtn.textContent;
-            
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Simulate API call
-            setTimeout(() => {
-                alert('Thank you for your message! We\'ll get back to you soon.');
-                form.reset();
+            // Submit to API
+            fetch('/api/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message && data.message.includes('successfully')) {
+                    alert('Thank you for your message! We\'ll get back to you soon.');
+                    form.reset();
+                } else {
+                    alert('There was an error sending your message. Please try again or call us at (956) 631-1273');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again or call us at (956) 631-1273');
+            })
+            .finally(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         });
     });
 });
