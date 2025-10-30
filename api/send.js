@@ -28,15 +28,55 @@ module.exports = async function handler(req, res) {
   const smtpUser = process.env.SMTP_USER.trim();
   const smtpPass = process.env.SMTP_PASSWORD.trim().replace(/\s/g, ''); // Remove ALL spaces from password
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: smtpUser,
-      pass: smtpPass,
-    },
+  // Detect email provider based on domain
+  const isGmail = smtpUser.endsWith('@gmail.com');
+  const isMicrosoft = smtpUser.includes('@outlook.com') || 
+                      smtpUser.includes('@hotmail.com') || 
+                      smtpUser.includes('@live.com') ||
+                      smtpUser.includes('@msn.com');
+  
+  // Determine SMTP settings based on provider
+  let smtpConfig;
+  if (isGmail) {
+    smtpConfig = {
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    };
+  } else if (isMicrosoft) {
+    smtpConfig = {
+      host: "smtp-mail.outlook.com",
+      port: 587,
+      secure: false, // false for 587
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    };
+  } else {
+    // Default to Gmail settings for custom domains that use Gmail/Google Workspace
+    smtpConfig = {
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    };
+  }
+
+  console.log('SMTP config:', {
+    provider: isGmail ? 'Gmail' : isMicrosoft ? 'Microsoft' : 'Default',
+    host: smtpConfig.host,
+    port: smtpConfig.port
   });
+
+  const transporter = nodemailer.createTransport(smtpConfig);
 
   try {
     // Verify transporter setup
