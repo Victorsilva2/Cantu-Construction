@@ -128,6 +128,21 @@ subdirectories.forEach(dir => {
     copyDirectoryRecursive(publicImagesDir, distPublicImagesDir);
     console.log(`✅ Copied public/images directory`);
   }
+
+  // Copy public/brochures directory
+  const publicBrochuresDir = path.join(__dirname, 'public', 'brochures');
+  const distPublicBrochuresDir = path.join(distDir, 'public', 'brochures');
+  
+  if (fs.existsSync(publicBrochuresDir)) {
+    if (!fs.existsSync(path.join(distDir, 'public'))) {
+      fs.mkdirSync(path.join(distDir, 'public'), { recursive: true });
+    }
+    if (!fs.existsSync(distPublicBrochuresDir)) {
+      fs.mkdirSync(distPublicBrochuresDir, { recursive: true });
+    }
+    copyDirectoryRecursive(publicBrochuresDir, distPublicBrochuresDir);
+    console.log(`✅ Copied public/brochures directory`);
+  }
   }
 
 // Copy API directory (for Vercel serverless functions)
