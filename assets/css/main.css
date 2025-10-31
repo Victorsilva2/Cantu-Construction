@@ -1569,6 +1569,11 @@ section {
     margin-top: 80px;
     padding: 40px 0;
     position: relative;
+    pointer-events: none;
+}
+
+.logo-scroll-container * {
+    pointer-events: auto;
 }
 
 .logo-scroll-track {
@@ -1577,6 +1582,11 @@ section {
     animation: scrollLogos 40s linear infinite;
     width: max-content;
     will-change: transform;
+    pointer-events: auto;
+}
+
+.logo-scroll-track a {
+    pointer-events: auto;
 }
 
 .logo-scroll-track:hover {
@@ -1705,9 +1715,17 @@ section {
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
+.community-item,
 .community-item a {
     display: block;
     text-decoration: none;
+}
+
+.community-item {
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .community-logo {
@@ -1782,9 +1800,17 @@ section {
     transform: scale(1.1);
 }
 
+.commercial-item,
 .commercial-item a {
     display: block;
     text-decoration: none;
+}
+
+.commercial-item {
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .commercial-logo {
@@ -1816,9 +1842,9 @@ section {
     display: inline-block;
     padding: 15px 40px;
     background: transparent;
-    color: #000080;
+    color: white;
     text-decoration: none;
-    border: 2px solid #000080;
+    border: 2px solid #ffffff;
     font-weight: 600;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -1826,8 +1852,8 @@ section {
 }
 
 .commercial-btn:hover {
-    background: #000080;
-    color: #fff;
+    background: #ffffff;
+    color: var(--brand-blue);
     transform: translateY(-2px);
 }
 
