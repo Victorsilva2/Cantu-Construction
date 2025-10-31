@@ -10,6 +10,339 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Make PNGs bigger in commercial property cards without changing container size */
+        #properties > .container > div > div > div:first-child img {
+            max-width: 300% !important;
+            max-height: 300% !important;
+            object-fit: contain !important;
+        }
+
+        /* Desktop: Make containers smaller in height and width */
+        #properties > .container > div > div > div:first-child {
+            height: 200px !important;
+        }
+        
+        /* Desktop: Reduce grid container max-width to make cards narrower */
+        @media (min-width: 769px) {
+            #properties .container {
+                max-width: 1100px !important;
+            }
+        }
+
+        /* Mobile: Make PNGs bigger and containers smaller */
+        @media (max-width: 768px) {
+            #properties > .container > div > div > div:first-child img {
+                max-width: 250% !important;
+                max-height: 250% !important;
+                object-fit: contain !important;
+            }
+            #properties > .container > div > div > div:first-child {
+                height: 250px !important;
+            }
+        }
+
+        /* Art Village image positioning adjustment */
+        #art-village img {
+            position: relative !important;
+            left: 10px !important;
+        }
+
+        /* Water Tower image positioning adjustment */
+        #water-tower img {
+            position: relative !important;
+            left: 10px !important;
+            top: 10px !important;
+        }
+
+        /* Harlingen Medical Center image positioning adjustment */
+        #harlingen-mob img {
+            position: relative !important;
+            left: 10px !important;
+        }
+
+        /* Mobile optimization for Retail Plazas and Office & Medical sections */
+        @media (max-width: 768px) {
+            /* Reduce section header padding and font size */
+            #properties .section-header {
+                padding: 30px 15px !important;
+                margin-bottom: 40px !important;
+            }
+            
+            #properties .section-header h2 {
+                font-size: 2rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            /* Reduce card image container height on mobile */
+            #properties > .container > div > div > div[style*="height: 350px"] {
+                height: 250px !important;
+                padding: 20px !important;
+            }
+            
+            /* Reduce card content padding */
+            #properties > .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+                padding: 20px !important;
+            }
+            
+            /* Reduce heading and text sizes */
+            #properties h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            #properties p {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Reduce button sizes */
+            #properties a[style*="padding: 12px 32px"] {
+                padding: 10px 24px !important;
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Tablet optimization (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Make grid 2 columns on tablet */
+            #properties > .container > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+            
+            #properties .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+            
+            #properties > .container > div > div > div[style*="height: 350px"] {
+                height: 280px !important;
+            }
+            
+            /* Lots Available for Sale section - 2 columns on tablet */
+            section.communities > .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            section.communities .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+            
+            section.communities > .container > div > div > div[style*="height: 350px"] {
+                height: 280px !important;
+            }
+            
+            /* Property Locations section - 2 columns on tablet */
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .location-map-section .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Small smartphone optimization (max-width: 480px) */
+        @media (max-width: 480px) {
+            #properties .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            #properties > .container > div > div > div[style*="height: 350px"] {
+                height: 200px !important;
+                padding: 15px !important;
+            }
+            
+            #properties > .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+                padding: 15px !important;
+            }
+            
+            #properties h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            #properties p {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Mobile carousel for Property Locations section */
+        @media (max-width: 768px) {
+            /* Make grid single column and scrollable for Property Locations */
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                display: flex !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scroll-behavior: smooth !important;
+                gap: 20px !important;
+                padding: 20px 10px !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+            }
+            
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"]::-webkit-scrollbar {
+                display: none !important;
+            }
+            
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] > div {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+                flex-shrink: 0 !important;
+                scroll-snap-align: center !important;
+            }
+        }
+
+        /* Mobile carousel for Lots Available for Sale section */
+        @media (max-width: 768px) {
+            /* Remove all padding from communities sections */
+            section.communities {
+                padding: 0 !important;
+                margin-top: -30px !important;
+            }
+            
+            /* Add padding to first communities section (#properties) */
+            section#properties.communities {
+                padding-top: 40px !important;
+                margin-top: 0 !important;
+            }
+            
+            /* Add bottom padding to the last section */
+            section.communities:last-of-type {
+                padding-bottom: 40px !important;
+            }
+            
+            /* Reduce section header padding and font size */
+            section.communities .section-header {
+                padding: 30px 15px !important;
+                margin-bottom: 0 !important;
+            }
+            
+            section.communities .section-header h2 {
+                font-size: 2rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            /* Make grid single column and scrollable */
+            section.communities .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                display: flex !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scroll-behavior: smooth !important;
+                gap: 20px !important;
+                padding: 20px 10px !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+            }
+            
+            section.communities .container > div[style*="grid-template-columns: repeat(2, 1fr)"]::-webkit-scrollbar {
+                display: none !important;
+            }
+            
+            section.communities .container > div[style*="grid-template-columns: repeat(2, 1fr)"] > div {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+                flex-shrink: 0 !important;
+                scroll-snap-align: center !important;
+            }
+            
+            /* Reduce card image container height on mobile */
+            section.communities .container > div > div > div[style*="height: 350px"] {
+                height: 250px !important;
+                padding: 20px !important;
+            }
+            
+            /* Reduce card content padding */
+            section.communities .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+                padding: 20px !important;
+            }
+            
+            /* Reduce heading and text sizes */
+            section.communities h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            section.communities p {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Reduce button sizes */
+            section.communities a[style*="padding: 12px 32px"] {
+                padding: 10px 24px !important;
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Small smartphone optimization for Lots section */
+        @media (max-width: 480px) {
+            section.communities .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            section.communities .container > div > div > div[style*="height: 350px"] {
+                height: 200px !important;
+                padding: 15px !important;
+            }
+            
+            section.communities .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+                padding: 15px !important;
+            }
+            
+            section.communities h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            section.communities p {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Swipe hint styles with floating animation */
+        .swipe-hint-lots,
+        .swipe-hint-locations {
+            animation: floatUpDown 2s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Show swipe hints on mobile only, hide on desktop */
+        @media (min-width: 769px) {
+            .swipe-hint-lots,
+            .swipe-hint-locations {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .swipe-hint-lots,
+            .swipe-hint-locations {
+                display: block !important;
+            }
+        }
+
+        /* Show commercial hero images on mobile */
+        @media (max-width: 768px) {
+            .commercial .hero-img {
+                display: block !important;
+                object-fit: cover;
+                width: 100%;
+                height: 50vh;
+                max-height: 50vh;
+                object-position: center center;
+                image-rendering: high-quality;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                filter: contrast(1.2) saturate(1.1) brightness(1.05);
+            }
+        }
+
+    </style>
 </head>
 <body class="commercial">
     <!-- Elementor-Style Header -->
@@ -96,6 +429,14 @@
             <img src="public/images/commericalherobanner.png" alt="Commercial Properties" class="hero-img active">
             <img src="public/images/UptownPlazaDrone.png" alt="Uptown Plaza Drone" class="hero-img">
             <img src="public/images/ArtVillageBuilding.jpg" alt="Art Village Building" class="hero-img">
+            
+            <!-- Navigation Arrows -->
+            <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
             
             <!-- Indicators -->
             <div class="slideshow-indicators">
@@ -189,9 +530,9 @@
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">EXPRESSWAY 83</h3>
                             <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
                             <a href="commercial/expressway-83.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">Learn More</a>
-                        </div>
                     </div>
-                    
+                </div>
+                
                     <!-- Art Village on Main -->
                     <div id="art-village" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div style="position: relative; width: 100%; height: 350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
@@ -298,6 +639,13 @@
                     </h2>
                 </div>
                 
+                <!-- Swipe Hint for Lots Section - White -->
+                <div class="swipe-hint-lots" style="text-align: center; padding: 15px; color: white; font-weight: 600; display: none;">
+                    <i class="fas fa-hand-point-left" style="margin-right: 10px;"></i>
+                    Swipe to see more
+                    <i class="fas fa-hand-point-right" style="margin-left: 10px;"></i>
+                </div>
+                
                 <!-- Lots Grid -->
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 40px;">
                     <!-- Commercial Lot 495 & Taylor Rd -->
@@ -389,6 +737,12 @@
                 
                 <!-- Properties Grid Below -->
                 <h3 style="font-size: 2.5rem; font-weight: 800; color: #000080; margin-bottom: 30px; text-align: center;">Retail Plazas</h3>
+                <!-- Swipe Hint for Property Locations - Navy -->
+                <div class="swipe-hint-locations" style="text-align: center; padding: 15px; color: #000080; font-weight: 600; display: none;">
+                    <i class="fas fa-hand-point-left" style="margin-right: 10px;"></i>
+                    Swipe to see more
+                    <i class="fas fa-hand-point-right" style="margin-left: 10px;"></i>
+                </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 60px;">
                     <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
                         <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Uptown Plaza</h4>
@@ -514,5 +868,17 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+    <script>
+        // Make commercial property card images bigger by removing inline max-width/max-height constraints
+        document.addEventListener('DOMContentLoaded', function() {
+            const commercialImages = document.querySelectorAll('#properties img');
+            commercialImages.forEach(img => {
+                if (img.style.maxWidth === '100%' && img.style.maxHeight === '100%') {
+                    img.style.maxWidth = '120%';
+                    img.style.maxHeight = '120%';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

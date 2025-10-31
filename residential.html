@@ -10,6 +10,150 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Make PNGs bigger in community cards without changing container size */
+        #communities > .container > div > div > div:first-child img {
+            max-width: 300% !important;
+            max-height: 300% !important;
+            object-fit: contain !important;
+        }
+
+        /* Desktop: Make containers smaller in height and width */
+        #communities > .container > div > div > div:first-child {
+            height: 200px !important;
+        }
+        
+        /* Desktop: Reduce grid container max-width to make cards narrower */
+        @media (min-width: 769px) {
+            #communities > .container {
+                max-width: 1200px !important;
+            }
+        }
+
+        /* Del Lago image positioning adjustment */
+        #del-lago img {
+            position: relative !important;
+            left: 20px !important;
+            top: 20px !important;
+        }
+
+        /* Paseo Del Lago image positioning adjustment */
+        #paseo-del-lago img {
+            position: relative !important;
+            left: 20px !important;
+            top: 20px !important;
+        }
+
+        /* Lago Vista image positioning adjustment */
+        #lago-vista img {
+            position: relative !important;
+            top: 20px !important;
+        }
+
+        /* Mobile: Make PNGs bigger and containers smaller */
+        @media (max-width: 768px) {
+            #communities > .container > div > div > div:first-child img {
+                max-width: 250% !important;
+                max-height: 250% !important;
+                object-fit: contain !important;
+            }
+            #communities > .container > div > div > div:first-child {
+                height: 250px !important;
+            }
+        }
+
+        /* Mobile optimization for Lots Available for Sale section */
+        @media (max-width: 768px) {
+            /* Make sure grid is single column */
+            section.communities > .container > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+            
+            /* Reduce section padding */
+            section.communities {
+                padding: 40px 0 !important;
+            }
+            
+            /* Reduce section header padding and font size */
+            section.communities .section-header {
+                padding: 30px 15px !important;
+                margin-bottom: 40px !important;
+            }
+            
+            section.communities .section-header h2 {
+                font-size: 2rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            /* Make card fit better on mobile */
+            section.communities > .container > div > div[style*="max-width: 900px"] {
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            
+            /* Reduce image container height on mobile */
+            section.communities > .container > div > div > div[style*="height: 540px"] {
+                height: 300px !important;
+                padding: 20px !important;
+            }
+            
+            /* Reduce card content padding */
+            section.communities > .container > div > div > div[style*="padding: 30px"] {
+                padding: 20px !important;
+            }
+            
+            /* Reduce heading and text sizes */
+            section.communities h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            section.communities p {
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Tablet optimization (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Make Our Communities grid 2 columns on tablet */
+            #communities > .container > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+            
+            section.communities > .container > div > div > div[style*="height: 540px"] {
+                height: 400px !important;
+            }
+            
+            section.communities .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Small smartphone optimization (max-width: 480px) */
+        @media (max-width: 480px) {
+            section.communities .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            section.communities > .container > div > div > div[style*="height: 540px"] {
+                height: 250px !important;
+                padding: 15px !important;
+            }
+            
+            section.communities > .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+                padding: 15px !important;
+            }
+            
+            section.communities h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            section.communities p {
+                font-size: 0.8rem !important;
+            }
+        }
+    </style>
 </head>
 <body class="residential">
     <!-- Elementor-Style Header -->
@@ -348,5 +492,17 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+    <script>
+        // Make community card images bigger by removing inline max-width/max-height constraints
+        document.addEventListener('DOMContentLoaded', function() {
+            const communityImages = document.querySelectorAll('#communities img');
+            communityImages.forEach(img => {
+                if (img.style.maxWidth === '100%' && img.style.maxHeight === '100%') {
+                    img.style.maxWidth = '120%';
+                    img.style.maxHeight = '120%';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

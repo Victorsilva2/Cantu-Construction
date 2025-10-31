@@ -414,7 +414,7 @@ window.addEventListener('load', () => {
     initTestimonialsBackground();
     initScrollAnimations();
     initHoverEffects();
-    initContactAnimations();
+    // initContactAnimations(); // Disabled to prevent scroll bar and loading issues
     initFormAnimations();
 });
 
@@ -628,7 +628,13 @@ function initHeroSlideshow() {
     // Detect if we're on residential page
     const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
     
-    console.log('Initializing slideshow, isMobile:', isMobile, 'isResidential:', isResidential);
+    // Detect if we're on projects page
+    const isProjects = document.body.classList.contains('projects') || window.location.pathname.includes('projects');
+    
+    // Detect if we're on commercial page
+    const isCommercial = document.body.classList.contains('commercial') || window.location.pathname.includes('commercial');
+    
+    console.log('Initializing slideshow, isMobile:', isMobile, 'isResidential:', isResidential, 'isProjects:', isProjects, 'isCommercial:', isCommercial);
     
     if (isMobile) {
         if (isResidential) {
@@ -648,6 +654,40 @@ function initHeroSlideshow() {
             // Initialize first image as active
             heroImages[0].classList.add('active');
             console.log('Mobile Residential: Set first image as active');
+        } else if (isProjects) {
+            totalSlides = 3; // 3 projects images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Mobile Projects: Found', heroImages.length, 'projects hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No projects hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Mobile Projects: Set first image as active');
+        } else if (isCommercial) {
+            totalSlides = 3; // 3 commercial images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Mobile Commercial: Found', heroImages.length, 'commercial hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No commercial hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Mobile Commercial: Set first image as active');
         } else {
             totalSlides = 7; // 7 mobile images
             const heroImages = document.querySelectorAll('.hero-img-mobile');
@@ -684,6 +724,40 @@ function initHeroSlideshow() {
             // Initialize first image as active
             heroImages[0].classList.add('active');
             console.log('Desktop Residential: Set first image as active');
+        } else if (isProjects) {
+            totalSlides = 3; // 3 projects images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Desktop Projects: Found', heroImages.length, 'projects hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No projects hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Desktop Projects: Set first image as active');
+        } else if (isCommercial) {
+            totalSlides = 3; // 3 commercial images
+            const heroImages = document.querySelectorAll('.hero-img');
+            
+            console.log('Desktop Commercial: Found', heroImages.length, 'commercial hero images');
+            
+            if (heroImages.length === 0) {
+                console.log('No commercial hero images found for slideshow');
+                return;
+            }
+            
+            // Remove active class from all images first
+            heroImages.forEach(img => img.classList.remove('active'));
+            
+            // Initialize first image as active
+            heroImages[0].classList.add('active');
+            console.log('Desktop Commercial: Set first image as active');
         } else {
             totalSlides = 5; // 5 desktop images
             const heroImages = document.querySelectorAll('.hero-img');
@@ -731,10 +805,12 @@ function stopAutoSlideshow() {
 function changeSlide(direction) {
     const isMobile = window.innerWidth <= 768;
     const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
+    const isProjects = document.body.classList.contains('projects') || window.location.pathname.includes('projects');
+    const isCommercial = document.body.classList.contains('commercial') || window.location.pathname.includes('commercial');
     
     let heroImages;
     if (isMobile) {
-        if (isResidential) {
+        if (isResidential || isProjects || isCommercial) {
             heroImages = document.querySelectorAll('.hero-img');
         } else {
             heroImages = document.querySelectorAll('.hero-img-mobile');
@@ -783,10 +859,12 @@ function changeSlide(direction) {
 function currentSlide(slideNumber) {
     const isMobile = window.innerWidth <= 768;
     const isResidential = document.body.classList.contains('residential') || window.location.pathname.includes('residential');
+    const isProjects = document.body.classList.contains('projects') || window.location.pathname.includes('projects');
+    const isCommercial = document.body.classList.contains('commercial') || window.location.pathname.includes('commercial');
     
     let heroImages;
     if (isMobile) {
-        if (isResidential) {
+        if (isResidential || isProjects || isCommercial) {
             heroImages = document.querySelectorAll('.hero-img');
         } else {
             heroImages = document.querySelectorAll('.hero-img-mobile');

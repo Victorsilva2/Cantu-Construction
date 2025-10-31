@@ -186,6 +186,11 @@ body {
     width: 100%;
 }
 
+/* Global: Remove all rounded corners */
+* {
+    border-radius: 0 !important;
+}
+
 /* Prevent zoom from affecting layout */
 @media (max-width: 768px) {
     html {
@@ -1339,20 +1344,22 @@ section {
     gap: 60px;
 }
 
-/* Contact Section Animations - Same as other sections */
+/* Contact Section - Remove animations to prevent scroll bar and loading issues */
 .contact-info,
 .contact-form-section,
 .contact-map-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.contact-info.animate-in,
-.contact-form-section.animate-in,
-.contact-map-card.animate-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Prevent scroll bar from appearing */
+#contact {
+    overflow: hidden;
+}
+
+/* Ensure contact section doesn't create horizontal scroll */
+.contact .container {
+    overflow-x: hidden;
 }
 
 /* Enhanced Form Input Animations */
@@ -1367,7 +1374,6 @@ section {
     outline: none;
     border-color: var(--brand-blue);
     box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
-    transform: translateY(-2px);
 }
 
 .form-group input:focus + label,
@@ -2276,13 +2282,28 @@ section {
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
     
-    /* Hide desktop images on mobile (except residential page) */
+    /* Hide desktop images on mobile (except residential and projects pages) */
     .hero-img {
         display: none !important;
     }
     
     /* Show residential page hero images on mobile */
     .residential .hero-img {
+        display: block !important;
+        object-fit: cover;
+        width: 100%;
+        height: 50vh;
+        max-height: 50vh;
+        object-position: center center;
+        image-rendering: high-quality;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        filter: contrast(1.2) saturate(1.1) brightness(1.05);
+        background: transparent;
+    }
+
+    /* Show projects page hero images on mobile */
+    .projects .hero-img {
         display: block !important;
         object-fit: cover;
         width: 100%;
@@ -2492,7 +2513,7 @@ section {
     .commercial-properties .logo-scroll-container {
         width: 100% !important;
         overflow: hidden !important;
-        margin-top: 40px !important;
+        margin-top: 0 !important;
         padding: 20px 0 !important;
         position: relative !important;
         display: block !important;
@@ -2532,16 +2553,17 @@ section {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 15px !important;
+        padding: 0 !important;
         background: white !important;
         margin: 0 10px !important;
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        overflow: visible !important;
     }
     
     .residential-communities .logo-scroll-track .community-item img {
-        max-width: 110% !important;
-        max-height: 110% !important;
+        max-width: 130% !important;
+        max-height: 130% !important;
         object-fit: contain !important;
     }
     
@@ -2553,16 +2575,17 @@ section {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 15px !important;
+        padding: 0 !important;
         background: white !important;
         margin: 0 10px !important;
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        overflow: visible !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item img {
-        max-width: 110% !important;
-        max-height: 110% !important;
+        max-width: 200% !important;
+        max-height: 200% !important;
         object-fit: contain !important;
     }
     
@@ -2694,6 +2717,10 @@ section {
     }
     
     /* Fix large text in residential/commercial sections */
+    .residential-communities .section-header {
+        margin-top: 40px !important;
+    }
+    
     .residential-communities .section-header h2 {
         font-size: 1.8rem !important;
         line-height: 1.2 !important;
@@ -2703,14 +2730,12 @@ section {
     }
     
     /* Residential page section header - mobile */
-    .residential .section-header h2 {
-        color: #000080 !important;
-        font-size: 2rem !important;
-    }
+    /* Remove this rule to preserve inline colors */
     
     /* About Us section - mobile */
-    .about-us {
-        padding: 40px 0 !important;
+    .about-us,
+    section.about-us[style*="padding: 100px 0"] {
+        padding: 40px 0 0 0 !important;
     }
     
     .about-us .container {
@@ -2804,11 +2829,14 @@ section {
     }
     
     /* Stats row on mobile - vertical stack */
-    .about-us .container > div:last-child {
+    .about-us .container > div:last-child,
+    .about-us .container > div[style*="display: flex"] {
         flex-direction: column !important;
         gap: 30px !important;
-        padding-top: 30px !important;
-        margin-top: 30px !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
     
     .about-us .container > div:last-child > div {
@@ -2827,7 +2855,7 @@ section {
     }
     
     .commercial-properties .section-header h2 {
-        font-size: 2.5rem !important;
+        font-size: 1.8rem !important;
         line-height: 1.2 !important;
         text-align: center !important;
         margin-bottom: 15px !important;
@@ -2860,11 +2888,12 @@ section {
     }
     
     .residential-communities {
-        padding: 50px 0 0 0 !important;
+        padding: 0 !important;
+        margin-top: -30px !important;
     }
     
     .commercial-properties {
-        padding: 0 0 50px 0 !important;
+        padding: 0 !important;
     }
     
     .residential-communities .container,
@@ -2873,7 +2902,7 @@ section {
     }
     
     .community-logo {
-        max-width: 280px !important;
+        max-width: 500px !important;
         height: auto !important;
         width: auto !important;
         opacity: 1 !important;
@@ -2899,9 +2928,9 @@ section {
     }
     
     .commercial-logo {
-        max-width: 100% !important;
+        max-width: 500px !important;
         height: auto !important;
-        width: 100% !important;
+        width: auto !important;
     }
     
     
@@ -3061,49 +3090,52 @@ section {
     /* Mobile carousel containers - small, white, sharp edges */
     .residential-communities .logo-scroll-track .community-item {
         min-width: 180px !important;
-        width: 180px !important;
-        height: 140px !important;
+        width: 200px !important;
+        height: 200px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 15px !important;
+        padding: 0 !important;
         background: white !important;
         margin: 0 10px !important;
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        overflow: visible !important;
     }
     
     .residential-communities .logo-scroll-track .community-item img {
-        max-width: 110% !important;
-        max-height: 110% !important;
+        max-width: 130% !important;
+        max-height: 130% !important;
         object-fit: contain !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
         min-width: 180px !important;
-        width: 180px !important;
-        height: 140px !important;
+        width: 200px !important;
+        height: 200px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 15px !important;
+        padding: 0 !important;
         background: white !important;
         margin: 0 10px !important;
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        overflow: visible !important;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item img {
-        max-width: 110% !important;
-        max-height: 110% !important;
+        max-width: 130% !important;
+        max-height: 130% !important;
         object-fit: contain !important;
     }
     
     .commercial-logo {
-        max-width: 100% !important;
+        max-width: 500px !important;
         height: auto !important;
+        width: auto !important;
     }
     
     /* Commercial button white border on mobile */
