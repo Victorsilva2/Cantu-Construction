@@ -2,9 +2,40 @@
 
 // Brochure functionality
 function openBrochure(brochureType) {
-    // Placeholder for brochure functionality
-    // This would typically open a PDF viewer or flipbook
-    alert(`Opening ${brochureType} brochure. This would integrate with a PDF viewer or flipbook system.`);
+    // Map brochure types to PDF file paths
+    const brochureMap = {
+        'villagio': 'public/brochures/Villagio.pdf',
+        'bougainvillea': 'public/brochures/Bougainvillea.pdf',
+        'del-lago': 'public/brochures/DelLago.pdf',
+        'lago-vista': 'public/brochures/LagoVista.pdf',
+        'paseo-del-lago': 'public/brochures/Paseo Del Lago.pdf',
+        'cimarron': 'public/brochures/Cimarron.pdf',
+        'village-on-dove': 'public/brochures/The Village On Dove .pdf',
+        'villas-del-lago': 'public/brochures/Villas at Del Lago.pdf',
+        'uptown-plaza': 'public/brochures/Uptown Plaza.pdf',
+        'la-placita': 'public/brochures/La Placita .pdf',
+        'lone-star-plaza': 'public/brochures/LoneStarPlaza.pdf',
+        'expressway-83': 'public/brochures/Expressway83.pdf',
+        'art-village': 'public/brochures/ArtVillage.pdf',
+        'water-tower': 'public/brochures/WaterTower.pdf',
+        'amistad-plaza': 'public/brochures/AmistadPlaza.pdf',
+        'harlingen-mob': 'public/brochures/HarlingenMOB.pdf',
+        'brownsville-mob': 'public/brochures/BrownsvilleMOB.pdf',
+        'starpoint': 'public/brochures/StarPoint.pdf',
+        'midvalley-pros': 'public/brochures/MidValleyPros.pdf',
+        'commercial-lot-495-taylor': 'public/brochures/Commerical Lot 495 & Taylor Rd.pdf',
+        'commercial-lot-905-plaza': 'public/brochures/Commerical Lot 905 Plaza Dr .pdf',
+        'commercial-lot-expressway-83': 'public/brochures/Commerical Lot Expressway 83 & Sugar Rd.pdf',
+        'residential-lot-los-ebanos': 'public/brochures/Residential Lot Los Ebanos & 3 Mile Rd.pdf'
+    };
+    
+    const pdfPath = brochureMap[brochureType];
+    
+    if (pdfPath) {
+        window.open(pdfPath, '_blank');
+    } else {
+        alert(`Brochure for ${brochureType} is not available. Please contact us for more information.`);
+    }
 }
 
 // Enhanced video modal with different video sources
