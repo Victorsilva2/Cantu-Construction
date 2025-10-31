@@ -10,8 +10,243 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* New Portfolio Grid Styles */
+        .portfolio-grid-new {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin: 40px 0;
+        }
+
+        .portfolio-item-new {
+            position: relative;
+            width: 100%;
+            padding-bottom: 120%; /* Make taller rectangles */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item-new:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .portfolio-item-new:hover::before {
+            background: rgba(0, 0, 0, 0); /* Remove tint on hover */
+        }
+
+        .portfolio-overlay-new {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .portfolio-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+            z-index: 3;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item-new:hover .portfolio-title {
+            opacity: 0; /* Hide text on hover */
+        }
+
+        /* Projects page hero - smaller to match residential */
+        .projects .hero {
+            height: 60vh;
+        }
+
+        /* Modal Styles for Image Gallery */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+        .image-modal-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1001;
+            pointer-events: auto;
+        }
+
+        .image-modal-close:hover {
+            color: #bbb;
+        }
+
+        .image-modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+            user-select: none;
+            z-index: 1001;
+        }
+
+        .image-modal-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .image-modal-arrow.prev {
+            left: 20px;
+        }
+
+        .image-modal-arrow.next {
+            right: 20px;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Decorative Line Styling */
+        .intro-title .decorative-line {
+            display: block;
+            height: 3px;
+            width: 0;
+            background-color: var(--brand-blue);
+            margin: 15px auto 0;
+            transition: width 0.8s ease-out;
+        }
+
+        /* Tab Buttons Styling for Projects Page */
+        #projects .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 50px;
+        }
+
+        #projects .tab-button {
+            background: white;
+            color: var(--brand-blue);
+            border: 2px solid var(--brand-blue);
+            padding: 15px 40px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #projects .tab-button:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        #projects .tab-button:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        #projects .tab-button.active {
+            background: var(--brand-blue);
+            color: white;
+            border-color: var(--brand-blue);
+        }
+
+        #projects .tab-button:hover:not(.active) {
+            background: rgba(0, 0, 128, 0.1);
+            color: var(--brand-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .portfolio-grid-new {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid-new {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-title {
+                font-size: 1.5rem;
+            }
+
+            /* Tab buttons mobile */
+            .tabs {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            .tab-button {
+                width: 100% !important;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="projects">
     <!-- Elementor-Style Header -->
     <header class="elementor-header">
         <!-- Top Contact Bar -->
@@ -90,17 +325,45 @@
         </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="heading-font">Projects & Portfolio</h1>
+    <!-- Hero Banner -->
+    <section id="hero" class="hero">
+        <div class="hero-background hero-slideshow">
+            <img src="public/images/portfoliobanner.jpg" alt="Projects Portfolio" class="hero-img active">
+            <img src="public/images/UptownPlazaDrone.png" alt="Uptown Plaza" class="hero-img">
+            <img src="public/images/driscoll.jpg" alt="Driscoll Hospital" class="hero-img">
+            
+            <!-- Navigation Arrows -->
+            <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Indicators -->
+            <div class="slideshow-indicators">
+                <span class="slideshow-indicator active" onclick="currentSlide(1)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(2)"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(3)"></span>
+            </div>
         </div>
+        <div class="hero-gradient"></div>
     </section>
 
     <!-- Main Content -->
     <main>
+        <!-- Page Title Section -->
+        <section class="intro" style="background: var(--bg); padding: 60px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <h2 class="intro-title" style="color: #000080; font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-align: center; position: relative;">
+                    PROJECTS & PORTFOLIO
+                    <span class="decorative-line"></span>
+                </h2>
+            </div>
+        </section>
+
         <!-- Projects Tabs -->
-        <section id="projects" class="projects">
+        <section id="projects" class="projects" style="opacity: 0; animation: fadeIn 1s ease-out 0.3s forwards;">
             <div class="container">
                 <div class="tabs">
                     <button class="tab-button active" data-tab="completed">Completed Projects</button>
@@ -108,111 +371,65 @@
                 </div>
                 
                 <div class="tab-content active" id="tab-completed">
-                    <div class="section-header">
-                        <h2>Past Projects</h2>
-                    </div>
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <img src="public/images/bertodgenarena.jpg" alt="Bert Ogden Arena">
-                            <div class="portfolio-overlay">
-                                <h4>Bert Ogden Arena</h4>
-                                <p>Major arena construction project</p>
-                            </div>
+                    <div class="portfolio-grid-new">
+                        <div class="portfolio-item-new bertogden-gallery" style="background-image: url('public/images/bertodgenarena.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Bert Ogden Arena</h3>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="public/images/driscoll.jpg" alt="Driscoll">
-                            <div class="portfolio-overlay">
-                                <h4>Driscoll</h4>
-                                <p>Construction project completed</p>
-                            </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/driscoll.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Driscoll Hospital</h3>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="public/images/dhr.jpg" alt="DHR">
-                            <div class="portfolio-overlay">
-                                <h4>DHR</h4>
-                                <p>Development project completed</p>
-                            </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/dhr.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">DHR Clinic</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/ArtVillageBuilding.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Art Village</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/lonestarplaza.jpeg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Lone Star Plaza</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/UptownPlazaDrone.png');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Uptown Plaza</h3>
                         </div>
                     </div>
                 </div>
                 
                 <div class="tab-content" id="tab-current">
-                    <div class="section-header">
-                        <h2>Current / Ongoing Projects</h2>
-                    </div>
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" alt="Ongoing Project">
-                            <div class="portfolio-overlay">
-                                <h4>Villas at Del Lago</h4>
-                                <p>Phase 1 - 30% Complete</p>
-                            </div>
+                    <div class="portfolio-grid-new">
+                        <div class="portfolio-item-new" style="background-image: url('public/images/VillasatDelLago.png');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Villas at Del Lago</h3>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Ongoing Project">
-                            <div class="portfolio-overlay">
-                                <h4>MidValley Expansion</h4>
-                                <p>Office complex - 60% Complete</p>
-                            </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/MidValley.png');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">MidValley Expansion</h3>
                         </div>
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="Ongoing Project">
-                            <div class="portfolio-overlay">
-                                <h4>Expressway 83 Phase 2</h4>
-                                <p>Retail expansion - 40% Complete</p>
-                            </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/StarPointPlaza.png');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Expressway 83 Phase 2</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/CantuConstructionHeroHouse4.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Villagio Community</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/BouganvaliHouse.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Bougainvillea Development</h3>
+                        </div>
+                        <div class="portfolio-item-new" style="background-image: url('public/images/CantuConstructionHeroHouse3.jpg');">
+                            <div class="portfolio-overlay-new"></div>
+                            <h3 class="portfolio-title">Custom Home Build</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Photo Album Section -->
-        <section id="photo-album" class="photo-album">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Photo Album</h2>
-                </div>
-                <div class="photo-grid">
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop" alt="Construction Photo">
-                        <div class="photo-overlay">
-                            <h4>Construction Progress</h4>
-                        </div>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1000&auto=format&fit=crop" alt="Completed Home">
-                        <div class="photo-overlay">
-                            <h4>Completed Home</h4>
-                        </div>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Commercial Building">
-                        <div class="photo-overlay">
-                            <h4>Commercial Building</h4>
-                        </div>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Interior Design">
-                        <div class="photo-overlay">
-                            <h4>Interior Design</h4>
-                        </div>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop" alt="Landscaping">
-                        <div class="photo-overlay">
-                            <h4>Landscaping</h4>
-                        </div>
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop" alt="Team Work">
-                        <div class="photo-overlay">
-                            <h4>Our Team</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer -->
@@ -277,7 +494,88 @@
         </div>
     </div>
 
+    <!-- Image Gallery Modal -->
+    <div id="imageGalleryModal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <div class="image-modal-content">
+            <span class="image-modal-arrow prev">&#10094;</span>
+            <img id="galleryImage" src="" alt="Gallery Image">
+            <span class="image-modal-arrow next">&#10095;</span>
+        </div>
+    </div>
+
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+    <script>
+        // Initialize decorative line animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const decorativeLine = document.querySelector('.intro-title .decorative-line');
+            if (decorativeLine) {
+                // Set width to 100% to underline the full text
+                setTimeout(function() {
+                    decorativeLine.style.width = '70%';
+                }, 100);
+            }
+        });
+
+        // Bert Ogden Gallery functionality
+        const bertogdenImages = [
+            'public/images/portfoliobanner.jpg',
+            'public/images/bertogdentemp1.jpg',
+            'public/images/bertogdentemp2.png'
+        ];
+        let currentImageIndex = 0;
+
+        const modal = document.getElementById('imageGalleryModal');
+        const galleryImage = document.getElementById('galleryImage');
+        const closeBtn = document.querySelector('.image-modal-close');
+        const prevBtn = document.querySelector('.image-modal-arrow.prev');
+        const nextBtn = document.querySelector('.image-modal-arrow.next');
+        const bertogdenItem = document.querySelector('.bertogden-gallery');
+
+        bertogdenItem.addEventListener('click', function() {
+            currentImageIndex = 0;
+            showImage();
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            modal.style.display = 'none';
+        });
+
+        prevBtn.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex - 1 + bertogdenImages.length) % bertogdenImages.length;
+            showImage();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex + 1) % bertogdenImages.length;
+            showImage();
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        function showImage() {
+            galleryImage.src = bertogdenImages[currentImageIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'Escape') {
+                    closeBtn.click();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
