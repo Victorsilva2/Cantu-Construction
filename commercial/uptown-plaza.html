@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-slideshow .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .hero-slideshow .hero-img.active {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Elementor-Style Header -->
@@ -92,8 +104,25 @@
 
     <!-- Hero Banner -->
     <section id="hero" class="hero" style="position: relative; height: 400px; overflow: hidden;">
-        <div class="hero-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop" alt="Uptown Plaza" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="hero-background hero-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <img src="../public/images/UpTownPlazaBuilding.png" alt="Uptown Plaza" class="hero-img active" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="../public/images/UptownPlazaBuilding2.png" alt="Uptown Plaza" class="hero-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="../public/images/UptownPlazaDrone2.png" alt="Uptown Plaza" class="hero-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="../public/images/UptownPlazaDrone.png" alt="Uptown Plaza" class="hero-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Navigation Arrows -->
+            <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)" aria-label="Previous slide" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 15px; cursor: pointer; font-size: 20px; z-index: 10; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)" aria-label="Next slide" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 15px; cursor: pointer; font-size: 20px; z-index: 10; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <!-- Indicators -->
+            <div class="slideshow-indicators" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+                <span class="slideshow-indicator active" onclick="currentSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; opacity: 1;"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(2)" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; opacity: 0.5;"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(3)" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; opacity: 0.5;"></span>
+                <span class="slideshow-indicator" onclick="currentSlide(4)" style="width: 12px; height: 12px; border-radius: 50%; background: white; cursor: pointer; opacity: 0.5;"></span>
+            </div>
         </div>
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));"></div>
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 100%;">
@@ -113,7 +142,7 @@
                     <div>
                         <h2 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 30px; text-transform: uppercase; border-bottom: 3px solid #C62828; padding-bottom: 15px;">Property Site Plan</h2>
                         <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                            <img src="../public/images/lonestarplaza.jpeg" alt="Uptown Plaza Site Plan" style="width: 100%; border-radius: 8px;">
+                            <img src="../public/images/UpTownPlazaBuilding.png" alt="Uptown Plaza Site Plan" style="width: 100%; border-radius: 8px; object-fit: contain;">
                             <p style="margin-top: 20px; font-size: 0.95rem; color: #666; text-align: center;">
                                 <span style="display: inline-block; width: 15px; height: 15px; background: #90EE90; margin-right: 8px; border: 1px solid #666;"></span> Available
                                 <span style="display: inline-block; width: 15px; height: 15px; background: #FF6B6B; margin: 0 8px 0 20px; border: 1px solid #666;"></span> Leased
@@ -213,6 +242,27 @@
                 </p>
             </div>
         </section>
+
+        <!-- Image Gallery Section -->
+        <section style="background: white; padding: 60px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <h2 style="font-size: 2rem; font-weight: 800; color: #000080; margin-bottom: 30px; text-align: center; text-transform: uppercase;">Uptown Plaza Gallery</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../public/images/UpTownPlazaBuilding.png" alt="Uptown Plaza Building" style="width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../public/images/UptownPlazaBuilding2.png" alt="Uptown Plaza Building 2" style="width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../public/images/UptownPlazaDrone2.png" alt="Uptown Plaza Drone View" style="width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../public/images/UptownPlazaDrone.png" alt="Uptown Plaza Drone View 2" style="width: 100%; height: 300px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -266,6 +316,36 @@
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/components.js"></script>
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.hero-slideshow .hero-img');
+        const indicators = document.querySelectorAll('.slideshow-indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+                indicator.style.opacity = i === index ? '1' : '0.5';
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-advance slideshow every 5 seconds
+        setInterval(() => changeSlide(1), 5000);
+    </script>
 </body>
 </html>
 
