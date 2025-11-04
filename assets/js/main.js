@@ -1024,16 +1024,52 @@ function initCommercialCarouselLoop() {
         if (!isDragging) start();
     });
 
-    // Pointer drag to manually scroll
+    // Track initial position for tap detection
+    let startX = 0;
+    let startY = 0;
+    let hasMoved = false;
+    const DRAG_THRESHOLD = 10;
+
+    // Pointer drag to manually scroll - but allow clicks on links
     container.addEventListener('pointerdown', (e) => {
+        // Check if the click is on a link or inside a link
+        const target = e.target;
+        const link = target.closest('a');
+        if (link) {
+            // Store the link so we can navigate to it on tap
+            link._isClickable = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            hasMoved = false;
+            // Don't start dragging - let the tap/click proceed
+            return;
+        }
         isDragging = true;
+        hasMoved = false;
         stop();
         lastX = e.clientX;
+        startX = e.clientX;
+        startY = e.clientY;
         container.setPointerCapture(e.pointerId);
         container.style.cursor = 'grabbing';
     });
     container.addEventListener('pointermove', (e) => {
+        // Check if we should allow link clicks (if movement is minimal)
+        if (!isDragging) {
+            const link = e.target.closest('a');
+            if (link && link._isClickable) {
+                const dx = Math.abs(e.clientX - startX);
+                const dy = Math.abs(e.clientY - startY);
+                if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
+                    // User is dragging, not tapping
+                    link._isClickable = false;
+                    hasMoved = true;
+                }
+                return;
+            }
+        }
         if (!isDragging) return;
+        hasMoved = true;
         const dx = e.clientX - lastX;
         lastX = e.clientX;
         offsetPx += dx; // drag to scroll
@@ -1041,6 +1077,19 @@ function initCommercialCarouselLoop() {
         track.style.transform = `translateX(${offsetPx}px)`;
     });
     function endDrag(e){
+        // Check if this was a tap on a link (not a drag)
+        const target = e.target;
+        const link = target.closest('a');
+        
+        if (!isDragging && link && link._isClickable && !hasMoved) {
+            // It's a tap on a link, navigate to it
+            const href = link.getAttribute('href');
+            if (href) {
+                window.location.href = href;
+            }
+            return;
+        }
+        
         if (!isDragging) return;
         isDragging = false;
         try { container.releasePointerCapture(e.pointerId); } catch(_){}
@@ -1059,6 +1108,12 @@ function initCommercialCarouselLoop() {
 
     // Wheel/trackpad horizontal scroll support
     container.addEventListener('wheel', (e) => {
+        // Don't prevent default if clicking on a link
+        const target = e.target;
+        const link = target.closest('a');
+        if (link) {
+            return; // Allow normal behavior
+        }
         e.preventDefault();
         stop();
         const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
@@ -1068,6 +1123,54 @@ function initCommercialCarouselLoop() {
         clearTimeout(wheelTO);
         wheelTO = setTimeout(() => start(), 300);
     }, { passive: false });
+
+    // Ensure all links in the carousel are clickable on mobile and desktop
+    const links = track.querySelectorAll('a');
+    links.forEach(link => {
+        // Handle click events - use bubbling phase and don't prevent default
+        link.addEventListener('click', (e) => {
+            // Stop propagation to parent containers but allow default navigation
+            e.stopPropagation();
+            // If dragging was accidentally started, cancel it
+            if (isDragging) {
+                isDragging = false;
+                container.style.cursor = '';
+                try { container.releasePointerCapture(e.pointerId); } catch(_){}
+            }
+            // Don't prevent default - allow the link to navigate normally
+        }, false); // Use bubbling phase, not capture
+        
+        // Handle touch events for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchMoved = false;
+        
+        link.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchMoved = false;
+        }, { passive: true });
+        
+        link.addEventListener('touchmove', (e) => {
+            const dx = Math.abs(e.touches[0].clientX - touchStartX);
+            const dy = Math.abs(e.touches[0].clientY - touchStartY);
+            if (dx > 5 || dy > 5) {
+                touchMoved = true;
+            }
+        }, { passive: true });
+        
+        link.addEventListener('touchend', (e) => {
+            if (!touchMoved) {
+                // It's a tap, not a drag - navigate
+                const href = link.getAttribute('href');
+                if (href) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            }
+        });
+    });
 }
 
 // Initialize commercial carousel loop after DOM is ready
@@ -1154,16 +1257,52 @@ function initResidentialCarouselLoop() {
     container.addEventListener('mouseenter', stop);
     container.addEventListener('mouseleave', () => { if (!isDragging) start(); });
 
-    // Pointer drag
+    // Track initial position for tap detection
+    let startX = 0;
+    let startY = 0;
+    let hasMoved = false;
+    const DRAG_THRESHOLD = 10;
+
+    // Pointer drag - but allow clicks on links
     container.addEventListener('pointerdown', (e) => {
+        // Check if the click is on a link or inside a link
+        const target = e.target;
+        const link = target.closest('a');
+        if (link) {
+            // Store the link so we can navigate to it on tap
+            link._isClickable = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            hasMoved = false;
+            // Don't start dragging - let the tap/click proceed
+            return;
+        }
         isDragging = true;
+        hasMoved = false;
         stop();
         lastX = e.clientX;
+        startX = e.clientX;
+        startY = e.clientY;
         container.setPointerCapture(e.pointerId);
         container.style.cursor = 'grabbing';
     });
     container.addEventListener('pointermove', (e) => {
+        // Check if we should allow link clicks (if movement is minimal)
+        if (!isDragging) {
+            const link = e.target.closest('a');
+            if (link && link._isClickable) {
+                const dx = Math.abs(e.clientX - startX);
+                const dy = Math.abs(e.clientY - startY);
+                if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
+                    // User is dragging, not tapping
+                    link._isClickable = false;
+                    hasMoved = true;
+                }
+                return;
+            }
+        }
         if (!isDragging) return;
+        hasMoved = true;
         const dx = e.clientX - lastX;
         lastX = e.clientX;
         offsetPx += dx;
@@ -1171,6 +1310,19 @@ function initResidentialCarouselLoop() {
         track.style.transform = `translateX(${offsetPx}px)`;
     });
     function endDrag(e){
+        // Check if this was a tap on a link (not a drag)
+        const target = e.target;
+        const link = target.closest('a');
+        
+        if (!isDragging && link && link._isClickable && !hasMoved) {
+            // It's a tap on a link, navigate to it
+            const href = link.getAttribute('href');
+            if (href) {
+                window.location.href = href;
+            }
+            return;
+        }
+        
         if (!isDragging) return;
         isDragging = false;
         try { container.releasePointerCapture(e.pointerId); } catch(_){}
@@ -1183,6 +1335,12 @@ function initResidentialCarouselLoop() {
 
     // Wheel/trackpad
     container.addEventListener('wheel', (e) => {
+        // Don't prevent default if clicking on a link
+        const target = e.target;
+        const link = target.closest('a');
+        if (link) {
+            return; // Allow normal behavior
+        }
         e.preventDefault();
         stop();
         const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
@@ -1192,6 +1350,54 @@ function initResidentialCarouselLoop() {
         clearTimeout(wheelTO);
         wheelTO = setTimeout(() => start(), 250);
     }, { passive: false });
+
+    // Ensure all links in the carousel are clickable on mobile and desktop
+    const links = track.querySelectorAll('a');
+    links.forEach(link => {
+        // Handle click events - use bubbling phase and don't prevent default
+        link.addEventListener('click', (e) => {
+            // Stop propagation to parent containers but allow default navigation
+            e.stopPropagation();
+            // If dragging was accidentally started, cancel it
+            if (isDragging) {
+                isDragging = false;
+                container.style.cursor = '';
+                try { container.releasePointerCapture(e.pointerId); } catch(_){}
+            }
+            // Don't prevent default - allow the link to navigate normally
+        }, false); // Use bubbling phase, not capture
+        
+        // Handle touch events for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchMoved = false;
+        
+        link.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchMoved = false;
+        }, { passive: true });
+        
+        link.addEventListener('touchmove', (e) => {
+            const dx = Math.abs(e.touches[0].clientX - touchStartX);
+            const dy = Math.abs(e.touches[0].clientY - touchStartY);
+            if (dx > 5 || dy > 5) {
+                touchMoved = true;
+            }
+        }, { passive: true });
+        
+        link.addEventListener('touchend', (e) => {
+            if (!touchMoved) {
+                // It's a tap, not a drag - navigate
+                const href = link.getAttribute('href');
+                if (href) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            }
+        });
+    });
 }
 
 // About Us Carousel

@@ -42,23 +42,66 @@
             }
         }
 
+        /* Commercial property image positioning - move all PNGs lower */
+        #uptown-plaza img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
+        #la-placita img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
+        #lone-star-plaza img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
+        #expressway-83 img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
         /* Art Village image positioning adjustment */
         #art-village img {
             position: relative !important;
             left: 10px !important;
+            top: 30px !important;
         }
 
         /* Water Tower image positioning adjustment */
         #water-tower img {
             position: relative !important;
             left: 10px !important;
-            top: 10px !important;
+            top: 30px !important;
+        }
+
+        #amistad-plaza img {
+            position: relative !important;
+            top: 30px !important;
         }
 
         /* Harlingen Medical Center image positioning adjustment */
         #harlingen-mob img {
             position: relative !important;
             left: 10px !important;
+            top: 30px !important;
+        }
+
+        #brownsville-mob img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
+        #starpoint img {
+            position: relative !important;
+            top: 30px !important;
+        }
+
+        #midvalley-pros img {
+            position: relative !important;
+            top: 30px !important;
         }
 
         /* Mobile optimization for Retail Plazas and Office & Medical sections */
@@ -342,6 +385,17 @@
             }
         }
 
+        /* Move Art Village Building image lower in hero banner */
+        .commercial .hero-img[src*="ArtVillageBuilding"] {
+            object-position: center 80% !important;
+        }
+
+        @media (max-width: 768px) {
+            .commercial .hero-img[src*="ArtVillageBuilding"] {
+                object-position: center 80% !important;
+            }
+        }
+
     </style>
 </head>
 <body class="commercial">
@@ -403,14 +457,14 @@
                             <li><a href="commercial/uptown-plaza.html">Uptown Plaza</a></li>
                             <li><a href="commercial/la-placita.html">La Placita</a></li>
                             <li><a href="commercial/lone-star-plaza.html">Lone Star Plaza</a></li>
-                            <li><a href="commercial/expressway-83.html">Expressway 83</a></li>
+                            <li><a href="commercial/expressway-83.html">MAS Building</a></li>
                             <li><a href="commercial/art-village.html">Art Village on Main</a></li>
                             <li><a href="commercial/water-tower.html">Water Tower Center</a></li>
                             <li class="dropdown-label">Office & Medical</li>
                             <li><a href="commercial/amistad-plaza.html">Amistad Plaza</a></li>
                             <li><a href="commercial/harlingen-mob.html">Harlingen MOB</a></li>
                             <li><a href="commercial/brownsville-mob.html">Brownsville MOB</a></li>
-                            <li><a href="commercial/starpoint.html">StarPoint I</a></li>
+                            <li><a href="commercial/starpoint.html">StarPoint</a></li>
                             <li><a href="commercial/midvalley-pros.html">MidValley Professionals</a></li>
                         </ul>
                     </li>
@@ -513,23 +567,23 @@
                     <div id="lone-star-plaza" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div style="position: relative; width: 100%; height: 350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
                             <img src="public/images/LoneStarPlazaLogo.png" alt="Lone Star Plaza" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(198, 40, 40, 0.9); color: white; padding: 8px 24px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-transform: capitalize; letter-spacing: 0.5px;">Coming Soon</div>
                         </div>
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">LONE STAR PLAZA</h3>
-                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="commercial/lone-star-plaza.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">Learn More</a>
+                            <a href="commercial/lone-star-plaza.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease; margin-top: 30px;">Learn More</a>
                         </div>
                     </div>
                     
-                    <!-- Expressway 83 -->
+                    <!-- MAS Building -->
                     <div id="expressway-83" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div style="position: relative; width: 100%; height: 350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
-                            <img src="public/images/StarPointPlaza.png" alt="Expressway 83" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            <img src="public/images/StarPointPlaza.png" alt="MAS Building" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="padding: 30px; text-align: center; background: white;">
-                            <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">EXPRESSWAY 83</h3>
-                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="commercial/expressway-83.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">Learn More</a>
+                            <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">MAS BUILDING</h3>
+                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">PHARR, TX</p>
+                            <a href="commercial/expressway-83.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease; margin-top: 10px;">Learn More</a>
                     </div>
                 </div>
                 
@@ -541,7 +595,7 @@
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">ART VILLAGE</h3>
                             <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="commercial/art-village.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">Learn More</a>
+                            <a href="commercial/art-village.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease; margin-top: 10px;">Learn More</a>
                         </div>
                     </div>
                     
@@ -603,15 +657,15 @@
                         </div>
                     </div>
                     
-                    <!-- StarPoint I -->
+                    <!-- StarPoint -->
                     <div id="starpoint" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div style="position: relative; width: 100%; height: 350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
-                            <img src="public/images/StarPointPlaza.png" alt="StarPoint I" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            <img src="public/images/StarPointPlaza.png" alt="StarPoint" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="padding: 30px; text-align: center; background: white;">
-                            <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">STARPOINT I</h3>
+                            <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">STARPOINT</h3>
                             <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="commercial/starpoint.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">Learn More</a>
+                            <a href="commercial/starpoint.html" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease; margin-top: 10px;">Learn More</a>
                         </div>
                     </div>
                     
@@ -656,7 +710,7 @@
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">495 & TAYLOR RD</h3>
                             <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="public/brochures/Commerical Lot 495 & Taylor Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Brochure</a>
+                            <a href="public/brochures/Commerical Lot 495 & Taylor Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Flyer</a>
                         </div>
                     </div>
                     
@@ -667,8 +721,8 @@
                         </div>
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">905 PLAZA DR</h3>
-                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="public/brochures/Commerical Lot 905 Plaza Dr .pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Brochure</a>
+                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MISSION, TX</p>
+                            <a href="public/brochures/Commerical Lot 905 Plaza Dr .pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Flyer</a>
                         </div>
                     </div>
                     
@@ -680,7 +734,7 @@
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">EXPRESSWAY 83 & SUGAR RD</h3>
                             <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">MCALLEN, TX</p>
-                            <a href="public/brochures/Commerical Lot Expressway 83 & Sugar Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Brochure</a>
+                            <a href="public/brochures/Commerical Lot Expressway 83 & Sugar Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Flyer</a>
                         </div>
                     </div>
                 </div>
@@ -763,7 +817,7 @@
                     </div>
                     
                     <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
-                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Expressway 83</h4>
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">MAS Building</h4>
                         <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">1210 W. Expressway 83, Suite 4 & 5, Pharr, TX</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=1210+W.+Expressway+83+Pharr+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
                     </div>
@@ -802,7 +856,7 @@
                     </div>
                     
                     <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
-                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">StarPoint I</h4>
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">StarPoint</h4>
                         <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">1821 Sesame St, Harlingen, TX</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=1821+Sesame+St+Harlingen+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
                     </div>

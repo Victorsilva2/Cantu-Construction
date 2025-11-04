@@ -83,6 +83,47 @@
         /* Projects page hero - smaller to match residential */
         .projects .hero {
             height: 60vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Parallax effect for hero image */
+        .projects .hero .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150%; /* Make it taller to allow for parallax movement */
+            overflow: hidden;
+        }
+        
+        /* Ensure hero image displays properly on mobile and desktop */
+        .projects .hero .hero-img {
+            display: block !important;
+            opacity: 1 !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0;
+            width: 100%;
+            height: 150%; /* Make image taller to allow parallax */
+            object-fit: cover;
+            object-position: center top;
+            will-change: transform;
+        }
+
+        /* Desktop only - move image higher using top positioning */
+        @media (min-width: 769px) {
+            .projects .hero .hero-img {
+                top: -30% !important;
+            }
+        }
+
+        /* Ensure mobile stays at top: 0 */
+        @media (max-width: 768px) {
+            .projects .hero .hero-img {
+                top: 0 !important;
+                object-position: center top !important;
+            }
         }
 
         /* Modal Styles for Image Gallery */
@@ -305,14 +346,14 @@
                             <li><a href="commercial/uptown-plaza.html">Uptown Plaza</a></li>
                             <li><a href="commercial/la-placita.html">La Placita</a></li>
                             <li><a href="commercial/lone-star-plaza.html">Lone Star Plaza</a></li>
-                            <li><a href="commercial/expressway-83.html">Expressway 83</a></li>
+                            <li><a href="commercial/expressway-83.html">MAS Building</a></li>
                             <li><a href="commercial/art-village.html">Art Village on Main</a></li>
                             <li><a href="commercial/water-tower.html">Water Tower Center</a></li>
                             <li class="dropdown-label">Office & Medical</li>
                             <li><a href="commercial/amistad-plaza.html">Amistad Plaza</a></li>
                             <li><a href="commercial/harlingen-mob.html">Harlingen MOB</a></li>
                             <li><a href="commercial/brownsville-mob.html">Brownsville MOB</a></li>
-                            <li><a href="commercial/starpoint.html">StarPoint I</a></li>
+                            <li><a href="commercial/starpoint.html">StarPoint</a></li>
                             <li><a href="commercial/midvalley-pros.html">MidValley Professionals</a></li>
                         </ul>
                     </li>
@@ -327,25 +368,8 @@
 
     <!-- Hero Banner -->
     <section id="hero" class="hero">
-        <div class="hero-background hero-slideshow">
-            <img src="public/images/portfoliobanner.jpg" alt="Projects Portfolio" class="hero-img active">
-            <img src="public/images/UptownPlazaDrone.png" alt="Uptown Plaza" class="hero-img">
-            <img src="public/images/driscoll.jpg" alt="Driscoll Hospital" class="hero-img">
-            
-            <!-- Navigation Arrows -->
-            <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            
-            <!-- Indicators -->
-            <div class="slideshow-indicators">
-                <span class="slideshow-indicator active" onclick="currentSlide(1)"></span>
-                <span class="slideshow-indicator" onclick="currentSlide(2)"></span>
-                <span class="slideshow-indicator" onclick="currentSlide(3)"></span>
-            </div>
+        <div class="hero-background">
+            <img src="public/images/portfoliobanner.jpg" alt="Projects Portfolio" class="hero-img">
         </div>
         <div class="hero-gradient"></div>
     </section>
@@ -574,9 +598,63 @@
         window.changeProjectSlide = changeProjectSlide;
         window.currentProjectSlide = currentProjectSlide;
 
+        // Parallax effect for hero banner
+        function initParallax() {
+            const heroImg = document.querySelector('.projects .hero .hero-img');
+            const heroSection = document.querySelector('.projects .hero');
+            if (!heroImg || !heroSection) return;
+
+            function updateParallax() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const heroTop = heroSection.offsetTop;
+                const heroHeight = heroSection.offsetHeight;
+                
+                // Calculate how much we've scrolled past the top of the hero
+                const scrolled = scrollTop - heroTop;
+                
+                // Calculate parallax offset (move image slower than scroll)
+                const parallaxSpeed = 0.5; // Adjust this value to change parallax intensity (0.5 = moves at 50% of scroll speed)
+                
+                // Only apply parallax when scrolling within the hero section
+                if (scrolled >= 0 && scrolled <= heroHeight + window.innerHeight) {
+                    const parallaxOffset = scrolled * parallaxSpeed;
+                    
+                    // Apply transform - allow movement throughout entire scroll
+                    // The max offset is based on the extra height we added (50% of hero height)
+                    const maxOffset = heroHeight * 0.5; // Match the extra 50% height we added
+                    const offset = Math.min(Math.max(parallaxOffset, 0), maxOffset);
+                    
+                    heroImg.style.transform = `translateY(${offset}px)`;
+                } else if (scrolled < 0) {
+                    // Before hero section - reset to 0
+                    heroImg.style.transform = `translateY(0px)`;
+                } else {
+                    // Past hero section - set to max
+                    heroImg.style.transform = `translateY(${heroHeight * 0.5}px)`;
+                }
+            }
+
+            // Use requestAnimationFrame for smooth performance
+            let ticking = false;
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateParallax();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', updateParallax, { passive: true });
+            updateParallax(); // Initial call
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initializeProjectSlideshows();
+            initParallax();
             
             // Auto-advance slideshows every 5 seconds
             setInterval(() => {

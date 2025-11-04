@@ -404,3 +404,116 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Fix all "View Brochure" buttons to work on mobile
+document.addEventListener('DOMContentLoaded', () => {
+    // Find all "View Brochure" links - both with href="#" and direct PDF links
+    const allLinks = document.querySelectorAll('a');
+    const brochureButtons = [];
+    
+    allLinks.forEach(button => {
+        // Check if this is a "View Brochure" button by checking text content
+        const text = button.textContent.toLowerCase().trim();
+        if (text.includes('view brochure')) {
+            brochureButtons.push(button);
+        }
+    });
+    
+    brochureButtons.forEach(button => {
+            // Determine brochure type based on current page path
+            const path = window.location.pathname;
+            let brochureType = null;
+            
+            // Map file paths to brochure types
+            if (path.includes('bougainvillea')) {
+                brochureType = 'bougainvillea';
+            } else if (path.includes('del-lago')) {
+                brochureType = 'del-lago';
+            } else if (path.includes('lago-vista')) {
+                brochureType = 'lago-vista';
+            } else if (path.includes('paseo-del-lago')) {
+                brochureType = 'paseo-del-lago';
+            } else if (path.includes('village-on-dove')) {
+                brochureType = 'village-on-dove';
+            } else if (path.includes('villas-del-lago')) {
+                brochureType = 'villas-del-lago';
+            } else if (path.includes('villagio')) {
+                brochureType = 'villagio';
+            } else if (path.includes('art-village')) {
+                brochureType = 'art-village';
+            } else if (path.includes('water-tower')) {
+                brochureType = 'water-tower';
+            } else if (path.includes('amistad-plaza')) {
+                brochureType = 'amistad-plaza';
+            } else if (path.includes('harlingen-mob')) {
+                brochureType = 'harlingen-mob';
+            } else if (path.includes('brownsville-mob')) {
+                brochureType = 'brownsville-mob';
+            } else if (path.includes('starpoint')) {
+                brochureType = 'starpoint';
+            } else if (path.includes('midvalley-pros')) {
+                brochureType = 'midvalley-pros';
+            } else if (path.includes('uptown-plaza')) {
+                brochureType = 'uptown-plaza';
+            } else if (path.includes('la-placita')) {
+                brochureType = 'la-placita';
+            } else if (path.includes('lone-star-plaza')) {
+                brochureType = 'lone-star-plaza';
+            } else if (path.includes('expressway-83')) {
+                brochureType = 'expressway-83';
+            }
+            
+            if (brochureType) {
+                // Add a class for CSS targeting
+                button.classList.add('brochure-button');
+                
+                // Make button clickable on mobile and desktop
+                button.style.cursor = 'pointer';
+                button.style.pointerEvents = 'auto';
+                button.style.touchAction = 'manipulation';
+                
+                // Check if button already has a valid href (direct PDF link)
+                const currentHref = button.getAttribute('href');
+                const hasDirectLink = currentHref && currentHref !== '#' && (currentHref.endsWith('.pdf') || currentHref.includes('brochures'));
+                
+                if (!hasDirectLink) {
+                    // Only remove href="#" and use JavaScript handler if there's no direct link
+                    if (currentHref === '#') {
+                        button.removeAttribute('href');
+                    }
+                    
+                    // Add click handler that works on both desktop and mobile
+                    const handleBrochureClick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openBrochure(brochureType);
+                    };
+                    
+                    // Use both click and touchend for maximum compatibility
+                    button.addEventListener('click', handleBrochureClick, { passive: false });
+                    button.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleBrochureClick(e);
+                    }, { passive: false });
+                } else {
+                    // For direct links, just ensure touch events work properly
+                    button.addEventListener('touchend', (e) => {
+                        // Allow default navigation but ensure it works on mobile
+                        const href = button.getAttribute('href');
+                        if (href && href !== '#') {
+                            // Touch navigation should work, but we can also ensure it
+                            window.open(href, button.getAttribute('target') || '_self');
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+                }
+                
+                // Ensure touch events don't get blocked
+                button.addEventListener('touchstart', (e) => {
+                    // Don't prevent default on touchstart
+                }, { passive: true });
+            }
+        }
+    });
+});

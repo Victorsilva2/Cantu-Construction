@@ -1592,7 +1592,17 @@ section {
 }
 
 .logo-scroll-track a {
-    pointer-events: auto;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-scroll-track a img {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .logo-scroll-track:hover {
@@ -1734,6 +1744,14 @@ section {
     pointer-events: auto;
 }
 
+.community-item a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .community-logo {
     max-width: 840px;
     max-height: 360px;
@@ -1741,6 +1759,11 @@ section {
     filter: none; /* Show original logo colors */
     transition: all 0.3s ease;
     opacity: 1;
+    transform: scale(1.15);
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 11;
 }
 
 /* Remove filters since we now have white background boxes */
@@ -1753,7 +1776,7 @@ section {
 
 .community-item:hover .community-logo {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.20);
 }
 
 .communities-button-container {
@@ -1819,6 +1842,14 @@ section {
     pointer-events: auto;
 }
 
+.commercial-item a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .commercial-logo {
     max-width: 840px;
     max-height: 360px;
@@ -1826,11 +1857,25 @@ section {
     filter: none; /* Keep original colors for commercial logos */
     transition: all 0.3s ease;
     opacity: 0.85;
+    transform: scale(1.15);
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 11;
 }
 
 .commercial-item:hover .commercial-logo {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.20);
+}
+
+/* Water Tower image positioning - move to the right */
+.commercial-item img[src*="WaterTowerCentre"] {
+    transform: scale(1.15) translateX(12px);
+}
+
+.commercial-item:hover img[src*="WaterTowerCentre"] {
+    transform: scale(1.20) translateX(15px);
 }
 
 /* Reduce commercial item height slightly by reducing padding */
@@ -2559,12 +2604,32 @@ section {
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         overflow: visible !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        position: relative;
+        z-index: 10;
+    }
+    
+    .residential-communities .logo-scroll-track .community-item a {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative;
+        z-index: 11;
     }
     
     .residential-communities .logo-scroll-track .community-item img {
         max-width: 130% !important;
         max-height: 130% !important;
         object-fit: contain !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        user-select: none;
+        -webkit-user-drag: none;
+        position: relative;
+        z-index: 12;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item {
@@ -2581,12 +2646,37 @@ section {
         border-radius: 0 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         overflow: visible !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        position: relative;
+        z-index: 10;
+    }
+    
+    .commercial-properties .logo-scroll-track .commercial-item a {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative;
+        z-index: 11;
     }
     
     .commercial-properties .logo-scroll-track .commercial-item img {
         max-width: 200% !important;
         max-height: 200% !important;
         object-fit: contain !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        user-select: none;
+        -webkit-user-drag: none;
+        position: relative;
+        z-index: 12;
+    }
+    
+    /* Water Tower image positioning - move to the right on mobile */
+    .commercial-properties .logo-scroll-track .commercial-item img[src*="WaterTowerCentre"] {
+        transform: translateX(12px) !important;
     }
     
     /* Hide grid layouts on mobile - use carousel instead */
@@ -2894,6 +2984,7 @@ section {
     
     .commercial-properties {
         padding: 0 !important;
+        margin-bottom: 40px !important;
     }
     
     .residential-communities .container,
@@ -3012,7 +3103,8 @@ section {
     }
     
     .upcoming-projects {
-        padding: 50px 0 !important;
+        padding: 60px 0 50px 0 !important;
+        margin-top: 0 !important;
     }
     
     .section-subtitle {
@@ -3132,6 +3224,11 @@ section {
         object-fit: contain !important;
     }
     
+    /* Water Tower image positioning - move to the right on mobile (480px) */
+    .commercial-properties .logo-scroll-track .commercial-item img[src*="WaterTowerCentre"] {
+        transform: translateX(12px) !important;
+    }
+    
     .commercial-logo {
         max-width: 500px !important;
         height: auto !important;
@@ -3215,7 +3312,7 @@ section {
     .communities-button-container,
     .commercial-button-container {
         margin-top: 30px;
-        margin-bottom: 0 !important;
+        margin-bottom: 40px !important;
     }
     
     /* Optimize images for mobile */
@@ -3554,5 +3651,47 @@ section {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+}
+
+/* View Brochure button mobile optimization */
+.brochure-button {
+    min-height: 48px !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 128, 0.2) !important;
+    user-select: none !important;
+}
+
+/* Ensure child elements don't block clicks */
+.brochure-button * {
+    pointer-events: none !important;
+}
+
+.brochure-button {
+    pointer-events: auto !important;
+}
+
+@media (max-width: 768px) {
+    .brochure-button {
+        min-height: 56px !important; /* Larger touch target on mobile */
+        padding: 18px 20px !important;
+    }
+}
+
+/* Also target buttons with the specific style pattern */
+a[style*="display: flex"][style*="border: 2px solid #000080"] {
+    min-height: 48px !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 128, 0.2) !important;
+}
+
+@media (max-width: 768px) {
+    a[style*="display: flex"][style*="border: 2px solid #000080"] {
+        min-height: 56px !important;
+        padding: 18px 20px !important;
+    }
 }
 
