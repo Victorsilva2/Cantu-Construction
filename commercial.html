@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Align Learn More buttons at the same height using flexbox */
+        #properties > .container > div > div {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #properties > .container > div > div > div:last-child {
+            display: flex !important;
+            flex-direction: column !important;
+            flex-grow: 1 !important;
+        }
+        
+        #properties > .container > div > div > div:last-child a {
+            margin-top: auto !important;
+        }
+
         /* Make PNGs bigger in commercial property cards without changing container size */
         #properties > .container > div > div > div:first-child img {
             max-width: 300% !important;
@@ -396,6 +412,44 @@
             }
         }
 
+        /* Mobile optimization for Why Lease With Cantu Section */
+        @media (max-width: 768px) {
+            .why-build {
+                padding: 60px 0 0px 0 !important;
+                margin-bottom: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            .why-build .container {
+                padding: 0 20px 30px 20px !important;
+            }
+            
+            /* Wrapper to ensure cards are above border */
+            .why-build .container > div[style*="padding: 0px 0px 40px 0px"] {
+                padding: 0px 0px 30px 0px !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            .why-build .features-grid {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        /* Small smartphone optimization for Why Lease section */
+        @media (max-width: 480px) {
+            .why-build {
+                padding: 50px 0 0px 0 !important;
+            }
+            
+            .why-build .container {
+                padding: 0 15px 20px 15px !important;
+            }
+            
+            .why-build .container > div[style*="padding: 0px 0px 40px 0px"] {
+                padding: 0px 0px 20px 0px !important;
+            }
+        }
     </style>
 </head>
 <body class="commercial">
@@ -742,12 +796,14 @@
         </section>
 
         <!-- Why Lease With Cantu Section -->
-        <section class="why-build" style="background: var(--bg); padding: 80px 0;">
-            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <section class="why-build" style="background: var(--bg); padding: 80px 0 0px 0; margin-bottom: 0; position: relative; z-index: 1; overflow: hidden;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px 40px 20px;">
                 <div class="section-header" style="text-align: center; margin-bottom: 60px;">
                     <h2 style="font-size: 3.2rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">Why Lease With Cantu Construction?</h2>
                 </div>
-                <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+                <!-- Wrapper to ensure cards are above the border -->
+                <div style="padding: 0px 0px 40px 0px; margin: 0; width: 100%;">
+                    <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 0;">
                     <div class="feature-card" style="text-align: center; padding: 40px 30px;">
                         <i class="fas fa-map-marker-alt" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
                         <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Prime Locations</h3>
@@ -762,6 +818,7 @@
                         <i class="fas fa-tools" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
                         <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Maintenance Support</h3>
                         <p style="font-size: 1.1rem; color: #666; line-height: 1.7;">Our professional management team ensures your space is always in top condition.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -870,9 +927,16 @@
             </div>
         </section>
     </main>
+    <style>
+        main {
+            background: transparent !important;
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    </style>
 
     <!-- Footer -->
-    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px;">
+    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px; margin-top: 0; border-top: none;">
         <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div class="footer-section">

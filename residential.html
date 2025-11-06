@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Align Learn More buttons at the same height using flexbox */
+        #communities > .container > div > div {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #communities > .container > div > div > div:last-child {
+            display: flex !important;
+            flex-direction: column !important;
+            flex-grow: 1 !important;
+        }
+        
+        #communities > .container > div > div > div:last-child a {
+            margin-top: auto !important;
+        }
+
         /* Make PNGs bigger in community cards without changing container size */
         #communities > .container > div > div > div:first-child img {
             max-width: 300% !important;
@@ -99,28 +115,56 @@
             /* Reduce section header padding and font size */
             section.communities .section-header {
                 padding: 30px 15px !important;
-                margin-bottom: 40px !important;
+                margin: 0 auto 40px auto !important;
+                display: block !important;
+                visibility: visible !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
             
             section.communities .section-header h2 {
                 font-size: 2rem !important;
                 margin-bottom: 15px !important;
+                color: #000080 !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
             
-            /* Make card fit better on mobile */
-            section.communities > .container > div > div[style*="max-width: 900px"] {
-                max-width: 100% !important;
+            /* Container centering on mobile */
+            section.communities > .container {
+                padding: 0 15px !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Wrapper padding on mobile */
+            section.communities > .container > div[style*="padding: 40px 20px"] {
+                padding: 30px 0px !important;
                 margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            /* Make card smaller on mobile and centered */
+            section.communities > .container > div > div > div[style*="max-width: 700px"] {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Ensure grid is centered */
+            section.communities > .container > div > div[style*="grid-template-columns"] {
+                width: 100% !important;
+                margin: 0 auto !important;
             }
             
             /* Reduce image container height on mobile */
-            section.communities > .container > div > div > div[style*="height: 540px"] {
+            section.communities > .container > div > div > div > div[style*="height: 400px"] {
                 height: 300px !important;
                 padding: 20px !important;
             }
             
             /* Reduce card content padding */
-            section.communities > .container > div > div > div[style*="padding: 30px"] {
+            section.communities > .container > div > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
                 padding: 20px !important;
             }
             
@@ -153,16 +197,38 @@
 
         /* Small smartphone optimization (max-width: 480px) */
         @media (max-width: 480px) {
-            section.communities .section-header h2 {
-                font-size: 1.75rem !important;
+            section.communities .section-header {
+                display: block !important;
+                visibility: visible !important;
             }
             
-            section.communities > .container > div > div > div[style*="height: 540px"] {
+            section.communities .section-header h2 {
+                font-size: 1.75rem !important;
+                color: #000080 !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            /* Container centering on small mobile */
+            section.communities > .container {
+                padding: 0 10px !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Wrapper padding on small mobile */
+            section.communities > .container > div[style*="padding: 40px 20px"] {
+                padding: 20px 0px !important;
+                margin: 0 !important;
+                width: 100% !important;
+            }
+            
+            section.communities > .container > div > div > div > div[style*="height: 400px"] {
                 height: 250px !important;
                 padding: 15px !important;
             }
             
-            section.communities > .container > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
+            section.communities > .container > div > div > div > div[style*="padding: 30px"]:not([style*="height"]) {
                 padding: 15px !important;
             }
             
@@ -172,6 +238,65 @@
             
             section.communities p {
                 font-size: 0.8rem !important;
+            }
+        }
+
+        /* Mobile optimization for Why Build With Cantu Section */
+        @media (max-width: 768px) {
+            .why-build {
+                padding: 60px 0 0px 0 !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                overflow: hidden !important;
+                background: var(--bg) !important;
+            }
+            
+            .why-build .container {
+                padding: 0 20px 20px 20px !important;
+            }
+            
+            .why-build .section-header {
+                margin-bottom: 30px !important;
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            .why-build .section-header h2 {
+                color: #000080 !important;
+                font-size: 2.5rem !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .why-build .features-grid-scroll {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        /* Small smartphone optimization for Why Build section */
+        @media (max-width: 480px) {
+            .why-build {
+                padding: 50px 0 0px 0 !important;
+                background: var(--bg) !important;
+            }
+            
+            .why-build .container {
+                padding: 0 15px 15px 15px !important;
+            }
+            
+            .why-build .section-header {
+                margin-bottom: 20px !important;
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            .why-build .section-header h2 {
+                font-size: 2rem !important;
+                color: #000080 !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
         }
     </style>
@@ -392,10 +517,13 @@
                     </div>
                     
                     <!-- Villas at Del Lago -->
-                    <div id="villas-del-lago" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <div style="position: relative; width: 100%; height: 350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
-                            <img src="public/images/VillasAtDelLago.png" alt="Villas at Del Lago" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                            <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(198, 40, 40, 0.9); color: white; padding: 8px 24px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-transform: capitalize; letter-spacing: 0.5px;">Coming Soon</div>
+                    <div id="villas-del-lago" style="background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; z-index: 1;">
+                        <!-- Wrapper to ensure PNG doesn't get covered by border -->
+                        <div style="position: relative; width: 100%; height: 350px; padding: 30px; background: white; overflow: visible; z-index: 2;">
+                            <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 3;">
+                                <img src="public/images/VillasAtDelLago.png" alt="Villas at Del Lago" style="max-width: 100%; max-height: 100%; object-fit: contain; position: relative; z-index: 4;">
+                            </div>
+                            <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(198, 40, 40, 0.9); color: white; padding: 8px 24px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-transform: capitalize; letter-spacing: 0.5px; z-index: 5;">Coming Soon</div>
                         </div>
                         <div style="padding: 30px; text-align: center; background: white;">
                             <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">VILLAS AT DEL LAGO</h3>
@@ -409,25 +537,28 @@
         </section>
 
         <!-- Lots Available for Sale -->
-        <section class="communities" style="background: var(--bg); padding: 80px 0;">
+        <section class="communities" style="background: var(--bg); padding: 80px 0 0px 0; margin-bottom: 0;">
             <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-                <div class="section-header" style="text-align: center; margin-bottom: 60px; background: white; padding: 40px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px; background: white; padding: 40px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block !important; visibility: visible !important;">
+                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080 !important; margin-bottom: 20px; text-transform: uppercase; display: block !important; visibility: visible !important;">
                         Lots Available for Sale
                     </h2>
                 </div>
                 
-                <!-- Residential Lot Grid -->
-                <div style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; justify-items: center;">
-                    <!-- Residential Lot Los Ebanos & 3 Mile Rd -->
-                    <div style="background: #f8f9fa; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 900px; width: 100%;">
-                        <div style="position: relative; width: 100%; height: 540px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
-                            <img src="public/images/residentiallLot1.jpg" alt="Residential Lot Los Ebanos & 3 Mile Rd" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                        </div>
-                        <div style="padding: 30px; text-align: center; background: white;">
-                            <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">LOS EBANOS & 3 MILE RD</h3>
-                            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">PALMHURST, TX</p>
-                            <a href="public/brochures/Residential Lot Los Ebanos & 3 Mile Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Flyer</a>
+                <!-- Wrapper to ensure card is not covered by padding -->
+                <div style="padding: 40px 20px; margin: 0 -20px;">
+                    <!-- Residential Lot Grid -->
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 0; justify-items: center;">
+                        <!-- Residential Lot Los Ebanos & 3 Mile Rd -->
+                        <div style="background: #f8f9fa; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 700px; width: 100%;">
+                            <div style="position: relative; width: 100%; height: 400px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white; padding: 30px;">
+                                <img src="public/images/residentiallLot1.jpg" alt="Residential Lot Los Ebanos & 3 Mile Rd" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div style="padding: 30px; text-align: center; background: white;">
+                                <h3 style="font-size: 1.6rem; font-weight: 800; color: #333; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">LOS EBANOS & 3 MILE RD</h3>
+                                <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">PALMHURST, TX</p>
+                                <a href="public/brochures/Residential Lot Los Ebanos & 3 Mile Rd.pdf" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 12px 32px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: 2px solid #000080; border-radius: 4px; text-transform: capitalize; transition: all 0.3s ease;">View Flyer</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -435,12 +566,12 @@
         </section>
 
         <!-- Why Build With Cantu Section -->
-        <section class="why-build" style="background: var(--bg); padding: 80px 0;">
-            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
-                    <h2 style="font-size: 3.2rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">Why Build With Cantu Construction?</h2>
+        <section class="why-build" style="background: var(--bg); padding: 30px 0 0px 0; margin-top: 0; margin-bottom: 0; position: relative; z-index: 1; overflow: hidden;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px 20px 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 30px; display: block !important; visibility: visible !important;">
+                    <h2 style="font-size: 3.2rem; font-weight: 800; color: #000080 !important; margin-bottom: 20px; text-transform: uppercase; display: block !important; visibility: visible !important;">Why Build With Cantu Construction?</h2>
                 </div>
-                <div class="features-grid-scroll" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+                <div class="features-grid-scroll" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 0;">
                     <div class="feature-card" style="text-align: center; padding: 40px 30px;">
                         <i class="fas fa-award" style="font-size: 3.5rem; color: var(--brand-blue); margin-bottom: 25px;"></i>
                         <h3 style="font-size: 1.8rem; font-weight: 800; color: #000080; margin-bottom: 20px;">Quality Craftsmanship</h3>
@@ -461,9 +592,16 @@
         </section>
 
     </main>
+    <style>
+        main {
+            background: transparent !important;
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    </style>
 
     <!-- Footer -->
-    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px;">
+    <footer class="footer" style="background: #000080; color: white; padding: 60px 0 30px; margin-top: 0; border-top: none;">
         <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
                 <div class="footer-section">

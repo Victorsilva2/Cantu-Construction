@@ -673,7 +673,8 @@ function initHeroSlideshow() {
             console.log('Mobile Projects: Set first image as active');
         } else if (isCommercial) {
             totalSlides = 3; // 3 commercial images
-            const heroImages = document.querySelectorAll('.hero-img');
+            const heroSlideshow = document.querySelector('.hero-slideshow');
+            const heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
             
             console.log('Mobile Commercial: Found', heroImages.length, 'commercial hero images');
             
@@ -682,12 +683,29 @@ function initHeroSlideshow() {
                 return;
             }
             
+            // Ensure we have exactly 3 images for commercial
+            if (heroImages.length < 3) {
+                console.warn('Mobile Commercial: Expected 3 images but found', heroImages.length);
+            }
+            
             // Remove active class from all images first
-            heroImages.forEach(img => img.classList.remove('active'));
+            heroImages.forEach(img => {
+                img.classList.remove('active');
+                img.style.opacity = '0';
+                img.style.display = 'block';
+            });
             
             // Initialize first image as active
-            heroImages[0].classList.add('active');
-            console.log('Mobile Commercial: Set first image as active');
+            if (heroImages[0]) {
+                heroImages[0].classList.add('active');
+                heroImages[0].style.opacity = '1';
+                console.log('Mobile Commercial: Set first image as active');
+            }
+            
+            // Ensure all images are visible in DOM (for transitions)
+            heroImages.forEach(img => {
+                img.style.display = 'block';
+            });
         } else {
             totalSlides = 7; // 7 mobile images
             const heroImages = document.querySelectorAll('.hero-img-mobile');
@@ -743,7 +761,8 @@ function initHeroSlideshow() {
             console.log('Desktop Projects: Set first image as active');
         } else if (isCommercial) {
             totalSlides = 3; // 3 commercial images
-            const heroImages = document.querySelectorAll('.hero-img');
+            const heroSlideshow = document.querySelector('.hero-slideshow');
+            const heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
             
             console.log('Desktop Commercial: Found', heroImages.length, 'commercial hero images');
             
@@ -752,12 +771,23 @@ function initHeroSlideshow() {
                 return;
             }
             
+            // Ensure we have exactly 3 images for commercial
+            if (heroImages.length < 3) {
+                console.warn('Desktop Commercial: Expected 3 images but found', heroImages.length);
+            }
+            
             // Remove active class from all images first
-            heroImages.forEach(img => img.classList.remove('active'));
+            heroImages.forEach(img => {
+                img.classList.remove('active');
+                img.style.opacity = '0';
+            });
             
             // Initialize first image as active
-            heroImages[0].classList.add('active');
-            console.log('Desktop Commercial: Set first image as active');
+            if (heroImages[0]) {
+                heroImages[0].classList.add('active');
+                heroImages[0].style.opacity = '1';
+                console.log('Desktop Commercial: Set first image as active');
+            }
         } else {
             totalSlides = 5; // 5 desktop images
             const heroImages = document.querySelectorAll('.hero-img');
@@ -811,21 +841,40 @@ function changeSlide(direction) {
     let heroImages;
     if (isMobile) {
         if (isResidential || isProjects || isCommercial) {
-            heroImages = document.querySelectorAll('.hero-img');
+            // For commercial, specifically target images within hero-slideshow
+            if (isCommercial) {
+                const heroSlideshow = document.querySelector('.hero-slideshow');
+                heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
+            } else {
+                heroImages = document.querySelectorAll('.hero-img');
+            }
         } else {
             heroImages = document.querySelectorAll('.hero-img-mobile');
         }
     } else {
-        heroImages = document.querySelectorAll('.hero-img');
+        // For commercial, specifically target images within hero-slideshow
+        if (isCommercial) {
+            const heroSlideshow = document.querySelector('.hero-slideshow');
+            heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
+        } else {
+            heroImages = document.querySelectorAll('.hero-img');
+        }
     }
     
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Residential:', isResidential, 'Total slides:', totalSlides);
+    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Commercial:', isCommercial, 'Total slides:', totalSlides, 'Images found:', heroImages.length);
+    
+    // Ensure totalSlides matches actual number of images
+    if (heroImages.length > 0 && heroImages.length < totalSlides) {
+        totalSlides = heroImages.length;
+        console.log('Adjusted totalSlides to', totalSlides, 'based on actual images found');
+    }
     
     // Remove active class from current image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.remove('active');
+        heroImages[currentSlideIndex].style.opacity = '0';
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.remove('active');
@@ -841,11 +890,14 @@ function changeSlide(direction) {
         currentSlideIndex = totalSlides - 1;
     }
     
-    console.log('New slide index:', currentSlideIndex);
+    console.log('New slide index:', currentSlideIndex, 'out of', totalSlides, 'total slides');
     
     // Add active class to new image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.add('active');
+        heroImages[currentSlideIndex].style.opacity = '1';
+    } else {
+        console.warn('No image found at index', currentSlideIndex);
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.add('active');
@@ -865,21 +917,34 @@ function currentSlide(slideNumber) {
     let heroImages;
     if (isMobile) {
         if (isResidential || isProjects || isCommercial) {
-            heroImages = document.querySelectorAll('.hero-img');
+            // For commercial, specifically target images within hero-slideshow
+            if (isCommercial) {
+                const heroSlideshow = document.querySelector('.hero-slideshow');
+                heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
+            } else {
+                heroImages = document.querySelectorAll('.hero-img');
+            }
         } else {
             heroImages = document.querySelectorAll('.hero-img-mobile');
         }
     } else {
-        heroImages = document.querySelectorAll('.hero-img');
+        // For commercial, specifically target images within hero-slideshow
+        if (isCommercial) {
+            const heroSlideshow = document.querySelector('.hero-slideshow');
+            heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
+        } else {
+            heroImages = document.querySelectorAll('.hero-img');
+        }
     }
     
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Residential:', isResidential);
+    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Commercial:', isCommercial, 'Images found:', heroImages.length);
     
     // Remove active class from current image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.remove('active');
+        heroImages[currentSlideIndex].style.opacity = '0';
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.remove('active');
@@ -887,12 +952,19 @@ function currentSlide(slideNumber) {
     
     // Set new slide index (convert to 0-based)
     currentSlideIndex = slideNumber - 1;
+    
+    // Ensure index is within bounds
+    if (currentSlideIndex < 0) currentSlideIndex = 0;
+    if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
 
-    console.log('New slide index:', currentSlideIndex);
+    console.log('New slide index:', currentSlideIndex, 'out of', totalSlides, 'total slides');
 
     // Add active class to new image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.add('active');
+        heroImages[currentSlideIndex].style.opacity = '1';
+    } else {
+        console.warn('No image found at index', currentSlideIndex);
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.add('active');
