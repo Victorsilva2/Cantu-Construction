@@ -18,7 +18,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1s ease-in-out;
             object-fit: cover;
         }
         .hero-slideshow .hero-img.active {
@@ -372,165 +372,239 @@
     <script src="../assets/js/components.js"></script>
     <script src="../assets/js/main.js"></script>
     <script>
-        // Override slideshow for Uptown Plaza (4 images instead of 3)
-        (function() {
-            // Wait for main.js to load
+        // Uptown Plaza slideshow override (4 images instead of 3)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stop any existing slideshow from main.js
+            if (window.slideshowInterval) {
+                clearInterval(window.slideshowInterval);
+                window.slideshowInterval = null;
+            }
+            
+            // Wait a bit for main.js to initialize, then override
             setTimeout(function() {
-                const heroImages = document.querySelectorAll('.hero-slideshow .hero-img');
-        const indicators = document.querySelectorAll('.slideshow-indicator');
-
-                if (heroImages.length === 0) return;
-                
-                const totalSlides = heroImages.length;
-                let currentIndex = 0;
-                
-                // Store in window for access
-                window._uptownTotalSlides = totalSlides;
-                window._uptownCurrentIndex = 0;
-                
-                // Remove active from all, activate first
-                heroImages.forEach(img => img.classList.remove('active'));
-                if (heroImages[0]) {
-                    heroImages[0].classList.add('active');
+                // Stop main.js slideshow again in case it started
+                if (window.slideshowInterval) {
+                    clearInterval(window.slideshowInterval);
+                    window.slideshowInterval = null;
                 }
                 
-                // Update indicators
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.remove('active');
-                    indicator.style.opacity = i === 0 ? '1' : '0.5';
+                const heroSlideshow = document.querySelector('.hero-slideshow');
+                if (!heroSlideshow) {
+                    console.log('Uptown Plaza: No hero-slideshow found');
+                    return;
+                }
+                
+                let heroImages = heroSlideshow.querySelectorAll('.hero-img');
+                
+                if (heroImages.length === 0) {
+                    console.log('Uptown Plaza: No hero images found');
+                    return;
+                }
+                
+                // Use actual number of images found
+                const TOTAL_SLIDES = heroImages.length;
+        let currentSlideIndex = 0;
+                let slideshowInterval = null;
+                
+                console.log('Uptown Plaza: Initializing with', TOTAL_SLIDES, 'slides, found', heroImages.length, 'images');
+                
+                // Initialize all images
+                heroImages.forEach((img, index) => {
+                    img.style.display = 'block';
+                    img.style.position = 'absolute';
+                    img.style.top = '0';
+                    img.style.left = '0';
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.transition = 'opacity 1s ease-in-out';
+                    img.style.opacity = index === 0 ? '1' : '0';
+                    img.classList.toggle('active', index === 0);
                 });
                 
-                console.log('Uptown Plaza slideshow initialized with', totalSlides, 'slides');
-                
-                // Override changeSlide to use actual number of images
-                const originalChangeSlide = window.changeSlide;
-                window.changeSlide = function(direction) {
-                    const slides = document.querySelectorAll('.hero-slideshow .hero-img');
-                    const inds = document.querySelectorAll('.slideshow-indicator');
-                    const total = slides.length;
-                    
-                    if (total === 0) {
-                        if (originalChangeSlide) originalChangeSlide(direction);
-                        return;
+                // Initialize indicators
+                const indicators = document.querySelectorAll('.slideshow-indicator');
+                indicators.forEach((indicator, index) => {
+                    if (index === 0) {
+                        indicator.classList.add('active');
+                        indicator.style.opacity = '1';
+                    } else {
+                        indicator.classList.remove('active');
+                        indicator.style.opacity = '0.5';
                     }
+                });
+                
+                // Helper function to update slides and indicators
+                function updateSlides() {
+                    // Re-query to ensure we have all images
+                    heroImages = heroSlideshow.querySelectorAll('.hero-img');
+        const indicators = document.querySelectorAll('.slideshow-indicator');
+
+                    // Ensure we have the correct number of slides
+                    const actualSlides = heroImages.length;
                     
-                    // Get current index from active slide
-                    let currentIdx = 0;
-                    slides.forEach((slide, idx) => {
-                        if (slide.classList.contains('active')) {
-                            currentIdx = idx;
+                    // Update images - use all images found
+                    heroImages.forEach((img, index) => {
+                        // Ensure transition is set
+                        img.style.transition = 'opacity 1s ease-in-out';
+                        if (index === currentSlideIndex) {
+                            img.classList.add('active');
+                            img.style.opacity = '1';
+                        } else {
+                            img.classList.remove('active');
+                            img.style.opacity = '0';
                         }
                     });
                     
-                    // Remove active from current
-                    if (slides[currentIdx]) {
-                        slides[currentIdx].classList.remove('active');
-                    }
-                    if (inds[currentIdx]) {
-                        inds[currentIdx].classList.remove('active');
-                        inds[currentIdx].style.opacity = '0.5';
-                    }
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        if (index === currentSlideIndex) {
+                            indicator.classList.add('active');
+                            indicator.style.opacity = '1';
+                        } else {
+                            indicator.classList.remove('active');
+                            indicator.style.opacity = '0.5';
+                        }
+                    });
+                }
+                
+                // Function to change slide (local)
+                function changeUptownSlide(direction) {
+                    // Re-query to ensure we have all images
+                    heroImages = heroSlideshow.querySelectorAll('.hero-img');
+                    const actualSlides = heroImages.length;
+                    
+                    if (actualSlides === 0) return;
                     
                     // Calculate new index
-                    currentIdx += direction;
-                    if (currentIdx >= total) {
-                        currentIdx = 0;
-                    } else if (currentIdx < 0) {
-                        currentIdx = total - 1;
+            currentSlideIndex += direction;
+                    if (currentSlideIndex >= actualSlides) {
+                        currentSlideIndex = 0;
+                    } else if (currentSlideIndex < 0) {
+                        currentSlideIndex = actualSlides - 1;
                     }
                     
-                    // Add active to new
-                    if (slides[currentIdx]) {
-                        slides[currentIdx].classList.add('active');
-                    }
-                    if (inds[currentIdx]) {
-                        inds[currentIdx].classList.add('active');
-                        inds[currentIdx].style.opacity = '1';
-                    }
-                    
-                    window._uptownCurrentIndex = currentIdx;
+                    // Update slides and indicators
+                    updateSlides();
                     
                     // Restart auto slideshow
-                    if (window.startAutoSlideshow) {
-                        window.startAutoSlideshow();
+                    stopAutoSlideshow();
+                    startAutoSlideshow();
+                }
+                
+                // Function to go to specific slide (local)
+                function goToUptownSlide(slideNumber) {
+                    // Re-query to ensure we have all images
+                    heroImages = heroSlideshow.querySelectorAll('.hero-img');
+                    const actualSlides = heroImages.length;
+                    
+                    if (actualSlides === 0) return;
+                    
+                    const targetIndex = slideNumber - 1;
+                    if (targetIndex < 0 || targetIndex >= actualSlides) return;
+                    
+                    // Set new index
+                    currentSlideIndex = targetIndex;
+                    
+                    // Update slides and indicators
+                    updateSlides();
+                    
+                    // Restart auto slideshow
+                    stopAutoSlideshow();
+                    startAutoSlideshow();
+                }
+                
+                // Auto slideshow functions
+                function startAutoSlideshow() {
+                    stopAutoSlideshow();
+                    // Also stop main.js slideshow
+                    if (window.slideshowInterval) {
+                        clearInterval(window.slideshowInterval);
+                        window.slideshowInterval = null;
                     }
+                    slideshowInterval = setInterval(function() {
+                        changeUptownSlide(1);
+                    }, 5000);
+                    // Store in window to prevent conflicts
+                    window._uptownSlideshowInterval = slideshowInterval;
+                }
+                
+                function stopAutoSlideshow() {
+                    if (slideshowInterval) {
+                        clearInterval(slideshowInterval);
+                        slideshowInterval = null;
+                    }
+                    // Also stop main.js slideshow
+                    if (window.slideshowInterval) {
+                        clearInterval(window.slideshowInterval);
+                        window.slideshowInterval = null;
+                    }
+                    if (window._uptownSlideshowInterval) {
+                        clearInterval(window._uptownSlideshowInterval);
+                        window._uptownSlideshowInterval = null;
+                    }
+                }
+                
+                // Override global functions
+                window.changeSlide = function(direction) {
+                    changeUptownSlide(direction);
                 };
                 
-                // Override currentSlide to use actual number of images
-                const originalCurrentSlide = window.currentSlide;
                 window.currentSlide = function(slideNumber) {
-                    const slides = document.querySelectorAll('.hero-slideshow .hero-img');
-                    const inds = document.querySelectorAll('.slideshow-indicator');
-                    const total = slides.length;
-                    
-                    if (total === 0) {
-                        if (originalCurrentSlide) originalCurrentSlide(slideNumber);
-                        return;
-                    }
-                    
-                    // Get current index from active slide
-                    let currentIdx = 0;
-                    slides.forEach((slide, idx) => {
-                        if (slide.classList.contains('active')) {
-                            currentIdx = idx;
-                        }
-                    });
-                    
-                    // Remove active from current
-                    if (slides[currentIdx]) {
-                        slides[currentIdx].classList.remove('active');
-                    }
-                    if (inds[currentIdx]) {
-                        inds[currentIdx].classList.remove('active');
-                        inds[currentIdx].style.opacity = '0.5';
-                    }
-                    
-                    // Set new index (convert to 0-based)
-                    currentIdx = slideNumber - 1;
-                    if (currentIdx < 0) currentIdx = 0;
-                    if (currentIdx >= total) currentIdx = total - 1;
-                    
-                    // Add active to new
-                    if (slides[currentIdx]) {
-                        slides[currentIdx].classList.add('active');
-                    }
-                    if (inds[currentIdx]) {
-                        inds[currentIdx].classList.add('active');
-                        inds[currentIdx].style.opacity = '1';
-                    }
-                    
-                    window._uptownCurrentIndex = currentIdx;
-                    
-                    // Restart auto slideshow
-                    if (window.startAutoSlideshow) {
-                        window.startAutoSlideshow();
-                    }
+                    goToUptownSlide(slideNumber);
                 };
                 
-                // Override auto slideshow to use correct total
-                if (window.startAutoSlideshow) {
-                    const originalStartAuto = window.startAutoSlideshow;
-                    window.startAutoSlideshow = function() {
-                        if (window.slideshowInterval) {
-                            clearInterval(window.slideshowInterval);
-                        }
-                        window.slideshowInterval = setInterval(function() {
-                            const slides = document.querySelectorAll('.hero-slideshow .hero-img');
-                            if (slides.length > 0) {
-                                window.changeSlide(1);
-                            } else {
-                                originalStartAuto();
-                            }
-                        }, 5000);
-                    };
+                // Remove onclick handlers and add event listeners to arrows
+                const leftArrow = document.querySelector('.slideshow-arrow-left');
+                const rightArrow = document.querySelector('.slideshow-arrow-right');
+                
+                if (leftArrow) {
+                    leftArrow.removeAttribute('onclick');
+                    leftArrow.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        stopAutoSlideshow();
+                        changeUptownSlide(-1);
+                    }, true);
                 }
                 
-                // Restart slideshow
-                if (window.startAutoSlideshow) {
-                    window.startAutoSlideshow();
+                if (rightArrow) {
+                    rightArrow.removeAttribute('onclick');
+                    rightArrow.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        stopAutoSlideshow();
+                        changeUptownSlide(1);
+                    }, true);
                 }
-            }, 200);
-        })();
+                
+                // Remove onclick handlers and add event listeners to indicators
+                const indicatorsForClick = document.querySelectorAll('.slideshow-indicator');
+                indicatorsForClick.forEach(function(indicator, index) {
+                    indicator.removeAttribute('onclick');
+                    indicator.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        goToUptownSlide(index + 1);
+                    }, true);
+                });
+                
+                // Start auto slideshow
+                startAutoSlideshow();
+                
+                // Stop auto slideshow on hover
+                const heroSection = document.querySelector('#hero');
+                if (heroSection) {
+                    heroSection.addEventListener('mouseenter', stopAutoSlideshow);
+                    heroSection.addEventListener('mouseleave', startAutoSlideshow);
+                }
+                
+                console.log('Uptown Plaza slideshow initialized successfully');
+            }, 500);
+        });
     </script>
 </body>
 </html>
