@@ -1009,7 +1009,10 @@ function initCommercialCarouselLoop() {
     if (!track || !container) return;
 
     // Disable CSS animation to avoid conflicts
+    // Force disable CSS animation (CSS animation removed from mobile styles, but ensure it's disabled)
     track.style.animation = 'none';
+    track.style.animationName = 'none';
+    track.style.animationDuration = '0s';
     track.style.transform = 'translateX(0px)';
 
     // Ensure we have duplicated items (two identical halves)
@@ -1041,7 +1044,10 @@ function initCommercialCarouselLoop() {
     function tick() {
         // Move left at a steady rate; adjust speed as needed
         if (!isDragging) {
-            offsetPx -= 0.6; // pixels per frame
+            // On mobile, match residential carousel speed (0.9), otherwise use 0.6
+            const isMobile = window.innerWidth <= 768;
+            const speed = isMobile ? 0.9 : 0.6;
+            offsetPx -= speed; // pixels per frame
         }
         wrapOffset();
         track.style.transform = `translateX(${offsetPx}px)`;

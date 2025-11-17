@@ -2577,7 +2577,7 @@ section {
     .commercial-properties .logo-scroll-track {
         display: flex !important;
         gap: 0 !important;
-        animation: scrollLogosCommercial 45s linear infinite !important;
+        /* Animation disabled on mobile - JavaScript controls speed instead */
         width: 900vw !important;
         will-change: transform !important;
         animation-fill-mode: none !important;
