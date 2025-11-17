@@ -69,10 +69,10 @@
                             <li class="dropdown-label">Retail Plazas</li>
                             <li><a href="commercial.html#uptown-plaza">Uptown Plaza</a></li>
                             <li><a href="commercial.html#la-placita">La Placita</a></li>
-                            <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza — Coming Soon</a></li>
                             <li><a href="commercial.html#expressway-83">MAS Building</a></li>
                             <li><a href="commercial.html#art-village">Art Village on Main</a></li>
                             <li><a href="commercial.html#water-tower">Water Tower Centre</a></li>
+                            <li><a href="commercial.html#lone-star-plaza">Lone Star Plaza</a></li>
                             <li class="dropdown-label">Office & Medical</li>
                             <li><a href="commercial.html#amistad-plaza">Amistad Plaza</a></li>
                             <li><a href="commercial.html#harlingen-mob">Harlingen MOB</a></li>
@@ -81,8 +81,12 @@
                             <li><a href="commercial.html#midvalley-pros">MidValley Professionals</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-dropdown">
                         <a href="projects.html" class="nav-link">Projects</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="brochures.html">Brochures</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item"><a href="index.html#contact" class="nav-link nav-cta">Contact Us</a></li>
                 </ul>
@@ -99,111 +103,286 @@
 
     <!-- Main Content -->
     <main>
+        <!-- Featured Brochure Section -->
+        <section style="background: linear-gradient(135deg, #000080 0%, #1a1a8a 100%); padding: 80px 0; margin-bottom: 60px;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <div style="background: white; border-radius: 12px; padding: 50px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <div style="margin-bottom: 20px;">
+                            <i class="fas fa-book-open" style="font-size: 4rem; color: #000080;"></i>
+                        </div>
+                        <h2 style="font-size: 2.5rem; font-weight: 800; color: #000080; margin-bottom: 15px; text-transform: uppercase;">Q4 Inventory Book</h2>
+                        <p style="font-size: 1.2rem; color: #666; margin-bottom: 25px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto;">
+                            Explore our comprehensive inventory of available properties and investment opportunities. This interactive flipbook contains detailed information about all our current listings.
+                        </p>
+                        <a href="https://online.flippingbook.com/view/195631026/" target="_blank" style="display: inline-block; background: #000080; color: white; padding: 15px 40px; text-decoration: none; font-weight: 700; font-size: 1rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,128,0.3);">
+                            <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                            View Full Screen
+                        </a>
+                    </div>
+                    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.15); background: #f5f5f5; padding: 20px;">
+                        <iframe src="https://online.flippingbook.com/view/195631026/" width="100%" height="800" frameborder="0" allowfullscreen style="border-radius: 6px; background: white;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Brochures Section -->
-        <section id="brochures" class="brochures">
-            <div class="container">
-                <div class="brochures-grid">
-                    <div class="brochure-category">
-                        <h2>Residential Communities</h2>
-                        <div class="brochure-list">
-                            <div class="brochure-item">
-                                <h3>Villagio</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('villagio')">View Brochure</button>
+        <section id="brochures" style="background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%); padding: 80px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <!-- Residential Communities -->
+                <div style="margin-bottom: 80px;">
+                    <div style="text-align: center; margin-bottom: 50px;">
+                        <div style="display: inline-flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <i class="fas fa-home" style="font-size: 2.5rem; color: #000080;"></i>
+                            <h2 style="font-size: 2.8rem; font-weight: 800; color: #000080; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Residential Communities</h2>
+                        </div>
+                        <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto;">Discover our beautiful residential developments</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Villagio</h3>
+                                <a href="public/brochures/Villagio.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Bougainvillea</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('bougainvillea')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Bougainvillea</h3>
+                                <a href="public/brochures/Bougainvillea.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Del Lago</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('del-lago')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Del Lago</h3>
+                                <a href="public/brochures/Del Lago.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Lago Vista</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('lago-vista')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Lago Vista</h3>
+                                <a href="public/brochures/Lago Vista.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Paseo Del Lago</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('paseo-del-lago')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Paseo Del Lago</h3>
+                                <a href="public/brochures/Paseo Del Lago.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Cimarron Country Club</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('cimarron')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">The Village on Dove</h3>
+                                <a href="public/brochures/The Village On Dove .pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>The Village on Dove</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('village-on-dove')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #000080; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(0,0,128,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(0,0,128,0.05), rgba(198,40,40,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #1a1a8a); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,128,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Villas at Del Lago</h3>
+                                <a href="public/brochures/Villas at Del Lago.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #000080; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
                             </div>
-                            
-                            <div class="brochure-item">
-                                <h3>Villas at Del Lago</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('villas-del-lago')">View Brochure</button>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="brochure-category">
-                        <h2>Commercial Properties</h2>
-                        <div class="brochure-list">
-                            <div class="brochure-item">
-                                <h3>Uptown Plaza</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('uptown-plaza')">View Brochure</button>
+                <!-- Commercial Properties -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 50px;">
+                        <div style="display: inline-flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <i class="fas fa-building" style="font-size: 2.5rem; color: #000080;"></i>
+                            <h2 style="font-size: 2.8rem; font-weight: 800; color: #000080; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Commercial Properties</h2>
+                        </div>
+                        <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto;">Explore our premier commercial developments</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Uptown Plaza</h3>
+                                <a href="public/brochures/Uptown Plaza.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>La Placita</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('la-placita')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">La Placita</h3>
+                                <a href="public/brochures/La Placita .pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Lone Star Plaza</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('lone-star-plaza')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Lone Star Plaza</h3>
+                                <a href="public/brochures/Lone Star Plaza.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>MAS Building</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('expressway-83')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">MAS Building</h3>
+                                <a href="public/brochures/MAS Flyer.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Art Village</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('art-village')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Art Village on Main</h3>
+                                <a href="public/brochures/Art Village On Main.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Water Tower Centre</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('water-tower')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Water Tower Centre</h3>
+                                <a href="public/brochures/Water Tower Centre.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Amistad Plaza</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('amistad-plaza')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Amistad Plaza</h3>
+                                <a href="public/brochures/Amistad.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Harlingen MOB</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('harlingen-mob')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Harlingen MOB</h3>
+                                <a href="public/brochures/Harlingen MOB.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>Brownsville MOB</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('brownsville-mob')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">Brownsville MOB</h3>
+                                <a href="public/brochures/Brownsville MOB.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>StarPoint Plaza</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('starpoint')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">StarPoint Plaza</h3>
+                                <a href="public/brochures/Star Point Plaza.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
+                            </div>
                             </div>
                             
-                            <div class="brochure-item">
-                                <h3>MidValley Professionals</h3>
-                                <button class="btn btn-primary" onclick="openBrochure('midvalley-pros')">View Brochure</button>
+                        <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(198,40,40,0.05), rgba(0,0,128,0.05)); border-radius: 50%;"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
+                                    <i class="fas fa-file-pdf" style="color: white; font-size: 1.8rem;"></i>
+                                </div>
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin-bottom: 12px;">MidValley Professionals</h3>
+                                <a href="public/brochures/MidValley Plaza.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #C62828; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease;">
+                                    View Brochure <i class="fas fa-arrow-right" style="transition: transform 0.3s ease;"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -256,7 +435,7 @@
                 </div>
             </div>
             <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; text-align: center;">
-                <p style="color: rgba(255,255,255,0.8); margin: 0;">&copy; 2024 Cantu Construction. All rights reserved.</p>
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">&copy; 2025 Cantu Construction. All rights reserved. Prices are subject to change.</p>
             </div>
         </div>
     </footer>

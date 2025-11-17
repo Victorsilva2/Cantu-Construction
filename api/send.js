@@ -17,7 +17,8 @@ module.exports = async function handler(req, res) {
   const { name, email, phone, message } = req.body;
 
   try {
-    const msg = {
+    // Email 1: Send inquiry to business
+    const businessMsg = {
       to: "clarissaf@cantuconstruction.com", // Recipient
       from: "clarissaf@cantuconstruction.com", // Verified sender in SendGrid
       subject: "New Inquiry from Cantu Construction Website",
@@ -32,8 +33,46 @@ module.exports = async function handler(req, res) {
       `,
     };
 
-    await sgMail.send(msg);
-    console.log('Email sent successfully via SendGrid');
+    // Email 2: Auto-generated confirmation email to customer
+    const customerMsg = {
+      to: email, // Customer's email
+      from: "clarissaf@cantuconstruction.com", // Verified sender in SendGrid
+      subject: "Cantu Construction – Inquiry Received",
+      text: `Hello,\n\nThank you for your inquiry.\nYour message has been successfully received by our team at Cantu Construction.\n\nA representative will review the details and follow up with you shortly regarding next steps, timelines, or any additional information needed.\n\nWe appreciate your interest in working with us and look forward to the opportunity to discuss your project.\n\nSincerely,\nCantu Construction`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
+          <div style="background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <p style="color: #333; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">Hello,</p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+              Thank you for your inquiry.<br>
+              Your message has been successfully received by our team at Cantu Construction.
+            </p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+              A representative will review the details and follow up with you shortly regarding next steps, timelines, or any additional information needed.
+            </p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+              We appreciate your interest in working with us and look forward to the opportunity to discuss your project.
+            </p>
+            
+            <p style="color: #333; font-size: 16px; line-height: 1.8; margin-top: 30px;">
+              Sincerely,<br>
+              <strong style="color: #000080;">Cantu Construction</strong>
+            </p>
+          </div>
+        </div>
+      `,
+    };
+
+    // Send both emails
+    await Promise.all([
+      sgMail.send(businessMsg),
+      sgMail.send(customerMsg)
+    ]);
+    
+    console.log('Emails sent successfully via SendGrid');
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.error('SendGrid error:', error.message);
