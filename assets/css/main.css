@@ -2577,7 +2577,8 @@ section {
     .commercial-properties .logo-scroll-track {
         display: flex !important;
         gap: 0 !important;
-        /* Animation disabled on mobile - JavaScript controls speed instead */
+        /* Animation disabled - JavaScript controls speed to match residential */
+        animation: none !important;
         width: 900vw !important;
         will-change: transform !important;
         animation-fill-mode: none !important;
@@ -3163,11 +3164,19 @@ section {
     }
     
     
-    .residential-communities .logo-scroll-track,
-    .commercial-properties .logo-scroll-track {
+    .residential-communities .logo-scroll-track {
         display: flex !important;
         gap: 0 !important;
         animation: scrollLogosMobile 32s linear infinite !important;
+        width: 800vw !important;
+        will-change: transform !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .commercial-properties .logo-scroll-track {
+        display: flex !important;
+        gap: 0 !important;
+        animation: none !important; /* JavaScript controls speed to match residential */
         width: 800vw !important;
         will-change: transform !important;
         flex-shrink: 0 !important;

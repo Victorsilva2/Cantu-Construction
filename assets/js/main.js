@@ -1042,12 +1042,9 @@ function initCommercialCarouselLoop() {
     }
 
     function tick() {
-        // Move left at a steady rate; adjust speed as needed
+        // Move left at a steady rate; match residential carousel speed (0.9)
         if (!isDragging) {
-            // On mobile, match residential carousel speed (0.9), otherwise use 0.6
-            const isMobile = window.innerWidth <= 768;
-            const speed = isMobile ? 0.9 : 0.6;
-            offsetPx -= speed; // pixels per frame
+            offsetPx -= 0.9; // pixels per frame - same speed as residential
         }
         wrapOffset();
         track.style.transform = `translateX(${offsetPx}px)`;
