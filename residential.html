@@ -299,6 +299,75 @@
                 opacity: 1 !important;
             }
         }
+
+        /* Mobile carousel for Property Locations section */
+        @media (max-width: 768px) {
+            /* Make grid single column and scrollable for Property Locations */
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                display: flex !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scroll-behavior: smooth !important;
+                gap: 20px !important;
+                padding: 20px 10px !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+            }
+            
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"]::-webkit-scrollbar {
+                display: none !important;
+            }
+            
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] > div {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+                flex-shrink: 0 !important;
+                scroll-snap-align: center !important;
+            }
+
+            .location-map-section .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Tablet optimization for Property Locations section */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .location-map-section .container > div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .location-map-section .section-header h2 {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Swipe hint styles with floating animation */
+        .swipe-hint-locations {
+            animation: floatUpDown 2s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Show swipe hints on mobile only, hide on desktop */
+        @media (min-width: 769px) {
+            .swipe-hint-locations {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .swipe-hint-locations {
+                display: block !important;
+            }
+        }
     </style>
 </head>
 <body class="residential">
@@ -595,6 +664,76 @@
             </div>
         </section>
 
+        <!-- Location Map Section -->
+        <section class="location-map-section" style="background: #f8f9fa; padding: 80px 0;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+                <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 3.5rem; font-weight: 800; color: #000080; margin-bottom: 20px; text-transform: uppercase;">
+                        Property Locations
+                    </h2>
+                </div>
+                
+                <!-- Map First -->
+                <div style="background: white; padding: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 50px;">
+                    <iframe 
+                        src="https://www.google.com/maps/d/embed?mid=1Nann0bvTKXJM45HmJ9jrqr87RXSUla0&ehbc=2E312F" 
+                        width="100%" 
+                        height="600" 
+                        style="border:0;"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <!-- Properties Grid Below -->
+                <h3 style="font-size: 2.5rem; font-weight: 800; color: #000080; margin-bottom: 30px; text-align: center;">Residential Communities</h3>
+                <!-- Swipe Hint for Property Locations - Navy -->
+                <div class="swipe-hint-locations" style="text-align: center; padding: 15px; color: #000080; font-weight: 600; display: none;">
+                    <i class="fas fa-hand-point-left" style="margin-right: 10px;"></i>
+                    Swipe to see more
+                    <i class="fas fa-hand-point-right" style="margin-left: 10px;"></i>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 60px;">
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Villagio</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">N 10th St & Providence Ave, McAllen, TX 78504</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=N+10th+St+%26+Providence+Ave+McAllen+TX+78504" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Bougainvillea</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">S "M" St & El Rancho Rd, McAllen, TX</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=S+M+St+%26+El+Rancho+Rd+McAllen+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Del Lago</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">S "H" St & Orangewood Dr, McAllen, TX</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=S+H+St+%26+Orangewood+Dr+McAllen+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Lago Vista</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">S K Center St & Orangewood Dr, McAllen, TX</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=S+K+Center+St+%26+Orangewood+Dr+McAllen+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">Paseo Del Lago</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">S K Center St & Orangewood Dr, McAllen, TX</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=S+K+Center+St+%26+Orangewood+Dr+McAllen+TX" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                    
+                    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-bottom: 3px solid #4285F4;">
+                        <h4 style="font-size: 1.5rem; font-weight: 700; color: #000080; margin: 0 0 8px 0;">The Village on Dove</h4>
+                        <p style="color: #666; margin: 0 0 12px 0; font-size: 1rem; line-height: 1.6;">221 Canary, McAllen, TX 78504</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=221+Canary+McAllen+TX+78504" target="_blank" style="color: #000080; font-weight: 600; text-decoration: none; font-size: 0.95rem;">Get Directions →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     <style>
         main {
@@ -639,11 +778,11 @@
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
                         <i class="fas fa-phone" style="margin-right: 10px; color: #C62828;"></i>
-                        (956) 631-1273
+                        <a href="tel:9566311273" style="color: rgba(255,255,255,0.9); text-decoration: none;">(956) 631-1273</a>
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
                         <i class="fas fa-envelope" style="margin-right: 10px; color: #C62828;"></i>
-                        sales@cantuconstruction.com
+                        <a href="mailto:sales@cantuconstruction.com" style="color: rgba(255,255,255,0.9); text-decoration: none;">sales@cantuconstruction.com</a>
                     </p>
                 </div>
             </div>
