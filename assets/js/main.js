@@ -1041,13 +1041,21 @@ function initCommercialCarouselLoop() {
         }
     }
 
+    // Calculate speed based on screen size - slower than residential on mobile
+    // Commercial has 9 items, residential has 5 items
+    function getSpeed() {
+        if (window.innerWidth <= 768) {
+            // Slower speed on mobile: 0.4 pixels per frame
+            return 0.4;
+        }
+        return 0.6;
+    }
+
     function tick() {
         // Move left at a steady rate; adjust speed as needed
         if (!isDragging) {
             // On mobile, match residential carousel speed (0.9), otherwise use 0.6
-            const isMobile = window.innerWidth <= 768;
-            const speed = isMobile ? 0.9 : 0.6;
-            offsetPx -= speed; // pixels per frame
+            offsetPx -= getSpeed(); // pixels per frame
         }
         wrapOffset();
         track.style.transform = `translateX(${offsetPx}px)`;
