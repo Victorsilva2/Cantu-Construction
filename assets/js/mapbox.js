@@ -5,7 +5,7 @@ const commercialProperties = [
     {
         name: 'Uptown Plaza',
         address: '4500 N. 10th St, McAllen TX, 78504',
-        coordinates: [-98.2306, 26.2408],
+        coordinates: [-98.222248, 26.245463],
         category: 'Retail'
     },
     {
