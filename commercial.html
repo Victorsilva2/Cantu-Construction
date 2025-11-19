@@ -10,6 +10,315 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <style>
+        /* Mapbox Map Styles - Google Maps-like */
+        #commercial-map,
+        #residential-map {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        /* Navigation controls styling */
+        .mapboxgl-ctrl-group {
+            border-radius: 8px !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+            background: white !important;
+            border: none !important;
+        }
+        
+        .mapboxgl-ctrl button {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 0 !important;
+        }
+        
+        .mapboxgl-ctrl button:first-child {
+            border-top-left-radius: 8px !important;
+            border-top-right-radius: 8px !important;
+        }
+        
+        .mapboxgl-ctrl button:last-child {
+            border-bottom-left-radius: 8px !important;
+            border-bottom-right-radius: 8px !important;
+        }
+        
+        .mapboxgl-ctrl button:hover {
+            background-color: #f5f5f5 !important;
+        }
+        
+        /* Popup styling - Google Maps-like */
+        .mapboxgl-popup {
+            max-width: 300px;
+        }
+        
+        .mapboxgl-popup-content {
+            border-radius: 8px !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+            padding: 0 !important;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .mapboxgl-popup-close-button {
+            font-size: 20px !important;
+            padding: 8px !important;
+            color: #666 !important;
+            right: 8px !important;
+            top: 8px !important;
+            width: 24px !important;
+            height: 24px !important;
+            border-radius: 50% !important;
+            background: rgba(255,255,255,0.9) !important;
+            transition: all 0.2s !important;
+        }
+        
+        .mapboxgl-popup-close-button:hover {
+            background: rgba(255,255,255,1) !important;
+            color: #000 !important;
+        }
+        
+        /* Marker pin hover effect */
+        .map-marker-pin:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
+        
+        /* Attribution styling */
+        .mapboxgl-ctrl-attrib {
+            background: rgba(255,255,255,0.8) !important;
+            padding: 4px 8px !important;
+            font-size: 11px !important;
+            border-radius: 4px !important;
+        }
+        
+        /* ============================================
+           RESPONSIVE STYLES FOR ALL SCREEN SIZES
+           ============================================ */
+        
+        /* Large Desktop (1400px and above) */
+        @media (min-width: 1400px) {
+            #commercial-map,
+            #residential-map {
+                height: 650px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: 350px;
+            }
+            
+            .mapboxgl-ctrl button {
+                width: 36px !important;
+                height: 36px !important;
+            }
+        }
+        
+        /* Desktop (1025px - 1399px) */
+        @media (min-width: 1025px) and (max-width: 1399px) {
+            #commercial-map,
+            #residential-map {
+                height: 600px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: 320px;
+            }
+        }
+        
+        /* Tablet / iPad (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            #commercial-map,
+            #residential-map {
+                height: 500px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: 280px;
+            }
+            
+            .mapboxgl-ctrl button {
+                width: 36px !important;
+                height: 36px !important;
+            }
+            
+            .mapboxgl-popup-content {
+                font-size: 0.95rem !important;
+            }
+            
+            .mapboxgl-popup-content h4 {
+                font-size: 1.05rem !important;
+            }
+            
+            .mapboxgl-popup-content p {
+                font-size: 0.85rem !important;
+            }
+        }
+        
+        /* Mobile / Small Tablet (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            #commercial-map,
+            #residential-map {
+                height: 450px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: 260px;
+            }
+            
+            .mapboxgl-ctrl-group {
+                transform: scale(0.9);
+                transform-origin: top right;
+            }
+            
+            .mapboxgl-ctrl button {
+                width: 36px !important;
+                height: 36px !important;
+            }
+            
+            .mapboxgl-popup-close-button {
+                width: 28px !important;
+                height: 28px !important;
+                font-size: 18px !important;
+            }
+            
+            .map-marker-pin {
+                width: 36px !important;
+                height: 36px !important;
+            }
+        }
+        
+        /* Small Mobile (320px - 480px) */
+        @media (max-width: 480px) {
+            #commercial-map,
+            #residential-map {
+                height: 400px !important;
+                border-radius: 8px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: 85vw !important;
+                max-width: calc(100vw - 40px) !important;
+            }
+            
+            .mapboxgl-popup-content {
+                padding: 10px 12px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .mapboxgl-popup-content h4 {
+                font-size: 1rem !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .mapboxgl-popup-content p {
+                font-size: 0.8rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .mapboxgl-popup-content a {
+                font-size: 0.85rem !important;
+                padding: 6px 0 !important;
+            }
+            
+            .mapboxgl-ctrl-group {
+                transform: scale(0.85);
+                transform-origin: top right;
+                margin: 8px !important;
+            }
+            
+            .mapboxgl-ctrl button {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 18px !important;
+            }
+            
+            .mapboxgl-popup-close-button {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 20px !important;
+                right: 6px !important;
+                top: 6px !important;
+            }
+            
+            .map-marker-pin {
+                width: 38px !important;
+                height: 38px !important;
+            }
+            
+            .mapboxgl-ctrl-attrib {
+                font-size: 9px !important;
+                padding: 3px 6px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+            
+            /* Location map section padding for mobile */
+            .location-map-section {
+                padding: 40px 0 !important;
+            }
+            
+            .location-map-section .container {
+                padding: 0 15px !important;
+            }
+            
+            .location-map-section h2 {
+                font-size: 2.5rem !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .location-map-section h3 {
+                font-size: 2rem !important;
+                margin-bottom: 20px !important;
+            }
+        }
+        
+        /* Extra Small Mobile (below 360px) */
+        @media (max-width: 360px) {
+            #commercial-map,
+            #residential-map {
+                height: 350px !important;
+            }
+            
+            .mapboxgl-popup {
+                max-width: calc(100vw - 30px) !important;
+            }
+            
+            .mapboxgl-ctrl-group {
+                transform: scale(0.8);
+            }
+            
+            .mapboxgl-ctrl button {
+                width: 36px !important;
+                height: 36px !important;
+            }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .mapboxgl-ctrl button {
+                min-width: 44px !important;
+                min-height: 44px !important;
+            }
+            
+            .mapboxgl-popup-close-button {
+                min-width: 36px !important;
+                min-height: 36px !important;
+            }
+            
+            .map-marker-pin {
+                min-width: 40px !important;
+                min-height: 40px !important;
+            }
+        }
+        
+        /* Landscape mobile orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #commercial-map,
+            #residential-map {
+                height: 350px !important;
+            }
+        }
+    </style>
     <style>
         /* Align Learn More buttons at the same height using flexbox */
         #properties > .container > div > div {
@@ -493,7 +802,12 @@
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item nav-dropdown">
-                        <a href="residential.html" class="nav-link">Residential</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="residential.html" class="nav-link">Residential</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li><a href="residential/villagio.html">Villagio</a></li>
                             <li><a href="residential/bougainvillea.html">Bougainvillea</a></li>
@@ -505,7 +819,12 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a href="commercial.html" class="nav-link active">Commercial</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="commercial.html" class="nav-link active">Commercial</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li class="dropdown-label">Retail Plazas</li>
                             <li><a href="commercial/uptown-plaza.html">Uptown Plaza</a></li>
@@ -523,7 +842,12 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a href="projects.html" class="nav-link">Projects</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li><a href="projects.html">Projects</a></li>
                             <li><a href="brochures.html">Brochures</a></li>
@@ -839,15 +1163,7 @@
                 
                 <!-- Map First -->
                 <div style="background: white; padding: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 50px;">
-                    <iframe 
-                        src="https://www.google.com/maps/d/embed?mid=1Nann0bvTKXJM45HmJ9jrqr87RXSUla0&ehbc=2E312F" 
-                        width="100%" 
-                        height="600" 
-                        style="border:0;"
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <div id="commercial-map" style="width: 100%; height: 600px; border-radius: 12px;"></div>
                 </div>
                 
                 <!-- Properties Grid Below -->
@@ -962,23 +1278,22 @@
                         <li style="margin-bottom: 10px;"><a href="residential.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Residential</a></li>
                         <li style="margin-bottom: 10px;"><a href="commercial.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Commercial</a></li>
                         <li style="margin-bottom: 10px;"><a href="projects.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Projects</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Contact Info</h4>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
                         <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #C62828;"></i>
-                        5221 N McColl Rd<br>
-                        <span style="margin-left: 24px;">McAllen, TX 78504</span>
+                        <a href="https://www.google.com/maps/place/5221+N+McColl+Rd,+McAllen,+TX+78504/@26.2483202,-98.208048,16z" target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">5221 N McColl Rd<br><span style="margin-left: 24px;">McAllen, TX 78504</span></a>
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
                         <i class="fas fa-phone" style="margin-right: 10px; color: #C62828;"></i>
-                        (956) 631-1273
+                        <a href="tel:9566311273" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">(956) 631-1273</a>
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
                         <i class="fas fa-envelope" style="margin-right: 10px; color: #C62828;"></i>
-                        sales@cantuconstruction.com
+                        <a href="mailto:sales@cantuconstruction.com" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">sales@cantuconstruction.com</a>
                     </p>
                 </div>
             </div>
@@ -990,6 +1305,7 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+    <script src="assets/js/mapbox.js"></script>
     <script>
         // Make commercial property card images bigger by removing inline max-width/max-height constraints
         document.addEventListener('DOMContentLoaded', function() {

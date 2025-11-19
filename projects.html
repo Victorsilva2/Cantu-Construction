@@ -259,6 +259,25 @@
             color: var(--brand-blue);
         }
 
+        /* Bert Ogden Arena - Desktop shows bertodgenarena.jpg, Mobile shows 1stslideBertOdgenMobile.png */
+        .bert-ogden-desktop {
+            display: block !important;
+        }
+
+        .bert-ogden-mobile {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .bert-ogden-desktop {
+                display: none !important;
+            }
+
+            .bert-ogden-mobile {
+                display: block !important;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .portfolio-grid-new {
@@ -328,7 +347,12 @@
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item nav-dropdown">
-                        <a href="residential.html" class="nav-link">Residential</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="residential.html" class="nav-link">Residential</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li><a href="residential/villagio.html">Villagio</a></li>
                             <li><a href="residential/bougainvillea.html">Bougainvillea</a></li>
@@ -340,7 +364,12 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a href="commercial.html" class="nav-link">Commercial</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="commercial.html" class="nav-link">Commercial</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li class="dropdown-label">Retail Plazas</li>
                             <li><a href="commercial/uptown-plaza.html">Uptown Plaza</a></li>
@@ -358,7 +387,12 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a href="projects.html" class="nav-link active">Projects</a>
+                        <div class="nav-dropdown-wrapper">
+                            <a href="projects.html" class="nav-link active">Projects</a>
+                            <button class="dropdown-toggle-mobile" aria-label="Toggle dropdown" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="dropdown-menu">
                             <li><a href="projects.html">Projects</a></li>
                             <li><a href="brochures.html">Brochures</a></li>
@@ -423,7 +457,8 @@
                 <!-- Bert Ogden Arena -->
                 <div class="landmark-project" style="margin-bottom: 80px;">
                     <div class="project-slideshow" style="position: relative; width: 100%; height: 600px; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2);">
-                        <img src="public/images/bertodgenarena.jpg" alt="Bert Ogden Arena" class="project-slide active" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 2s ease-in-out;">
+                        <img src="public/images/bertodgenarena.jpg" alt="Bert Ogden Arena" class="project-slide active bert-ogden-desktop" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 2s ease-in-out;">
+                        <img src="public/images/1stslideBertOdgenMobile.png" alt="Bert Ogden Arena" class="project-slide active bert-ogden-mobile" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 2s ease-in-out;">
                         <img src="public/images/bertogdentemp1.jpg" alt="Bert Ogden Arena" class="project-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 2s ease-in-out;">
                         <img src="public/images/bertogdentemp2.png" alt="Bert Ogden Arena" class="project-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 2s ease-in-out;">
                         <!-- Navigation Arrows -->
@@ -504,23 +539,22 @@
                         <li style="margin-bottom: 10px;"><a href="residential.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Residential</a></li>
                         <li style="margin-bottom: 10px;"><a href="commercial.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Commercial</a></li>
                         <li style="margin-bottom: 10px;"><a href="projects.html" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Projects</a></li>
-                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 style="color: white; font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">Contact Info</h4>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
                         <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #C62828;"></i>
-                        5221 N McColl Rd<br>
-                        <span style="margin-left: 24px;">McAllen, TX 78504</span>
+                        <a href="https://www.google.com/maps/place/5221+N+McColl+Rd,+McAllen,+TX+78504/@26.2483202,-98.208048,16z" target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">5221 N McColl Rd<br><span style="margin-left: 24px;">McAllen, TX 78504</span></a>
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 10px;">
                         <i class="fas fa-phone" style="margin-right: 10px; color: #C62828;"></i>
-                        (956) 631-1273
+                        <a href="tel:9566311273" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">(956) 631-1273</a>
                     </p>
                     <p style="color: rgba(255,255,255,0.9); line-height: 1.8;">
                         <i class="fas fa-envelope" style="margin-right: 10px; color: #C62828;"></i>
-                        sales@cantuconstruction.com
+                        <a href="mailto:sales@cantuconstruction.com" style="color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.3s ease;">sales@cantuconstruction.com</a>
                     </p>
                 </div>
             </div>

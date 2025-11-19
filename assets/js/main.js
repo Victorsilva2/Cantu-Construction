@@ -3,39 +3,27 @@ function initDecorativeLinesAnimation() {
     const decorativeLines = document.querySelectorAll('.decorative-line');
     
     if (decorativeLines.length === 0) {
-        console.log('No decorative lines found');
         return;
     }
     
-    console.log('Found', decorativeLines.length, 'decorative lines');
-    
-    // Set initial width to 0 for all lines (including those with inline styles)
     decorativeLines.forEach(line => {
-        // Store original width from inline styles or use default
         const originalWidth = line.style.width || '100px';
         line.style.setProperty('--original-width', originalWidth);
         line.style.width = '0';
     });
     
-    // Create intersection observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const line = entry.target;
-                console.log('Line intersecting, animating...');
-                
-                // Add animation class
                 line.classList.add('animate');
-                
-                // Set width to 100% for full underline effect
                 line.style.width = '100%';
             }
         });
     }, {
-        threshold: 0.3 // Trigger when 30% of the element is visible
+        threshold: 0.3
     });
     
-    // Observe all decorative lines
     decorativeLines.forEach(line => {
         observer.observe(line);
     });
@@ -55,127 +43,129 @@ function initStickyNav() {
     }
 }
 
-// Mobile Navigation Toggle - Fresh Approach
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing mobile nav...');
-    
-    // Initialize decorative lines animation
     initDecorativeLinesAnimation();
-    
-    // Initialize sticky navigation
     initStickyNav();
     
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    console.log('Hamburger element:', hamburger);
-    console.log('Nav menu element:', navMenu);
-    
-    if (!hamburger) {
-        console.error('Hamburger element not found!');
+    if (!hamburger || !navMenu) {
         return;
     }
     
-    if (!navMenu) {
-        console.error('Nav menu element not found!');
-        return;
-    }
-    
-    // Add click event to hamburger
     hamburger.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-        console.log('Hamburger clicked!');
-        console.log('Current nav-menu classes:', navMenu.className);
-        console.log('Current nav-menu style display:', window.getComputedStyle(navMenu).display);
-        
-        // Toggle active class on hamburger
         hamburger.classList.toggle('active');
-        
-        // Toggle active class on nav menu
         navMenu.classList.toggle('active');
-        
-        console.log('After toggle - nav-menu classes:', navMenu.className);
-        console.log('After toggle - nav-menu style display:', window.getComputedStyle(navMenu).display);
-        console.log('After toggle - nav-menu style left:', window.getComputedStyle(navMenu).left);
-        
-        // Prevent event bubbling
         return false;
     });
     
-    // Handle dropdown menus on mobile - double tap to navigate
-    const dropdownItems = document.querySelectorAll('.nav-dropdown');
-    dropdownItems.forEach(item => {
-        const link = item.querySelector('.nav-link');
-        let clickTimer = null;
-        
-        link.addEventListener('click', function(e) {
-            // On mobile, handle double tap to navigate
+    const dropdownToggleButtons = document.querySelectorAll('.dropdown-toggle-mobile');
+    dropdownToggleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (window.innerWidth <= 768) {
-                e.preventDefault();
+                const dropdownItem = button.closest('.nav-dropdown');
+                const dropdown = dropdownItem ? dropdownItem.querySelector('.dropdown-menu') : null;
+                const icon = button.querySelector('i');
                 
-                if (clickTimer === null) {
-                    // First click - open dropdown and set timer
-                    clickTimer = setTimeout(() => {
-                        clickTimer = null;
-                    }, 300);
-                    
-                    const dropdown = item.querySelector('.dropdown-menu');
-                    if (dropdown) {
-                        dropdown.classList.toggle('show');
-                    }
-                } else {
-                    // Second click within 300ms - navigate to page
-                    clearTimeout(clickTimer);
-                    clickTimer = null;
-                    
-                    const href = link.getAttribute('href');
-                    if (href) {
-                        window.location.href = href;
+                if (dropdown) {
+                    dropdown.classList.toggle('show');
+                    if (icon) {
+                        if (dropdown.classList.contains('show')) {
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            icon.style.transform = 'rotate(0deg)';
+                        }
                     }
                 }
             }
-            // On desktop, allow normal navigation
         });
     });
     
-    // Close menu when clicking on nav links
+    const dropdownItems = document.querySelectorAll('.nav-dropdown');
+    dropdownItems.forEach(item => {
+        const link = item.querySelector('.nav-link');
+        
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                const toggleButton = item.querySelector('.dropdown-toggle-mobile');
+                if (toggleButton && e.target !== toggleButton && !toggleButton.contains(e.target)) {
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown && dropdown.classList.contains('show')) {
+                        e.preventDefault();
+                        dropdown.classList.remove('show');
+                        const icon = toggleButton.querySelector('i');
+                        if (icon) {
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                }
+            }
+        });
+    });
+    
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                const dropdown = link.closest('.dropdown-menu');
+                if (dropdown) {
+                    dropdown.classList.remove('show');
+                    const dropdownItem = dropdown.closest('.nav-dropdown');
+                    if (dropdownItem) {
+                        const icon = dropdownItem.querySelector('.dropdown-toggle-mobile i');
+                        if (icon) {
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                }
+            }
+        });
+    });
+    
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            // Close menu for all links except dropdown parent links on mobile
             if (window.innerWidth <= 768 && !link.closest('.nav-dropdown')) {
-                console.log('Nav link clicked, closing menu');
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             }
         });
     });
     
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            console.log('Clicked outside, closing menu');
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
     });
-    
-    
-    console.log('Mobile navigation initialized successfully');
 });
 
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            if (hamburger && navMenu && window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         }
     });
 });
@@ -634,177 +624,110 @@ function initHeroSlideshow() {
     // Detect if we're on commercial page
     const isCommercial = document.body.classList.contains('commercial') || window.location.pathname.includes('commercial');
     
-    console.log('Initializing slideshow, isMobile:', isMobile, 'isResidential:', isResidential, 'isProjects:', isProjects, 'isCommercial:', isCommercial);
-    
     if (isMobile) {
         if (isResidential) {
-            totalSlides = 3; // 3 residential images
+            totalSlides = 3;
             const heroImages = document.querySelectorAll('.hero-img');
             
-            console.log('Mobile Residential: Found', heroImages.length, 'residential hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No residential hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first image as active
             heroImages[0].classList.add('active');
-            console.log('Mobile Residential: Set first image as active');
         } else if (isProjects) {
-            totalSlides = 3; // 3 projects images
+            totalSlides = 3;
             const heroImages = document.querySelectorAll('.hero-img');
             
-            console.log('Mobile Projects: Found', heroImages.length, 'projects hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No projects hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first image as active
             heroImages[0].classList.add('active');
-            console.log('Mobile Projects: Set first image as active');
         } else if (isCommercial) {
-            totalSlides = 3; // 3 commercial images
+            totalSlides = 3;
             const heroSlideshow = document.querySelector('.hero-slideshow');
             const heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
             
-            console.log('Mobile Commercial: Found', heroImages.length, 'commercial hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No commercial hero images found for slideshow');
                 return;
             }
             
-            // Ensure we have exactly 3 images for commercial
-            if (heroImages.length < 3) {
-                console.warn('Mobile Commercial: Expected 3 images but found', heroImages.length);
-            }
-            
-            // Remove active class from all images first
             heroImages.forEach(img => {
                 img.classList.remove('active');
                 img.style.opacity = '0';
                 img.style.display = 'block';
             });
             
-            // Initialize first image as active
             if (heroImages[0]) {
                 heroImages[0].classList.add('active');
                 heroImages[0].style.opacity = '1';
-                console.log('Mobile Commercial: Set first image as active');
             }
             
-            // Ensure all images are visible in DOM (for transitions)
             heroImages.forEach(img => {
                 img.style.display = 'block';
             });
         } else {
-            totalSlides = 7; // 7 mobile images
+            totalSlides = 7;
             const heroImages = document.querySelectorAll('.hero-img-mobile');
             
-            console.log('Mobile Main: Found', heroImages.length, 'mobile hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No mobile hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all mobile images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first mobile image as active
             heroImages[0].classList.add('active');
-            console.log('Mobile Main: Set first image as active');
         }
     } else {
         if (isResidential) {
-            totalSlides = 3; // 3 residential images
+            totalSlides = 3;
             const heroImages = document.querySelectorAll('.hero-img');
             
-            console.log('Desktop Residential: Found', heroImages.length, 'residential hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No residential hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first image as active
             heroImages[0].classList.add('active');
-            console.log('Desktop Residential: Set first image as active');
         } else if (isProjects) {
-            totalSlides = 3; // 3 projects images
+            totalSlides = 3;
             const heroImages = document.querySelectorAll('.hero-img');
             
-            console.log('Desktop Projects: Found', heroImages.length, 'projects hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No projects hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first image as active
             heroImages[0].classList.add('active');
-            console.log('Desktop Projects: Set first image as active');
         } else if (isCommercial) {
-            totalSlides = 3; // 3 commercial images
+            totalSlides = 3;
             const heroSlideshow = document.querySelector('.hero-slideshow');
             const heroImages = heroSlideshow ? heroSlideshow.querySelectorAll('.hero-img') : document.querySelectorAll('.commercial .hero-img');
             
-            console.log('Desktop Commercial: Found', heroImages.length, 'commercial hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No commercial hero images found for slideshow');
                 return;
             }
             
-            // Ensure we have exactly 3 images for commercial
-            if (heroImages.length < 3) {
-                console.warn('Desktop Commercial: Expected 3 images but found', heroImages.length);
-            }
-            
-            // Remove active class from all images first
             heroImages.forEach(img => {
                 img.classList.remove('active');
                 img.style.opacity = '0';
             });
             
-            // Initialize first image as active
             if (heroImages[0]) {
                 heroImages[0].classList.add('active');
                 heroImages[0].style.opacity = '1';
-                console.log('Desktop Commercial: Set first image as active');
             }
         } else {
-            totalSlides = 5; // 5 desktop images
+            totalSlides = 5;
             const heroImages = document.querySelectorAll('.hero-img');
             
-            console.log('Desktop Main: Found', heroImages.length, 'desktop hero images');
-            
             if (heroImages.length === 0) {
-                console.log('No desktop hero images found for slideshow');
                 return;
             }
             
-            // Remove active class from all desktop images first
             heroImages.forEach(img => img.classList.remove('active'));
-            
-            // Initialize first desktop image as active
             heroImages[0].classList.add('active');
-            console.log('Desktop Main: Set first image as active');
         }
     }
     
@@ -863,15 +786,10 @@ function changeSlide(direction) {
     
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Changing slide:', direction, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Commercial:', isCommercial, 'Total slides:', totalSlides, 'Images found:', heroImages.length);
-    
-    // Ensure totalSlides matches actual number of images
     if (heroImages.length > 0 && heroImages.length < totalSlides) {
         totalSlides = heroImages.length;
-        console.log('Adjusted totalSlides to', totalSlides, 'based on actual images found');
     }
     
-    // Remove active class from current image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.remove('active');
         heroImages[currentSlideIndex].style.opacity = '0';
@@ -880,24 +798,17 @@ function changeSlide(direction) {
         indicators[currentSlideIndex].classList.remove('active');
     }
     
-    // Calculate new slide index
     currentSlideIndex += direction;
     
-    // Handle wrap around
     if (currentSlideIndex >= totalSlides) {
         currentSlideIndex = 0;
     } else if (currentSlideIndex < 0) {
         currentSlideIndex = totalSlides - 1;
     }
     
-    console.log('New slide index:', currentSlideIndex, 'out of', totalSlides, 'total slides');
-    
-    // Add active class to new image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.add('active');
         heroImages[currentSlideIndex].style.opacity = '1';
-    } else {
-        console.warn('No image found at index', currentSlideIndex);
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.add('active');
@@ -939,9 +850,6 @@ function currentSlide(slideNumber) {
     
     const indicators = document.querySelectorAll('.slideshow-indicator');
     
-    console.log('Going to slide:', slideNumber, 'Current index:', currentSlideIndex, 'Mobile:', isMobile, 'Commercial:', isCommercial, 'Images found:', heroImages.length);
-    
-    // Remove active class from current image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.remove('active');
         heroImages[currentSlideIndex].style.opacity = '0';
@@ -950,21 +858,14 @@ function currentSlide(slideNumber) {
         indicators[currentSlideIndex].classList.remove('active');
     }
     
-    // Set new slide index (convert to 0-based)
     currentSlideIndex = slideNumber - 1;
     
-    // Ensure index is within bounds
     if (currentSlideIndex < 0) currentSlideIndex = 0;
     if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
 
-    console.log('New slide index:', currentSlideIndex, 'out of', totalSlides, 'total slides');
-
-    // Add active class to new image and indicator
     if (heroImages[currentSlideIndex]) {
         heroImages[currentSlideIndex].classList.add('active');
         heroImages[currentSlideIndex].style.opacity = '1';
-    } else {
-        console.warn('No image found at index', currentSlideIndex);
     }
     if (indicators[currentSlideIndex]) {
         indicators[currentSlideIndex].classList.add('active');
@@ -1052,10 +953,9 @@ function initCommercialCarouselLoop() {
     }
 
     function tick() {
-        // Move left at a steady rate; adjust speed as needed
+        // Move left at a steady rate; match residential carousel speed (0.9)
         if (!isDragging) {
-            // On mobile, match residential carousel speed (0.9), otherwise use 0.6
-            offsetPx -= getSpeed(); // pixels per frame
+            offsetPx -= 0.9; // pixels per frame - same speed as residential
         }
         wrapOffset();
         track.style.transform = `translateX(${offsetPx}px)`;
@@ -1283,16 +1183,12 @@ function initResidentialCarouselLoop() {
 
     function computeHalfWidth() {
         halfWidth = track.scrollWidth / 2;
-        console.log('Residential carousel - scrollWidth:', track.scrollWidth, 'halfWidth:', halfWidth);
     }
-
+    
     function wrapOffset() {
-        // Ensure continuous loop by wrapping at the right points
         if (-offsetPx >= halfWidth) {
-            console.log('Residential carousel - wrapping forward, offsetPx:', offsetPx, 'halfWidth:', halfWidth);
             offsetPx += halfWidth;
         } else if (offsetPx > 0) {
-            console.log('Residential carousel - wrapping backward, offsetPx:', offsetPx, 'halfWidth:', halfWidth);
             offsetPx -= halfWidth;
         }
     }
@@ -1325,7 +1221,6 @@ function initResidentialCarouselLoop() {
         if (!img.complete || img.naturalWidth === 0) {
             img.addEventListener('load', () => { 
                 computeHalfWidth(); 
-                console.log('Image loaded, recalculated halfWidth:', halfWidth);
             });
         }
     });
