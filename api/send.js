@@ -17,11 +17,6 @@ module.exports = async function handler(req, res) {
   const { name, email, phone, message } = req.body;
 
   try {
-    // Logo URL - uses environment variable if set, otherwise uses the production domain
-    const logoUrl = process.env.WEBSITE_URL 
-      ? `${process.env.WEBSITE_URL}/public/images/Cantu_logo.jpg`
-      : 'https://www.cantuconstruction.com/public/images/Cantu_logo.jpg';
-    
     // Email 1: Send inquiry to business
     const businessMsg = {
       to: "clarissaf@cantuconstruction.com", // Recipient
@@ -71,9 +66,8 @@ module.exports = async function handler(req, res) {
               <strong style="color: #000080;">Cantu Construction</strong>
             </p>
             
-            <!-- Email Footer with Logo -->
+            <!-- Email Footer -->
             <div style="border-top: 2px solid #f0f0f0; margin-top: 40px; padding-top: 30px; text-align: center;">
-              <img src="${logoUrl}" alt="Cantu Construction Logo" style="max-width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
               <div style="color: #666; font-size: 14px; line-height: 1.8;">
                 <p style="margin: 5px 0; color: #333;">
                   <strong style="color: #000080;">Cantu Construction</strong>
