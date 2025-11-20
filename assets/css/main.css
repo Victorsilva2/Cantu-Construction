@@ -2521,8 +2521,8 @@ section {
     .intro-image {
         max-width: 100%;
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: 200px;
+        object-fit: cover;
     }
     
     .side-image img {
@@ -2576,15 +2576,6 @@ section {
         display: inline-block !important;
         margin: 0 auto !important;
     }
-    
-    .intro-image {
-        max-width: 100%;
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-    
-    
     
     /* Upcoming Projects */
     .projects-grid {
@@ -3406,15 +3397,67 @@ section {
     .intro-image {
         max-width: 100% !important;
         width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
+        height: 200px !important;
+        object-fit: cover !important;
     }
-    
+
     .side-image {
-        max-width: 280px !important;
-        margin: 15px 0 !important;
+        max-width: 300px !important;
+        margin: 10px 0 !important;
     }
     
+    .side-image img {
+        height: 200px !important;
+        max-height: 200px !important;
+        object-fit: cover !important;
+    }
+
+    /* Scroll to Top Button - Mobile */
+    .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #000080, #1a1a8a);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        z-index: 9998;
+        box-shadow: 0 4px 15px rgba(0, 0, 128, 0.4);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    .scroll-to-top.visible {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .scroll-to-top:hover {
+        background: linear-gradient(135deg, #1a1a8a, #000080);
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 128, 0.5);
+    }
+
+    .scroll-to-top:active {
+        transform: scale(0.95);
+    }
+
+    /* Hide scroll to top on desktop, show only on mobile */
+    @media (min-width: 769px) {
+        .scroll-to-top {
+            display: none !important;
+        }
+    }
+
     /* Faster carousel on mobile */
     .hero-img {
         transition: opacity 1s ease-in-out !important;

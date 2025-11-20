@@ -1467,8 +1467,33 @@ function initAboutCarousel() {
     }
 }
 
+// Scroll to Top Button Functionality
+function initScrollToTop() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    if (!scrollToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
 // Initialize residential carousel loop after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initResidentialCarouselLoop();
     initAboutCarousel();
+    initScrollToTop();
 });
