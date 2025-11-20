@@ -3537,12 +3537,46 @@ section {
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
 }
 
-.video-container video {
+.video-container video,
+.video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+/* Mobile Responsive Styles for Video Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10% auto !important;
+        width: 95% !important;
+        padding: 10px !important;
+    }
+    
+    .close-modal {
+        top: -35px !important;
+        right: 10px !important;
+        font-size: 1.8rem !important;
+    }
+    
+    .video-container {
+        padding-bottom: 56.25% !important; /* Maintain 16:9 aspect ratio */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 15% auto !important;
+        width: 98% !important;
+        padding: 5px !important;
+    }
+    
+    .close-modal {
+        top: -30px !important;
+        right: 5px !important;
+        font-size: 1.5rem !important;
+    }
 }
 
 /* Animations */

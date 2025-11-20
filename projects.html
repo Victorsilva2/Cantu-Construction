@@ -303,6 +303,84 @@
             .tab-button {
                 width: 100% !important;
             }
+            
+            /* Projects slideshow mobile */
+            .project-slideshow {
+                height: 400px !important;
+            }
+            
+            .project-slideshow-arrow {
+                width: 40px !important;
+                height: 40px !important;
+                padding: 10px !important;
+                font-size: 16px !important;
+            }
+            
+            .project-slideshow-arrow.project-arrow-left {
+                left: 10px !important;
+            }
+            
+            .project-slideshow-arrow.project-arrow-right {
+                right: 10px !important;
+            }
+            
+            .project-slideshow-indicators {
+                bottom: 15px !important;
+            }
+            
+            .project-indicator {
+                width: 10px !important;
+                height: 10px !important;
+            }
+            
+            .project-slideshow > div[style*="padding: 60px 40px"] {
+                padding: 40px 20px 20px !important;
+            }
+            
+            .project-slideshow h2 {
+                font-size: 2rem !important;
+            }
+            
+            .project-slideshow p {
+                font-size: 1rem !important;
+            }
+            
+            .landmark-project {
+                margin-bottom: 50px !important;
+            }
+            
+            .intro-title {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-slideshow {
+                height: 300px !important;
+            }
+            
+            .project-slideshow-arrow {
+                width: 35px !important;
+                height: 35px !important;
+                padding: 8px !important;
+                font-size: 14px !important;
+            }
+            
+            .project-slideshow > div[style*="padding: 60px 40px"] {
+                padding: 30px 15px 15px !important;
+            }
+            
+            .project-slideshow h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .project-slideshow p {
+                font-size: 0.9rem !important;
+            }
+            
+            .intro-title {
+                font-size: 2rem !important;
+            }
         }
     </style>
 </head>
@@ -607,10 +685,27 @@
         function initializeProjectSlideshows() {
             const projects = document.querySelectorAll('.landmark-project');
             projectSlideshows = Array.from(projects).map((project, index) => {
+                const allSlides = Array.from(project.querySelectorAll('.project-slide'));
+                
+                // Only filter out mobile/desktop images for Bert Ogden (index 1)
+                let slides;
+                if (index === 1) {
+                    // Bert Ogden: exclude mobile/desktop specific images
+                    slides = allSlides.filter(slide => {
+                        return !slide.classList.contains('bert-ogden-desktop') && 
+                               !slide.classList.contains('bert-ogden-mobile');
+                    });
+                } else {
+                    // Driscoll and DHR: use all slides normally
+                    slides = allSlides;
+                }
+                
                 return {
-                    slides: project.querySelectorAll('.project-slide'),
+                    slides: slides,
+                    allSlides: allSlides, // Keep reference to all slides for proper opacity control
                     indicators: project.querySelectorAll('.project-indicator'),
-                    currentIndex: 0
+                    currentIndex: 0,
+                    isBertOgden: index === 1 // Flag to identify Bert Ogden
                 };
             });
         }
@@ -621,10 +716,41 @@
 
             project.currentIndex = slideIndex;
             
-            project.slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === slideIndex);
-                slide.style.opacity = i === slideIndex ? '1' : '0';
-            });
+            // Special handling only for Bert Ogden (has mobile/desktop images)
+            if (project.isBertOgden) {
+                const desktopImg = project.allSlides.find(slide => slide.classList.contains('bert-ogden-desktop'));
+                const mobileImg = project.allSlides.find(slide => slide.classList.contains('bert-ogden-mobile'));
+                
+                // If showing first slide (index 0), show the appropriate mobile/desktop image
+                if (slideIndex === 0) {
+                    if (desktopImg) {
+                        const isMobile = window.innerWidth <= 768;
+                        desktopImg.style.opacity = isMobile ? '0' : '1';
+                    }
+                    if (mobileImg) {
+                        const isMobile = window.innerWidth <= 768;
+                        mobileImg.style.opacity = isMobile ? '1' : '0';
+                    }
+                    // Hide all slideshow images
+                    project.slides.forEach((slide) => {
+                        slide.style.opacity = '0';
+                    });
+                } else {
+                    // Hide mobile/desktop images when showing other slides
+                    if (desktopImg) desktopImg.style.opacity = '0';
+                    if (mobileImg) mobileImg.style.opacity = '0';
+                    
+                    // Show the appropriate slideshow image (slideIndex 1 = slides[0], slideIndex 2 = slides[1])
+                    project.slides.forEach((slide, i) => {
+                        slide.style.opacity = (i === slideIndex - 1) ? '1' : '0';
+                    });
+                }
+            } else {
+                // Normal behavior for Driscoll and DHR
+                project.slides.forEach((slide, i) => {
+                    slide.style.opacity = i === slideIndex ? '1' : '0';
+                });
+            }
 
             project.indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === slideIndex);
@@ -636,9 +762,13 @@
             const project = projectSlideshows[projectIndex];
             if (!project || project.slides.length <= 1) return;
 
+            // For Bert Ogden, total slides = actual slideshow images + 1 (for the first desktop/mobile image)
+            // For others, use slides.length normally
+            const totalSlides = project.isBertOgden ? project.slides.length + 1 : project.slides.length;
+            
             let newIndex = project.currentIndex + direction;
-            if (newIndex < 0) newIndex = project.slides.length - 1;
-            if (newIndex >= project.slides.length) newIndex = 0;
+            if (newIndex < 0) newIndex = totalSlides - 1;
+            if (newIndex >= totalSlides) newIndex = 0;
             
             showProjectSlide(projectIndex, newIndex);
         }
@@ -709,10 +839,31 @@
             initializeProjectSlideshows();
             initParallax();
             
+            // Set initial state for all slideshows (show first slide)
+            projectSlideshows.forEach((project, index) => {
+                showProjectSlide(index, 0);
+            });
+            
+            // Handle window resize to update desktop/mobile images (only for Bert Ogden)
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    projectSlideshows.forEach((project, index) => {
+                        // Only refresh Bert Ogden (index 1) when showing first slide
+                        if (project.isBertOgden && project.currentIndex === 0) {
+                            showProjectSlide(index, 0);
+                        }
+                    });
+                }, 250);
+            });
+            
             // Auto-advance slideshows every 5 seconds
             setInterval(() => {
                 projectSlideshows.forEach((project, index) => {
-                    if (project.slides.length > 1) {
+                    // For Bert Ogden, total slides = slides.length + 1, for others just slides.length
+                    const totalSlides = project.isBertOgden ? project.slides.length + 1 : project.slides.length;
+                    if (totalSlides > 1) {
                         changeProjectSlide(index, 1);
                     }
                 });

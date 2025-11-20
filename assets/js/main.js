@@ -182,36 +182,47 @@ function scrollToSection(sectionId) {
 }
 
 // Video Modal Functions
-function openVideoModal(videoType = 'main') {
+function openVideoModal(videoType = 'bert-ogden') {
     const modal = document.getElementById('videoModal');
-    const video = document.getElementById('modalVideo');
+    const videoContainer = document.getElementById('videoContainer');
     
-    // Different video sources based on the type
-    const videoSources = {
-        'main': 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
-        'portfolio1': 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
-        'portfolio2': 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
-        'portfolio3': 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
+    // YouTube embed URLs based on the type
+    const videoEmbeds = {
+        'bert-ogden': 'https://www.youtube.com/embed/JBqq50CcpBU?si=Z_qaVBw0H0aOamn0',
+        'dhr': 'https://www.youtube.com/embed/ewSPccwsnUE?si=6C-38byggyS207rW',
+        'driscoll': 'https://www.youtube.com/embed/OszGt9_LjMM?si=9c77_5PSPtno5NI1'
     };
     
-    // Set video source
-    video.src = videoSources[videoType] || videoSources['main'];
+    // Get the embed URL
+    const embedUrl = videoEmbeds[videoType] || videoEmbeds['bert-ogden'];
+    
+    // Create responsive YouTube iframe
+    const iframe = document.createElement('iframe');
+    iframe.width = '100%';
+    iframe.height = '100%';
+    iframe.src = embedUrl;
+    iframe.title = 'YouTube video player';
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = '8px';
+    
+    // Clear container and add iframe
+    videoContainer.innerHTML = '';
+    videoContainer.appendChild(iframe);
     
     // Show modal
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Play video
-    video.play();
 }
 
 function closeVideoModal() {
     const modal = document.getElementById('videoModal');
-    const video = document.getElementById('modalVideo');
+    const videoContainer = document.getElementById('videoContainer');
     
-    // Pause video
-    video.pause();
-    video.currentTime = 0;
+    // Remove iframe to stop video playback
+    videoContainer.innerHTML = '';
     
     // Hide modal
     modal.style.display = 'none';
