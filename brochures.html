@@ -78,19 +78,6 @@
             position: relative;
         }
         
-        .section-divider::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background: #C62828;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(198,40,40,0.5);
-        }
-        
         /* Tablet Styles (iPad) */
         @media (max-width: 1024px) {
             .page-header .heading-font {
@@ -201,9 +188,15 @@
                 font-size: 1.8rem !important;
             }
             
-            .section-header-line {
+            .section-header-line:first-of-type {
                 width: 40px !important;
                 left: -50px !important;
+                right: auto !important;
+            }
+            
+            .section-header-line:last-of-type {
+                width: 40px !important;
+                left: auto !important;
                 right: -50px !important;
             }
             
