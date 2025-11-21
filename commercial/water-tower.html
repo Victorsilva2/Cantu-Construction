@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="../public/images/Cantu_logo.jpg">
     <title>Water Tower Centre - Retail Plaza | Cantu Construction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +27,11 @@
                 gap: 30px !important;
             }
             
+            /* Responsive map iframe height */
+            iframe[src*="google.com/maps"] {
+                height: 350px !important;
+            }
+            
             section h2 {
                 font-size: 1.5rem !important;
             }
@@ -41,6 +47,10 @@
         }
         
         @media (max-width: 480px) {
+            /* Smaller map iframe on small mobile */
+            iframe[src*="google.com/maps"] {
+                height: 300px !important;
+            }
             #hero h1 {
                 font-size: 2rem !important;
             }
@@ -246,7 +256,7 @@
                 </div>
                 <p style="text-align: center; margin-top: 20px; font-size: 1.1rem; color: #666;">
                     <i class="fas fa-map-marker-alt" style="color: #C62828; margin-right: 8px;"></i>
-                    <strong>N 6th St on Nolana, McAllen, TX 78504</strong>
+                    <strong>N 6th St, McAllen, TX 78504</strong>
                 </p>
             </div>
         </section>

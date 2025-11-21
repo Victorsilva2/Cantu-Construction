@@ -11,61 +11,61 @@ const commercialProperties = [
     {
         name: 'La Placita',
         address: '2109 S. 10th St. McAllen TX, 78504',
-        coordinates: [-98.2306, 26.1905],
+        coordinates: [-98.232440, 26.183344],
         category: 'Retail'
     },
     {
         name: 'Lone Star Plaza',
         address: '1502-1512 S State Hwy 336, Edinburg, TX 78539',
-        coordinates: [-98.1631, 26.3017],
+        coordinates: [-98.213277, 26.299869],
         category: 'Retail'
     },
     {
         name: 'MAS Building',
         address: '1210 W. Expressway 83, Pharr, TX',
-        coordinates: [-98.1850, 26.1944],
+        coordinates: [-98.198257, 26.204023],
         category: 'Retail'
     },
     {
         name: 'Art Village on Main',
         address: '800 N. Main St McAllen, TX',
-        coordinates: [-98.2300, 26.2100],
+        coordinates: [-98.232319, 26.211729],
         category: 'Retail'
     },
     {
         name: 'Water Tower Centre',
-        address: '612 W. Nolana Ave, McAllen, TX 78504',
-        coordinates: [-98.2400, 26.2200],
+        address: 'N 6th St, McAllen, TX 78504',
+        coordinates: [-98.220066, 26.239895],
         category: 'Retail'
     },
     {
         name: 'Amistad Plaza',
         address: '505 Angelita Dr. Weslaco TX',
-        coordinates: [-97.9900, 26.1600],
+        coordinates: [-97.996335, 26.174736],
         category: 'Office & Medical'
     },
     {
         name: 'Harlingen MOB',
-        address: '5512 Victoria Ln, Harlingen, TX',
-        coordinates: [-97.6961, 26.1906],
+        address: '512 Victoria Ln, Harlingen, TX',
+        coordinates: [-97.672108, 26.160628],
         category: 'Office & Medical'
     },
     {
         name: 'Brownsville MOB',
         address: '4770 N. Expressway 83, Brownsville, TX',
-        coordinates: [-97.4844, 25.9014],
+        coordinates: [-97.515253, 25.973932],
         category: 'Office & Medical'
     },
     {
         name: 'StarPoint Plaza',
         address: '1821 Sesame St. Harlingen, TX',
-        coordinates: [-97.6961, 26.2000],
+        coordinates: [-97.679391, 26.166588],
         category: 'Office & Medical'
     },
     {
         name: 'MidValley Professionals',
-        address: '901 E. 8th St Weslaco, TX',
-        coordinates: [-97.9900, 26.1600],
+        address: '910 E 8th St, Weslaco, TX 78596',
+        coordinates: [-97.981386, 26.151651],
         category: 'Office & Medical'
     }
 ];
@@ -75,32 +75,37 @@ const residentialProperties = [
     {
         name: 'Villagio',
         address: 'N 10th St & Providence Ave, McAllen, TX 78504',
-        coordinates: [-98.2306, 26.2408]
+        coordinates: [-98.215915, 26.287056]
     },
     {
         name: 'Bougainvillea',
         address: 'S "M" St & El Rancho Rd, McAllen, TX',
-        coordinates: [-98.2200, 26.1900]
+        coordinates: [-98.210631, 26.169270]
     },
     {
         name: 'Del Lago',
         address: 'S "H" St & Orangewood Dr, McAllen, TX',
-        coordinates: [-98.2200, 26.2000]
+        coordinates: [-98.216792, 26.162794]
     },
     {
         name: 'Lago Vista',
         address: 'S K Center St & Orangewood Dr, McAllen, TX',
-        coordinates: [-98.2200, 26.2000]
+        coordinates: [-98.214135, 26.162425]
     },
     {
         name: 'Paseo Del Lago',
         address: 'S K Center St & Orangewood Dr, McAllen, TX',
-        coordinates: [-98.2200, 26.2000]
+        coordinates: [-98.214076, 26.162496]
     },
     {
         name: 'The Village on Dove',
-        address: '221 Canary, McAllen, TX 78504',
-        coordinates: [-98.2300, 26.2300]
+        address: '201 Dove Ave W, McAllen, TX 78504',
+        coordinates: [-98.212797, 26.252259]
+    },
+    {
+        name: 'Villas at Del Lago',
+        address: 'S "H" St & Orangewood Dr, McAllen, TX',
+        coordinates: [-98.210974, 26.162061]
     }
 ];
 
@@ -196,14 +201,14 @@ function initResidentialMap() {
     const avgLng = residentialProperties.reduce((sum, prop) => sum + prop.coordinates[0], 0) / residentialProperties.length;
     const avgLat = residentialProperties.reduce((sum, prop) => sum + prop.coordinates[1], 0) / residentialProperties.length;
 
-    // Adjust zoom based on screen size for better responsiveness
-    let initialZoom = 12.5;
+    // Reduced zoom to show wider area including Edinburg markers
+    let initialZoom = 10.5;
     if (window.innerWidth <= 480) {
-        initialZoom = 11.5; // Zoom out more on small mobile
+        initialZoom = 9.5; // Zoom out more on small mobile
     } else if (window.innerWidth <= 768) {
-        initialZoom = 12; // Slightly zoomed out on mobile
+        initialZoom = 10; // Zoomed out on mobile
     } else if (window.innerWidth <= 1024) {
-        initialZoom = 12.2; // Slightly zoomed out on tablet
+        initialZoom = 10.2; // Zoomed out on tablet
     }
 
     const map = new mapboxgl.Map({
@@ -223,6 +228,9 @@ function initResidentialMap() {
 
     // Add fullscreen control
     map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+
+    // Store markers to calculate bounds
+    const markers = [];
 
     // Wait for map to load
     map.on('load', () => {
@@ -262,11 +270,55 @@ function initResidentialMap() {
                 `);
 
             // Add marker to map
-            new mapboxgl.Marker(el)
+            const marker = new mapboxgl.Marker(el)
                 .setLngLat(property.coordinates)
                 .setPopup(popup)
                 .addTo(map);
+            
+            markers.push(marker);
         });
+
+        // Fit map to show all markers with padding
+        if (markers.length > 0) {
+            const fitMapToBounds = () => {
+                const bounds = new mapboxgl.LngLatBounds();
+                residentialProperties.forEach(property => {
+                    bounds.extend(property.coordinates);
+                });
+                
+                // Adjust padding based on screen size
+                let padding = {
+                    top: 50,
+                    bottom: 50,
+                    left: 50,
+                    right: 50
+                };
+                
+                if (window.innerWidth <= 480) {
+                    padding = { top: 30, bottom: 30, left: 20, right: 20 };
+                } else if (window.innerWidth <= 768) {
+                    padding = { top: 40, bottom: 40, left: 30, right: 30 };
+                }
+                
+                map.fitBounds(bounds, {
+                    padding: padding,
+                    maxZoom: 12, // Don't zoom in too much even if markers are close
+                    duration: 0 // Instant fit
+                });
+            };
+            
+            // Initial fit
+            fitMapToBounds();
+            
+            // Re-fit on window resize for responsive behavior
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    fitMapToBounds();
+                }, 250); // Debounce resize events
+            });
+        }
     });
 }
 
