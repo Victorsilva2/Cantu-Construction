@@ -381,7 +381,10 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     list-style: none;
 }
-.nav-item.nav-dropdown:hover > .dropdown-menu { display: block; }
+/* Desktop hover dropdown - only for screens wider than 1200px */
+@media (min-width: 1201px) {
+    .nav-item.nav-dropdown:hover > .dropdown-menu { display: block; }
+}
 .dropdown-menu li { padding: 0; list-style: none; }
 .dropdown-menu a, .dropdown-label {
     display: block;
@@ -2090,8 +2093,8 @@ section {
     height: auto;
 }
 
-/* Tablet Responsive for Elementor Header */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Tablet Responsive for Elementor Header - Extended to cover iPad landscape */
+@media (min-width: 769px) and (max-width: 1200px) {
     .top-bar-container {
         padding: 0 20px;
     }
@@ -2107,6 +2110,217 @@ section {
     
     .brand-logo {
         height: 80px;
+    }
+    
+    /* iPad Dropdown - Same as Mobile */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 10001 !important;
+        padding: 8px;
+        position: relative;
+        background: transparent;
+        border: none;
+    }
+
+    .hamburger .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #000;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+        background-color: #000080 !important;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+        background-color: #000080 !important;
+    }
+    
+    /* iPad nav menu - Clean dropdown below header */
+    .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        transition: all 0.3s ease !important;
+        z-index: 9999 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: none !important;
+        list-style: none !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+        border-top: 1px solid rgba(0,0,128,0.1) !important;
+    }
+    
+    .nav-menu.active {
+        display: flex !important;
+    }
+    
+    .nav-item {
+        margin: 0 !important;
+        list-style: none !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .nav-link {
+        color: #000080 !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
+        display: block !important;
+        padding: 15px 20px !important;
+        letter-spacing: 0.3px !important;
+        transition: all 0.3s ease !important;
+        border-bottom: 1px solid rgba(0,0,128,0.1) !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .nav-link:hover {
+        color: #000080 !important;
+        background-color: rgba(0,0,128,0.05) !important;
+    }
+    
+    .nav-dropdown-wrapper {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+    }
+    
+    .nav-dropdown-wrapper .nav-link {
+        flex: 1 !important;
+        text-align: center !important;
+        padding: 15px 20px !important;
+    }
+    
+    .dropdown-toggle-mobile {
+        display: flex !important;
+        background: none !important;
+        border: none !important;
+        color: #000080 !important;
+        cursor: pointer !important;
+        padding: 15px 20px !important;
+        font-size: 14px !important;
+        transition: transform 0.3s ease, color 0.3s ease !important;
+        outline: none !important;
+        flex-shrink: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 44px !important;
+        position: absolute !important;
+        right: 0 !important;
+    }
+    
+    .dropdown-toggle-mobile:hover {
+        color: #C62828 !important;
+    }
+    
+    .dropdown-toggle-mobile i {
+        transition: transform 0.3s ease !important;
+    }
+    
+    .nav-dropdown .nav-link {
+        flex: 1 !important;
+        text-align: center !important;
+    }
+    
+    .nav-dropdown .dropdown-menu {
+        display: none !important;
+        position: static !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        width: 100%;
+    }
+    
+    .nav-dropdown .dropdown-menu.show {
+        display: block !important;
+    }
+    
+    .nav-dropdown .dropdown-menu li {
+        margin: 10px 0 !important;
+        text-align: center !important;
+    }
+    
+    .nav-dropdown .dropdown-menu a {
+        color: #000080 !important;
+        font-size: 1.2rem !important;
+        padding: 5px 20px !important;
+        text-align: center !important;
+        display: block !important;
+    }
+    
+    .nav-dropdown .dropdown-menu .dropdown-label {
+        text-align: center !important;
+    }
+    
+    /* Ensure Contact Us link is aligned like other nav items */
+    .nav-cta {
+        text-align: center !important;
+        padding: 15px 20px !important;
+        width: 100% !important;
+        display: block !important;
+    }
+    
+    /* Scroll to Top Button - iPad */
+    .scroll-to-top {
+        position: fixed !important;
+        bottom: 30px !important;
+        right: 20px !important;
+        width: 50px !important;
+        height: 50px !important;
+        background: linear-gradient(135deg, #000080, #1a1a8a) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 50% !important;
+        cursor: pointer !important;
+        display: none !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 20px !important;
+        z-index: 9998 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 128, 0.4) !important;
+        transition: all 0.3s ease !important;
+        opacity: 0 !important;
+        transform: scale(0.8) !important;
+    }
+
+    .scroll-to-top.visible {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+
+    .scroll-to-top:hover {
+        background: linear-gradient(135deg, #1a1a8a, #000080) !important;
+        transform: scale(1.1) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 128, 0.5) !important;
+    }
+
+    .scroll-to-top:active {
+        transform: scale(0.95) !important;
     }
 }
 
@@ -3451,8 +3665,8 @@ section {
         transform: scale(0.95);
     }
 
-    /* Hide scroll to top on desktop, show only on mobile */
-    @media (min-width: 769px) {
+    /* Hide scroll to top on desktop, show on mobile and iPad */
+    @media (min-width: 1201px) {
         .scroll-to-top {
             display: none !important;
         }

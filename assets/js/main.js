@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1200) {
                 const dropdownItem = button.closest('.nav-dropdown');
                 const dropdown = dropdownItem ? dropdownItem.querySelector('.dropdown-menu') : null;
                 const icon = button.querySelector('i');
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const link = item.querySelector('.nav-link');
         
         link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1200) {
                 const toggleButton = item.querySelector('.dropdown-toggle-mobile');
                 if (toggleButton && e.target !== toggleButton && !toggleButton.contains(e.target)) {
                     const dropdown = item.querySelector('.dropdown-menu');
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
     dropdownLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1200) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
                 const dropdown = link.closest('.dropdown-menu');
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= 768 && !link.closest('.nav-dropdown')) {
+            if (window.innerWidth <= 1200 && !link.closest('.nav-dropdown')) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             }
@@ -162,7 +162,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
-            if (hamburger && navMenu && window.innerWidth <= 768) {
+            if (hamburger && navMenu && window.innerWidth <= 1200) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             }
