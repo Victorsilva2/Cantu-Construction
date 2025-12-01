@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cantu-construction.vercel.app/sitemap.xml
+
