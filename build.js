@@ -160,6 +160,15 @@ if (fs.existsSync('vercel.json')) {
   console.log(`✅ Copied vercel.json`);
 }
 
+// Copy SEO files (sitemap.xml and robots.txt)
+const seoFiles = ['sitemap.xml', 'robots.txt'];
+seoFiles.forEach(file => {
+  if (fs.existsSync(file)) {
+    fs.copyFileSync(file, path.join(distDir, file));
+    console.log(`✅ Copied ${file}`);
+  }
+});
+
 // Copy README and documentation
 const docsFiles = ['README.md', 'PROJECT_STRUCTURE.md'];
 docsFiles.forEach(file => {
