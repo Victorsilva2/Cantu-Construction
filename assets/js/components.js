@@ -22,7 +22,7 @@ function openBrochure(brochureType) {
         'harlingen-mob': 'public/brochures/HarlingenMOB.pdf',
         'brownsville-mob': 'public/brochures/BrownsvilleMOB.pdf',
         'starpoint': 'public/brochures/StarPoint.pdf',
-        'midvalley-pros': 'public/brochures/MidValleyPros.pdf',
+        'midvalley-pros': 'public/brochures/Mid Valley.pdf',
         'commercial-lot-495-taylor': 'public/brochures/Commerical Lot 495 & Taylor Rd.pdf',
         'commercial-lot-905-plaza': 'public/brochures/Commerical Lot 905 Plaza Dr .pdf',
         'commercial-lot-expressway-83': 'public/brochures/Commerical Lot Expressway 83 & Sugar Rd.pdf',

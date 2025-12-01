@@ -34,7 +34,7 @@ const commercialProperties = [
     },
     {
         name: 'Water Tower Centre',
-        address: 'N 6th St, McAllen, TX 78504',
+        address: '4485 N 6th St, McAllen, TX 78504',
         coordinates: [-98.220066, 26.239895],
         category: 'Retail'
     },

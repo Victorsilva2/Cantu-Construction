@@ -179,7 +179,64 @@
             }
             
             .featured-brochure-content {
-                padding: 20px !important;
+                padding: 20px 15px !important;
+            }
+            
+            /* Enhanced PDF viewer mobile styles */
+            .pdf-control-bar {
+                flex-direction: column !important;
+                gap: 15px !important;
+                padding: 15px !important;
+            }
+            
+            .pdf-control-bar > div:first-child {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            
+            .pdf-control-bar > div:last-child {
+                width: 100% !important;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                gap: 10px !important;
+            }
+            
+            .pdf-control-bar > div:last-child a {
+                font-size: 0.75rem !important;
+                padding: 8px 12px !important;
+                flex: 1 !important;
+                min-width: 120px !important;
+                text-align: center !important;
+            }
+            
+            /* PDF viewer frame mobile */
+            .pdf-viewer-frame {
+                padding: 15px !important;
+                min-height: 500px !important;
+            }
+            
+            /* Hide decorative corners on mobile */
+            .pdf-viewer-frame > div[style*="position: absolute"] {
+                display: none !important;
+            }
+            
+            /* PDF iframe mobile */
+            .pdf-viewer-frame iframe {
+                height: 500px !important;
+            }
+            
+            /* Bottom action buttons mobile */
+            .pdf-action-buttons {
+                flex-direction: column !important;
+                gap: 15px !important;
+                margin-top: 20px !important;
+            }
+            
+            .pdf-action-buttons a {
+                width: 100% !important;
+                padding: 14px 30px !important;
+                font-size: 0.9rem !important;
+                justify-content: center !important;
             }
             
             .featured-brochure-iframe {
@@ -282,6 +339,29 @@
             
             .featured-brochure-header h2 {
                 font-size: 1.75rem !important;
+            }
+            
+            /* Enhanced PDF viewer small mobile */
+            .featured-brochure-content {
+                padding: 15px 10px !important;
+            }
+            
+            .pdf-control-bar {
+                padding: 12px !important;
+            }
+            
+            .pdf-viewer-frame {
+                padding: 10px !important;
+                min-height: 400px !important;
+            }
+            
+            .pdf-viewer-frame iframe {
+                height: 400px !important;
+            }
+            
+            .pdf-action-buttons a {
+                padding: 12px 25px !important;
+                font-size: 0.85rem !important;
             }
             
             .featured-brochure-iframe {
@@ -428,11 +508,55 @@
                         <div style="width: 120px; height: 4px; background: linear-gradient(90deg, transparent, #C62828, transparent); margin: 0 auto;"></div>
                     </div>
                     
-                    <!-- Flipbook Container -->
-                    <div class="featured-brochure-content" style="background: linear-gradient(135deg, #f5f5f5, #ffffff); padding: 40px; position: relative;">
-                        <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.25); background: white; position: relative; border: 2px solid rgba(0,0,128,0.1); padding: 20px;">
-                            <a href="https://online.flippingbook.com/view/195631026/" class="fbo-embed" data-fbo-id="ac299cb248" data-fbo-ratio="3:2" data-fbo-lightbox="yes" data-fbo-width="100%" data-fbo-height="auto" data-fbo-version="1" style="max-width: 100%; display: block; text-align: center; color: #000080; font-weight: 600; text-decoration: none;">Cantu Construction Q4 Inventory Book</a>
-                            <script async defer src="https://online.flippingbook.com/EmbedScriptUrl.aspx?m=redir&hid=195631026"></script>
+                    <!-- PDF Container -->
+                    <div class="featured-brochure-content" style="background: linear-gradient(135deg, #f5f5f5, #ffffff); padding: 50px 40px; position: relative;">
+                        <!-- Book-like container with elegant styling -->
+                        <div style="position: relative; max-width: 1200px; margin: 0 auto;">
+                            <!-- Decorative top border -->
+                            <div style="height: 6px; background: linear-gradient(90deg, #000080, #C62828, #000080); border-radius: 6px 6px 0 0; margin-bottom: -1px;"></div>
+                            
+                            <!-- Main PDF viewer container -->
+                            <div style="background: white; border-radius: 0 0 12px 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,128,0.1), inset 0 1px 0 rgba(255,255,255,0.9); position: relative; overflow: hidden; border: 3px solid #000080;">
+                                <!-- Control bar -->
+                                <div class="pdf-control-bar" style="background: linear-gradient(135deg, #000080 0%, #1a1a8a 100%); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(198,40,40,0.3);">
+                                    <div style="display: flex; align-items: center; gap: 15px;">
+                                        <i class="fas fa-file-pdf" style="color: #C62828; font-size: 1.5rem;"></i>
+                                        <span style="color: white; font-weight: 600; font-size: 1rem;">Q4 Inventory Book</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <a href="public/brochures/Copy of Q4 Inventory Book (2).pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); color: white; padding: 8px 16px; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-radius: 6px; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2);" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+                                            <i class="fas fa-expand"></i> Fullscreen
+                                        </a>
+                                        <a href="public/brochures/Copy of Q4 Inventory Book (2).pdf" download style="display: inline-flex; align-items: center; gap: 8px; background: #C62828; color: white; padding: 8px 16px; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-radius: 6px; transition: all 0.3s ease;" onmouseover="this.style.background='#d32f2f'" onmouseout="this.style.background='#C62828'">
+                                            <i class="fas fa-download"></i> Download
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- PDF Viewer with elegant frame -->
+                                <div class="pdf-viewer-frame" style="position: relative; background: #f0f0f0; padding: 30px; min-height: 800px;">
+                                    <!-- Decorative corner accents -->
+                                    <div style="position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 3px solid #000080; border-left: 3px solid #000080; border-radius: 12px 0 0 0;"></div>
+                                    <div style="position: absolute; top: 0; right: 0; width: 30px; height: 30px; border-top: 3px solid #000080; border-right: 3px solid #000080; border-radius: 0 12px 0 0;"></div>
+                                    <div style="position: absolute; bottom: 0; left: 0; width: 30px; height: 30px; border-bottom: 3px solid #000080; border-left: 3px solid #000080; border-radius: 0 0 0 12px;"></div>
+                                    <div style="position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; border-bottom: 3px solid #000080; border-right: 3px solid #000080; border-radius: 0 0 12px 0;"></div>
+                                    
+                                    <!-- PDF iframe with enhanced styling -->
+                                    <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 0 20px rgba(0,0,128,0.05); padding: 15px; border: 2px solid rgba(0,0,128,0.15); position: relative; z-index: 1;">
+                                        <iframe src="public/brochures/Copy of Q4 Inventory Book (2).pdf#toolbar=1&navpanes=1&scrollbar=1" style="width: 100%; height: 800px; border: none; border-radius: 4px; display: block; box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom action buttons -->
+                            <div class="pdf-action-buttons" style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                                <a href="public/brochures/Copy of Q4 Inventory Book (2).pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #000080, #1a1a8a); color: white; padding: 16px 40px; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,128,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,128,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,128,0.3)'">
+                                    <i class="fas fa-external-link-alt"></i> Open in New Window
+                                </a>
+                                <a href="public/brochures/Copy of Q4 Inventory Book (2).pdf" download style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #C62828, #d32f2f); color: white; padding: 16px 40px; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(198,40,40,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(198,40,40,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(198,40,40,0.3)'">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -680,7 +804,7 @@
                         </div>
                             
                         <div class="midvalley-wrapper" style="position: relative; z-index: 10; margin-bottom: 20px;">
-                            <a href="public/brochures/Mid Valley Plaza2.pdf" target="_blank" class="brochure-card" style="display: block; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden; text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+                            <a href="public/brochures/Mid Valley.pdf" target="_blank" class="brochure-card" style="display: block; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-top: 4px solid #C62828; position: relative; overflow: hidden; text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 40px rgba(198,40,40,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
                                 <div style="position: relative; z-index: 1;">
                                     <div class="brochure-card-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, #C62828, #d32f2f); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(198,40,40,0.2);">
                                         <i class="fas fa-building" style="color: white; font-size: 1.8rem;"></i>
