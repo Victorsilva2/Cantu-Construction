@@ -169,6 +169,20 @@ seoFiles.forEach(file => {
   }
 });
 
+// Create _headers file for Vercel (ensures correct content types)
+const headersContent = `/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+
+/*.xml
+  Content-Type: application/xml; charset=utf-8
+`;
+
+fs.writeFileSync(path.join(distDir, '_headers'), headersContent);
+console.log(`✅ Created _headers file`);
+
 // Copy README and documentation
 const docsFiles = ['README.md', 'PROJECT_STRUCTURE.md'];
 docsFiles.forEach(file => {
