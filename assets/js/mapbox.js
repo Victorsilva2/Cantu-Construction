@@ -16,7 +16,7 @@ const commercialProperties = [
     },
     {
         name: 'Lone Star Plaza',
-        address: '1502-1512 S State Hwy 336, Edinburg, TX 78539',
+        address: '1505 S Lone Star Wy, Edinburg, TX 78539',
         coordinates: [-98.213277, 26.299869],
         category: 'Retail'
     },
@@ -34,8 +34,8 @@ const commercialProperties = [
     },
     {
         name: 'Water Tower Centre',
-        address: '4485 N 6th St, McAllen, TX 78504',
-        coordinates: [-98.220066, 26.239895],
+        address: '801 N 6th St, McAllen, TX 78501',
+        coordinates: [-98.220096, 26.239910],
         category: 'Retail'
     },
     {
@@ -95,8 +95,8 @@ const residentialProperties = [
     },
     {
         name: 'Lago Vista',
-        address: 'S K Center St & Orangewood Dr, McAllen, TX',
-        coordinates: [-98.214135, 26.162425]
+        address: 'S K Center St, McAllen, TX',
+        coordinates: [-98.211987, 26.162033]
     },
     {
         name: 'Paseo Del Lago',
@@ -110,8 +110,8 @@ const residentialProperties = [
     },
     {
         name: 'Villas at Del Lago',
-        address: 'S "H" St & Orangewood Dr, McAllen, TX',
-        coordinates: [-98.210974, 26.162061]
+        address: 'S "M" Ln & Orangewood E, McAllen, TX',
+        coordinates: [-98.210974, 26.162065]
     }
 ];
 
