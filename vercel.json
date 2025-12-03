@@ -32,6 +32,19 @@
           "value": "application/xml; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/public/brochures/(.*\\.pdf)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline"
+        }
+      ]
     }
   ]
 }
