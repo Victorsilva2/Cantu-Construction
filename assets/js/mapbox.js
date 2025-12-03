@@ -67,6 +67,12 @@ const commercialProperties = [
         address: '910 E 8th St, Weslaco, TX 78596',
         coordinates: [-97.981386, 26.151651],
         category: 'Office & Medical'
+    },
+    {
+        name: 'Tower on Nolana',
+        address: '3900 N. 10th St, McAllen TX, 78504',
+        coordinates: [-98.22352289999999, 26.23841276869132],
+        category: 'Office & Medical'
     }
 ];
 
