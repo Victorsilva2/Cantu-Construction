@@ -1003,6 +1003,19 @@
                             <span class="error-message" style="display: none; color: #C62828; font-size: 0.875rem; margin-top: 5px;"></span>
                         </div>
                         
+                        <!-- Honeypot fields - hidden from users but bots will fill them -->
+                        <!-- Multiple honeypots to catch different bot behaviors -->
+                        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+                            <label for="website" style="display: none;">Website (leave blank)</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="" style="display: none;">
+                            
+                            <label for="url" style="display: none;">URL (do not fill)</label>
+                            <input type="url" id="url" name="url" tabindex="-1" autocomplete="off" value="" style="display: none;">
+                        </div>
+                        
+                        <!-- Hidden timestamp field to track form load time -->
+                        <input type="hidden" id="formLoadTime" name="formLoadTime" value="">
+                        
                         <button type="submit" class="submit-btn" style="background: var(--brand-blue); color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: background-color 0.3s; width: 100%;">
                             Send Message
                         </button>
