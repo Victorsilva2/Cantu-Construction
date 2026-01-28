@@ -1,57 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 const https = require("https");
 
-// Simple in-memory rate limiting store (in production, use Redis or similar)
-const rateLimitStore = new Map();
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
-const MAX_SUBMISSIONS_PER_IP = 3; // Max 3 submissions per 15 minutes per IP
-
-// Helper function to get client IP
-function getClientIP(req) {
-  return req.headers['x-forwarded-for']?.split(',')[0] || 
-         req.headers['x-real-ip'] || 
-         req.connection?.remoteAddress || 
-         'unknown';
-}
-
-// Rate limiting check
-function checkRateLimit(ip) {
-  const now = Date.now();
-  const key = `rate_limit_${ip}`;
-  
-  if (!rateLimitStore.has(key)) {
-    rateLimitStore.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return true;
-  }
-  
-  const limit = rateLimitStore.get(key);
-  
-  // Reset if window expired
-  if (now > limit.resetTime) {
-    rateLimitStore.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return true;
-  }
-  
-  // Check if limit exceeded
-  if (limit.count >= MAX_SUBMISSIONS_PER_IP) {
-    return false;
-  }
-  
-  // Increment count
-  limit.count++;
-  return true;
-}
-
-// Clean up old rate limit entries periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, value] of rateLimitStore.entries()) {
-    if (now > value.resetTime) {
-      rateLimitStore.delete(key);
-    }
-  }
-}, 60 * 1000); // Clean up every minute
-
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -63,16 +12,11 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ message: "Server configuration error: Missing SendGrid API key" });
   }
 
-  // Get client IP for rate limiting
-  const clientIP = getClientIP(req);
-  
-  // Rate limiting check
-  if (!checkRateLimit(clientIP)) {
-    console.warn(`Rate limit exceeded for IP: ${clientIP}`);
-    return res.status(429).json({ 
-      message: "Too many requests. Please try again later." 
-    });
-  }
+  // Get client IP for logging
+  const clientIP = req.headers['x-forwarded-for']?.split(',')[0] || 
+                   req.headers['x-real-ip'] || 
+                   req.connection?.remoteAddress || 
+                   'unknown';
 
   // Set SendGrid API key
   sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
