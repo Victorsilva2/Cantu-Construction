@@ -183,6 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Form submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            if (!submitBtn) {
+                console.error('Contact form submit button not found');
+                return;
+            }
+
+            const originalText = submitBtn.textContent;
             
             // Clear previous errors
             form.querySelectorAll('.error-message').forEach(error => {
@@ -245,14 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Get reCAPTCHA response token
             let recaptchaResponse = '';
-            if (typeof grecaptcha !== 'undefined') {
-                recaptchaResponse = grecaptcha.getResponse();
-                if (!recaptchaResponse) {
-                    alert('Please complete the reCAPTCHA verification.');
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
+            if (typeof grecaptcha === 'undefined') {
+                alert('reCAPTCHA is still loading. Please wait a moment and try again.');
+                return;
+            }
+
+            recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                alert('Please complete the reCAPTCHA verification.');
+                return;
             }
             
             // Get form data for submission
@@ -265,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             
             // Submit button state
-            const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
