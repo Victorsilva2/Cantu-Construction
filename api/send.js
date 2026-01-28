@@ -115,6 +115,7 @@ module.exports = async function handler(req, res) {
     const businessMsg = {
       to: "clarissaf@cantuconstruction.com", // Recipient
       from: "clarissaf@cantuconstruction.com", // Verified sender in SendGrid
+      replyTo: email, // So replies go to the customer (helps deliverability / avoids spoofing)
       subject: "New Inquiry from Cantu Construction Website",
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`,
       html: `
