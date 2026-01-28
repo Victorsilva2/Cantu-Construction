@@ -74,14 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Phone validation regex - allows various formats
     const phoneRegex = /^[\d\s\-\(\)\+\.]+$/;
     
-    // Set form load timestamp for bot detection (minimum time to fill form)
-    contactForms.forEach(form => {
-        const formLoadTimeInput = form.querySelector('#formLoadTime');
-        if (formLoadTimeInput) {
-            formLoadTimeInput.value = Date.now().toString();
-        }
-    });
-    
     // Function to format phone number
     function formatPhoneNumber(value) {
         // Remove all non-digit characters
@@ -251,35 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Bot detection: Check honeypot fields (bots often fill hidden fields)
-            const honeypotField1 = form.querySelector('#website');
-            const honeypotField2 = form.querySelector('#url');
-            
-            // Check both honeypot fields - if either is filled, it's a bot
-            if ((honeypotField1 && honeypotField1.value.trim() !== '') || 
-                (honeypotField2 && honeypotField2.value.trim() !== '')) {
-                console.warn('Bot detected: Honeypot field was filled', {
-                    website: honeypotField1?.value,
-                    url: honeypotField2?.value
-                });
-                // Silently reject - don't alert the bot
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                // Show generic error to user (if it's a real user, they'll see this)
-                alert('There was an error submitting your form. Please try again or contact us directly.');
-                return;
-            }
-            
-            // Bot detection: Check minimum time spent on form (humans need at least 3 seconds)
-            const formLoadTimeInput = form.querySelector('#formLoadTime');
-            if (formLoadTimeInput && formLoadTimeInput.value) {
-                const loadTime = parseInt(formLoadTimeInput.value);
-                const currentTime = Date.now();
-                const timeSpent = (currentTime - loadTime) / 1000; // in seconds
-                
-                if (timeSpent < 3) {
-                    console.warn('Bot detected: Form submitted too quickly');
-                    alert('Please take your time filling out the form. Minimum 3 seconds required.');
+            // Get reCAPTCHA response token
+            let recaptchaResponse = '';
+            if (typeof grecaptcha !== 'undefined') {
+                recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    alert('Please complete the reCAPTCHA verification.');
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                     return;
@@ -292,10 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: emailInput?.value.trim() || '',
                 phone: phoneInput?.value.trim() || '',
                 message: messageInput?.value.trim() || '',
-                website: honeypotField1?.value.trim() || '', // Include honeypots for server validation
-                url: honeypotField2?.value.trim() || '',
-                formLoadTime: formLoadTimeInput?.value || '',
-                submitTime: Date.now().toString()
+                recaptchaToken: recaptchaResponse
             };
             
             // Submit button state
@@ -316,13 +282,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.message && data.message.includes('successfully')) {
                     alert('Thank you for your message! We\'ll get back to you soon.');
                     form.reset();
+                    // Reset reCAPTCHA
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
                 } else {
                     alert('There was an error sending your message. Please try again or call us at (956) 631-1273');
+                    // Reset reCAPTCHA on error
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert('There was an error sending your message. Please try again or call us at (956) 631-1273');
+                // Reset reCAPTCHA on error
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
             })
             .finally(() => {
                 submitBtn.textContent = originalText;

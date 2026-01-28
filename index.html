@@ -482,6 +482,9 @@
             animation: sketchLogo 20s ease-in-out infinite;
         }
     </style>
+    
+    <!-- Google reCAPTCHA v2 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <!-- Elementor-Style Header -->
@@ -1003,18 +1006,10 @@
                             <span class="error-message" style="display: none; color: #C62828; font-size: 0.875rem; margin-top: 5px;"></span>
                         </div>
                         
-                        <!-- Honeypot fields - hidden from users but bots will fill them -->
-                        <!-- Multiple honeypots to catch different bot behaviors -->
-                        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
-                            <label for="website" style="display: none;">Website (leave blank)</label>
-                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="" style="display: none;">
-                            
-                            <label for="url" style="display: none;">URL (do not fill)</label>
-                            <input type="url" id="url" name="url" tabindex="-1" autocomplete="off" value="" style="display: none;">
+                        <!-- Google reCAPTCHA v2 -->
+                        <div class="form-group" style="margin-bottom: 20px; display: flex; justify-content: center;">
+                            <div class="g-recaptcha" data-sitekey="6LcVa1ksAAAAAF_UswD-tmiR4SQUZnaICPZdTXtc"></div>
                         </div>
-                        
-                        <!-- Hidden timestamp field to track form load time -->
-                        <input type="hidden" id="formLoadTime" name="formLoadTime" value="">
                         
                         <button type="submit" class="submit-btn" style="background: var(--brand-blue); color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: background-color 0.3s; width: 100%;">
                             Send Message
@@ -1249,7 +1244,17 @@
             submitBtn.disabled = true;
             submitBtn.textContent = "Sending...";
             
+            // Get reCAPTCHA response token
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                alert("Please complete the reCAPTCHA verification.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                return;
+            }
+            
             const formData = Object.fromEntries(new FormData(form).entries());
+            formData.recaptchaToken = recaptchaResponse;
             
             try {
                 // Always try to make the API call
@@ -1265,12 +1270,18 @@
                     // Show custom popup
                     showPopup();
                     form.reset();
+                    // Reset reCAPTCHA
+                    grecaptcha.reset();
                 } else {
                     alert("Error: " + result.message);
+                    // Reset reCAPTCHA on error
+                    grecaptcha.reset();
                 }
             } catch (error) {
                 alert("Error: Unable to send message. Please try again later.");
                 console.error("Error:", error);
+                // Reset reCAPTCHA on error
+                grecaptcha.reset();
             } finally {
                 // Re-enable submit button
                 submitBtn.disabled = false;

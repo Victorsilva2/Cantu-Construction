@@ -1,4 +1,5 @@
 const sgMail = require("@sendgrid/mail");
+const https = require("https");
 
 // Simple in-memory rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map();
@@ -76,69 +77,62 @@ module.exports = async function handler(req, res) {
   // Set SendGrid API key
   sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-  const { name, email, phone, message, website, url, formLoadTime, submitTime } = req.body;
+  const { name, email, phone, message, recaptchaToken } = req.body;
 
-  // Bot Detection: Honeypot field check (check both honeypot fields)
-  // If either honeypot field is filled, it's definitely a bot
-  if ((website && website.trim() !== '') || (url && url.trim() !== '')) {
-    console.warn(`🚫 BOT BLOCKED (honeypot filled) from IP: ${clientIP}`, {
-      website: website || '(empty)',
-      url: url || '(empty)',
-      email: email || '(no email)',
-      name: name || '(no name)'
-    });
-    // Return generic error - don't reveal it's a honeypot
+  // Validate required fields first
+  if (!name || !email || !message) {
     return res.status(400).json({ 
-      message: "Invalid submission detected." 
+      message: "Please fill in all required fields." 
     });
   }
 
-  // Bot Detection: Time-based validation
-  if (formLoadTime && submitTime) {
-    const loadTime = parseInt(formLoadTime);
-    const submitTimeInt = parseInt(submitTime);
-    
-    if (!isNaN(loadTime) && !isNaN(submitTimeInt)) {
-      const timeSpent = (submitTimeInt - loadTime) / 1000; // in seconds
-      
-      // If form was submitted in less than 3 seconds, it's likely a bot
-      if (timeSpent < 3) {
-        console.warn(`Bot detected (too fast: ${timeSpent.toFixed(2)}s) from IP: ${clientIP}`);
-        return res.status(400).json({ 
-          message: "Form submitted too quickly. Please take your time." 
-        });
-      }
-      
-      // If form was submitted in less than 5 seconds, log as suspicious but allow
-      if (timeSpent < 5) {
-        console.warn(`Suspicious submission (${timeSpent.toFixed(2)}s) from IP: ${clientIP}`);
-      }
-    }
+  // Verify Google reCAPTCHA token
+  if (!recaptchaToken) {
+    console.warn(`Missing reCAPTCHA token from IP: ${clientIP}`);
+    return res.status(400).json({ 
+      message: "Please complete the reCAPTCHA verification." 
+    });
   }
 
-  // Additional spam detection: Check for common spam patterns
-  const spamPatterns = [
-    /(viagra|cialis|casino|poker|loan|debt|credit)/i,
-    /(http|https|www\.)/i, // URLs in message (often spam)
-    /(click here|buy now|limited time)/i
-  ];
-  
-  const messageText = (message || '').toLowerCase();
-  const nameText = (name || '').toLowerCase();
-  const emailText = (email || '').toLowerCase();
-  
-  // Check message for spam patterns (but allow legitimate URLs in context)
-  const suspiciousPatterns = spamPatterns.filter(pattern => {
-    if (pattern.source.includes('http')) {
-      // Only flag if URL is standalone or suspicious
-      return pattern.test(messageText) && !messageText.includes('cantuconstruction.com');
+  // Check if reCAPTCHA secret key is configured
+  if (!process.env.RECAPTCHA_SECRET_KEY) {
+    console.error('Missing reCAPTCHA secret key');
+    return res.status(500).json({ message: "Server configuration error: Missing reCAPTCHA secret key" });
+  }
+
+  // Verify reCAPTCHA token with Google
+  try {
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${encodeURIComponent(process.env.RECAPTCHA_SECRET_KEY)}&response=${encodeURIComponent(recaptchaToken)}&remoteip=${encodeURIComponent(clientIP)}`;
+    
+    const recaptchaData = await new Promise((resolve, reject) => {
+      https.get(verifyUrl, (res) => {
+        let data = '';
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }).on('error', (err) => {
+        reject(err);
+      });
+    });
+
+    if (!recaptchaData.success) {
+      console.warn(`reCAPTCHA verification failed from IP: ${clientIP}`, recaptchaData['error-codes']);
+      return res.status(400).json({ 
+        message: "reCAPTCHA verification failed. Please try again." 
+      });
     }
-    return pattern.test(messageText) || pattern.test(nameText) || pattern.test(emailText);
-  });
-  
-  if (suspiciousPatterns.length > 0) {
-    console.warn(`Suspicious content detected from IP: ${clientIP}`, suspiciousPatterns);
-    // Log but don't block - might be false positive
+  } catch (error) {
+    console.error('Error verifying reCAPTCHA:', error);
+    return res.status(500).json({ 
+      message: "Error verifying reCAPTCHA. Please try again later." 
+    });
   }
 
   // Validate required fields
