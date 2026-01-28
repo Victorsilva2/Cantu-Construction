@@ -129,7 +129,7 @@ module.exports = async function handler(req, res) {
     console.warn(`🚫 Suspicious name pattern detected from IP: ${clientIP}`, { name, email });
   }
 
-  // Validate message length (too short might be spam, too long might be abuse)
+  // Validate message length (basic validation)
   if (message.trim().length < 10) {
     return res.status(400).json({ 
       message: "Message must be at least 10 characters long." 
@@ -139,24 +139,6 @@ module.exports = async function handler(req, res) {
   if (message.trim().length > 5000) {
     return res.status(400).json({ 
       message: "Message is too long. Please keep it under 5000 characters." 
-    });
-  }
-
-  // Check for random letter messages (common spam pattern)
-  // Messages that are just random letters or very repetitive
-  const messageText = message.trim();
-  const isRandomLetters = /^[a-z\s]{1,20}$/i.test(messageText) && messageText.length < 20;
-  const isRepetitive = /^(.)\1{10,}$/.test(messageText); // Same character repeated
-  
-  if (isRandomLetters || isRepetitive) {
-    console.warn(`🚫 Suspicious message pattern (random letters/repetitive) from IP: ${clientIP}`, {
-      email,
-      name,
-      messageLength: messageText.length,
-      messagePreview: messageText.substring(0, 50)
-    });
-    return res.status(400).json({ 
-      message: "Message appears to be invalid. Please provide a meaningful message." 
     });
   }
 
