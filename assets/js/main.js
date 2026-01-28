@@ -250,6 +250,9 @@ window.addEventListener('scroll', () => {
     const hero = document.querySelector('.hero');
     const heroHeight = hero ? hero.offsetHeight : 0;
     
+    // Some pages may not include the `.navbar` element (or it may load later)
+    if (!navbar) return;
+    
     if (window.scrollY > heroHeight) {
         // Past the hero section - show solid background
         navbar.style.background = 'var(--bg)';
@@ -419,48 +422,7 @@ window.addEventListener('load', () => {
     initFormAnimations();
 });
 
-// Contact form handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const projectType = contactForm.querySelectorAll('input[type="text"]')[1].value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // Simple validation
-        if (!name || !email || !message) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-        
-        // Simulate form submission
-        const submitBtn = contactForm.querySelector('.btn-primary');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate API call
-        setTimeout(() => {
-            alert('Thank you for your message! We\'ll get back to you soon.');
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-}
+// NOTE: Contact form submit handling is implemented in `assets/js/components.js`.
 
 // Intersection Observer for animations
 const observerOptions = {
