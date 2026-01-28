@@ -280,14 +280,19 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.message && data.message.includes('successfully')) {
-                    alert('Thank you for your message! We\'ll get back to you soon.');
+                    // Prefer the site’s custom popup if available
+                    if (typeof window.showPopup === 'function') {
+                        window.showPopup();
+                    } else {
+                        alert('Thank you for your message! We\'ll get back to you soon.');
+                    }
                     form.reset();
                     // Reset reCAPTCHA
                     if (typeof grecaptcha !== 'undefined') {
                         grecaptcha.reset();
                     }
                 } else {
-                    alert('There was an error sending your message. Please try again or call us at (956) 631-1273');
+                    alert(`Error: ${data?.message || 'There was an error sending your message. Please try again or call us at (956) 631-1273'}`);
                     // Reset reCAPTCHA on error
                     if (typeof grecaptcha !== 'undefined') {
                         grecaptcha.reset();

@@ -6,8 +6,11 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
+  // Support both env var names (a common Vercel mis-key is SEND_GRTD_API_KEY)
+  const sendGridApiKey = process.env.SEND_GRID_API_KEY || process.env.SEND_GRTD_API_KEY;
+
   // Check if environment variables are set
-  if (!process.env.SEND_GRID_API_KEY) {
+  if (!sendGridApiKey) {
     console.error('Missing SendGrid API key');
     return res.status(500).json({ message: "Server configuration error: Missing SendGrid API key" });
   }
@@ -19,7 +22,7 @@ module.exports = async function handler(req, res) {
                    'unknown';
 
   // Set SendGrid API key
-  sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+  sgMail.setApiKey(sendGridApiKey);
 
   const { name, email, phone, message, recaptchaToken } = req.body;
 
@@ -79,13 +82,6 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // Validate required fields
-  if (!name || !email || !message) {
-    return res.status(400).json({ 
-      message: "Please fill in all required fields." 
-    });
-  }
-
   // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -94,39 +90,11 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // Additional spam detection: Check for suspicious email patterns
-  // Random letter emails (like "abc@xyz.com", "test@test.com", etc.)
-  const suspiciousEmailPatterns = [
-    /^[a-z]{1,3}@[a-z]{1,3}\.[a-z]{2,3}$/i, // Very short emails like "ab@cd.ef"
-    /^test@/i, // test@ emails
-    /^[a-z]+\d+@/i, // Random letters + numbers like "abc123@"
-    /@(test|example|fake|spam|temp)\./i, // Test domains
-    /@(mailinator|10minutemail|guerrillamail|tempmail)\./i, // Temporary email services
-  ];
-  
-  const isSuspiciousEmail = suspiciousEmailPatterns.some(pattern => pattern.test(email));
-  if (isSuspiciousEmail) {
-    console.warn(`🚫 Suspicious email pattern detected from IP: ${clientIP}`, { email, name });
-    // Log but allow - might be legitimate, but log for review
-  }
-
-  // Check for random letter names (very short or random character patterns)
+  // Basic name validation
   if (name && name.trim().length < 2) {
     return res.status(400).json({ 
       message: "Name must be at least 2 characters long." 
     });
-  }
-  
-  // Check for suspicious name patterns (random letters, numbers, etc.)
-  const suspiciousNamePatterns = [
-    /^[a-z]{1,2}$/i, // Single or double letter names
-    /^[a-z]+\d+$/i, // Random letters + numbers
-    /^(test|admin|user|spam)$/i, // Common test names
-  ];
-  
-  const isSuspiciousName = suspiciousNamePatterns.some(pattern => pattern.test(name));
-  if (isSuspiciousName) {
-    console.warn(`🚫 Suspicious name pattern detected from IP: ${clientIP}`, { name, email });
   }
 
   // Validate message length (basic validation)
@@ -227,9 +195,19 @@ module.exports = async function handler(req, res) {
     console.error('Full error:', error);
     if (error.response) {
       console.error('Error details:', JSON.stringify(error.response.body, null, 2));
+      // SendGrid specific error details
+      const errorDetails = error.response.body?.errors || [];
+      const errorMessage = errorDetails.length > 0 
+        ? errorDetails.map(e => e.message).join(', ')
+        : error.message;
+      
+      return res.status(500).json({ 
+        message: `Error sending email: ${errorMessage}`,
+        error: error.message
+      });
     }
     res.status(500).json({ 
-      message: "Error sending email",
+      message: `Error sending email: ${error.message}`,
       error: error.message
     });
   }

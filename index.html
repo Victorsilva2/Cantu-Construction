@@ -1233,61 +1233,8 @@
     
     <!-- Contact Form JavaScript -->
     <script>
-        const form = document.querySelector("#contactForm");
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            
-            // Disable submit button to prevent multiple submissions
-            const submitBtn = form.querySelector("button[type='submit']");
-            const originalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Sending...";
-            
-            // Get reCAPTCHA response token
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                alert("Please complete the reCAPTCHA verification.");
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-                return;
-            }
-            
-            const formData = Object.fromEntries(new FormData(form).entries());
-            formData.recaptchaToken = recaptchaResponse;
-            
-            try {
-                // Always try to make the API call
-                const response = await fetch("/api/send", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData),
-                });
-
-                const result = await response.json();
-                
-                if (response.ok) {
-                    // Show custom popup
-                    showPopup();
-                    form.reset();
-                    // Reset reCAPTCHA
-                    grecaptcha.reset();
-                } else {
-                    alert("Error: " + result.message);
-                    // Reset reCAPTCHA on error
-                    grecaptcha.reset();
-                }
-            } catch (error) {
-                alert("Error: Unable to send message. Please try again later.");
-                console.error("Error:", error);
-                // Reset reCAPTCHA on error
-                grecaptcha.reset();
-            } finally {
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            }
-        });
+        // NOTE: Contact form submit handling is implemented in `assets/js/components.js`.
+        // This file only owns the popup helpers used after a successful submission.
 
         // Function to show custom popup
         function showPopup() {
