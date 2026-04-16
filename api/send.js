@@ -183,14 +183,21 @@ module.exports = async function handler(req, res) {
       `,
     };
 
-    // Send both emails
-    await Promise.all([
-      sgMail.send(businessMsg),
-      sgMail.send(customerMsg)
-    ]);
-    
-    console.log('Emails sent successfully via SendGrid');
-    res.status(200).json({ message: "Email sent successfully!" });
+    // Send business email first (this is the money email).
+    // Then try the customer confirmation as a best-effort (don’t fail the inquiry if it can’t be sent).
+    await sgMail.send(businessMsg);
+
+    try {
+      await sgMail.send(customerMsg);
+    } catch (customerErr) {
+      console.warn('Customer confirmation email failed (continuing):', customerErr?.message || customerErr);
+      if (customerErr?.response?.body) {
+        console.warn('Customer email error details:', JSON.stringify(customerErr.response.body, null, 2));
+      }
+    }
+
+    console.log('Inquiry email sent successfully via SendGrid');
+    res.status(200).json({ message: "Inquiry received successfully." });
   } catch (error) {
     console.error('SendGrid error:', error.message);
     console.error('Full error:', error);
