@@ -1152,9 +1152,9 @@
             }
             
             // Specific durations for each target value
-            // 37: 7 seconds, 100: 4 seconds, 500: 1.2 seconds (keep same)
+            // 47: 7 seconds, 100: 4 seconds, 500: 1.2 seconds (keep same)
             let duration;
-            if (targetValue === 37) {
+            if (targetValue === 47) {
                 duration = 5000; // 7 seconds
             } else if (targetValue === 100) {
                 duration = 4000; // 4 seconds
@@ -1211,8 +1211,8 @@
                     if (entry.isIntersecting && !hasAnimated) {
                         hasAnimated = true;
                         console.log('Animating counters...');
-                        // Speed order: 37 (slowest) > 100 (second) > 500 (fastest)
-                        animateCounter('count1', 37, '+');  // Slowest
+                        // Speed order: 47 (slowest) > 100 (second) > 500 (fastest)
+                        animateCounter('count1', 47, '+');  // Slowest
                         animateCounter('count2', 500, '+'); // Fastest
                         animateCounter('count3', 100, '%'); // Second slowest
                     }
