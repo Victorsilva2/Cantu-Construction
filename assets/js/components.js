@@ -23,7 +23,6 @@ function openBrochure(brochureType) {
         'brownsville-mob': 'public/brochures/BrownsvilleMOB.pdf',
         'starpoint': 'public/brochures/StarPoint.pdf',
         'midvalley-pros': 'public/brochures/Mid Valley.pdf',
-        'commercial-lot-495-taylor': 'public/brochures/Commerical Lot 495 & Taylor Rd.pdf',
         'commercial-lot-905-plaza': 'public/brochures/Commerical Lot 905 Plaza Dr .pdf',
         'commercial-lot-expressway-83': 'public/brochures/Commerical Lot Expressway 83 & Sugar Rd.pdf',
         'residential-lot-los-ebanos': 'public/brochures/Residential Lot Los Ebanos & 3 Mile Rd.pdf'
